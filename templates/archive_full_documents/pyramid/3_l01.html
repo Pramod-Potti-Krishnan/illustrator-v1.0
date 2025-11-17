@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .pyramid-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1260px;
+            max-height: 720px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 60px;
+            font-family: Arial, sans-serif;
+        }
+
+        .pyramid-visual {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .pyramid-level {
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pyramid-shape {
+            /* Height for 3-stage pyramid in L01 */
+            height: 180px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .pyramid-level:hover .pyramid-shape {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+        /* MATHEMATICALLY CORRECT TAPER:
+           Total height = ~600px (3×180 + 2×15 gap)
+           Taper constant C = 0.12
+           ΔW_trapezoid = C × h = 0.12 × 180 = 21.6%
+           ΔW_gap = C × g = 0.12 × 15 = 1.8%
+        */
+
+        /* Level 1 (Bottom): B1=100%, T1=100%-21.6%=78.4% */
+        .pyramid-level:nth-child(3) .pyramid-shape {
+            width: 100%;
+            clip-path: polygon(10.8% 0%, 89.2% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* Level 2: B2=78.4%-1.8%=76.6%, T2=76.6%-21.6%=55.0% */
+        .pyramid-level:nth-child(2) .pyramid-shape {
+            width: 76.6%;
+            clip-path: polygon(14.1% 0%, 85.9% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* Level 3 (Top): B3=55.0%-1.8%=53.2%, T3=53.2%-21.6%=31.6% */
+        .pyramid-level:nth-child(1) .pyramid-shape {
+            width: 53.2%;
+            clip-path: polygon(20.3% 0%, 79.7% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* MULTI-COLOR palette */
+        .level-3 .pyramid-shape { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }  /* Purple */
+        .level-2 .pyramid-shape { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }  /* Blue */
+        .level-1 .pyramid-shape { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }  /* Green */
+
+        .level-number {
+            color: white;
+            font-size: 56px;
+            font-weight: 900;
+        }
+
+        .level-label {
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            padding: 0 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pyramid-container">
+        <div class="pyramid-visual">
+            <!-- Level 3 (Top - Narrowest) -->
+            <div class="pyramid-level level-3">
+                <div class="pyramid-shape">
+                    <div class="level-number">3</div>
+                    <div class="level-label">{level_3_label}</div>
+                </div>
+            </div>
+
+            <!-- Level 2 (Middle) -->
+            <div class="pyramid-level level-2">
+                <div class="pyramid-shape">
+                    <div class="level-number">2</div>
+                    <div class="level-label">{level_2_label}</div>
+                </div>
+            </div>
+
+            <!-- Level 1 (Bottom - Widest) -->
+            <div class="pyramid-level level-1">
+                <div class="pyramid-shape">
+                    <div class="level-number">1</div>
+                    <div class="level-label">{level_1_label}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

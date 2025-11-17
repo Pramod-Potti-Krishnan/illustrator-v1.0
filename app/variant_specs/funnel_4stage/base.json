@@ -1,0 +1,122 @@
+{
+  "variant_id": "funnel_4stage_base",
+  "illustration_type": "funnel_4stage",
+  "template_path": "templates/funnel_4stage/base.html",
+  "layout_compatible": ["L01"],
+  "dimensions": {
+    "width": 1800,
+    "height": 600
+  },
+  "elements": [
+    {
+      "element_id": "stage1",
+      "element_type": "funnel_level",
+      "required_fields": ["title", "description", "metric"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 20,
+          "min": 10,
+          "max": 30
+        },
+        "description_chars": {
+          "baseline": 45,
+          "min": 25,
+          "max": 60
+        },
+        "metric_chars": {
+          "baseline": 10,
+          "min": 5,
+          "max": 15
+        }
+      }
+    },
+    {
+      "element_id": "stage2",
+      "element_type": "funnel_level",
+      "required_fields": ["title", "description", "metric"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 20,
+          "min": 10,
+          "max": 30
+        },
+        "description_chars": {
+          "baseline": 45,
+          "min": 25,
+          "max": 60
+        },
+        "metric_chars": {
+          "baseline": 10,
+          "min": 5,
+          "max": 15
+        }
+      }
+    },
+    {
+      "element_id": "stage3",
+      "element_type": "funnel_level",
+      "required_fields": ["title", "description", "metric"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 20,
+          "min": 10,
+          "max": 30
+        },
+        "description_chars": {
+          "baseline": 45,
+          "min": 25,
+          "max": 60
+        },
+        "metric_chars": {
+          "baseline": 10,
+          "min": 5,
+          "max": 15
+        }
+      }
+    },
+    {
+      "element_id": "stage4",
+      "element_type": "funnel_level",
+      "required_fields": ["title", "description", "metric"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 20,
+          "min": 10,
+          "max": 30
+        },
+        "description_chars": {
+          "baseline": 45,
+          "min": 25,
+          "max": 60
+        },
+        "metric_chars": {
+          "baseline": 10,
+          "min": 5,
+          "max": 15
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "stage1": {
+      "title": "Awareness",
+      "description": "Initial contact with potential customers",
+      "metric": "10,000"
+    },
+    "stage2": {
+      "title": "Interest",
+      "description": "Engaged prospects requesting information",
+      "metric": "5,000"
+    },
+    "stage3": {
+      "title": "Consideration",
+      "description": "Qualified leads evaluating solutions",
+      "metric": "1,500"
+    },
+    "stage4": {
+      "title": "Conversion",
+      "description": "Customers completing purchase",
+      "metric": "500"
+    }
+  }
+}

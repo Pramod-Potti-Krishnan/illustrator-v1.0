@@ -1,0 +1,66 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_org_chart",
+  "slide_number": 1,
+  "illustration_type": "org_chart",
+  "variant_id": "base",
+  "topics": [
+    "Our organizational structure emphasizes clear reporting lines while fostering collaboration across functional areas. Each VP leads a specialized domain with dedicated teams.",
+    "The flat hierarchy enables rapid decision-making and direct communication between leadership and individual contributors. Team leads have autonomy within strategic guardrails."
+  ],
+  "narrative": "Test narrative for org chart",
+  "data": {
+    "org_structure": {
+      "level_1": [
+        {
+          "role_title": "Chief Executive Officer",
+          "role_name": "Sarah Chen"
+        }
+      ],
+      "level_2": [
+        {
+          "role_title": "VP of Engineering",
+          "role_name": "Michael Rodriguez"
+        },
+        {
+          "role_title": "VP of Product",
+          "role_name": "Emily Thompson"
+        },
+        {
+          "role_title": "VP of Operations",
+          "role_name": "David Kim"
+        }
+      ],
+      "level_3": [
+        {
+          "role_title": "Backend Lead",
+          "role_name": "Alex Patel"
+        },
+        {
+          "role_title": "Frontend Lead",
+          "role_name": "Jessica Wu"
+        },
+        {
+          "role_title": "Product Manager",
+          "role_name": "Chris Johnson"
+        },
+        {
+          "role_title": "Operations Manager",
+          "role_name": "Maria Garcia"
+        }
+      ]
+    },
+    "explanatory_text": [
+      "Our organizational structure emphasizes clear reporting lines while fostering collaboration across functional areas. Each VP leads a specialized domain with dedicated teams.",
+      "The flat hierarchy enables rapid decision-making and direct communication between leadership and individual contributors. Team leads have autonomy within strategic guardrails.",
+      "Regular cross-functional meetings ensure alignment on company goals while maintaining accountability within each vertical function."
+    ]
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Org Chart"
+  },
+  "layout_id": "L02",
+  "theme": "professional"
+}

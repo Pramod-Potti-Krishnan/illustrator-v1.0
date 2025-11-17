@@ -1,0 +1,34 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_pyramid_3tier",
+  "slide_number": 1,
+  "illustration_type": "pyramid_3tier",
+  "variant_id": "base",
+  "topics": [
+    "Strategic Vision",
+    "Tactical Planning",
+    "Operational Execution"
+  ],
+  "narrative": "Test narrative for pyramid 3tier",
+  "data": {
+    "tier1": {
+      "title": "Strategic Vision",
+      "description": "Long-term goals and corporate direction setting"
+    },
+    "tier2": {
+      "title": "Tactical Planning",
+      "description": "Departmental initiatives and quarterly objectives"
+    },
+    "tier3": {
+      "title": "Operational Execution",
+      "description": "Day-to-day activities and process implementation"
+    }
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Pyramid 3Tier"
+  },
+  "layout_id": "L01",
+  "theme": "professional"
+}

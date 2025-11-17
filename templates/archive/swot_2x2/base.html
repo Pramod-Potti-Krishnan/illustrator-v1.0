@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .swot-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1800px;
+            max-height: 720px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            background: {theme_border};
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .swot-quadrant {
+            background: {theme_background};
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+        }
+
+        .swot-quadrant h3 {
+            margin: 0 0 20px 0;
+            font-size: 28px;
+            font-weight: 600;
+            padding-bottom: 12px;
+            border-bottom: 3px solid;
+        }
+        .swot-quadrant.strengths h3 {
+            color: {theme_success};
+            border-bottom-color: {theme_success};
+        }
+
+        .swot-quadrant.weaknesses h3 {
+            color: {theme_danger};
+            border-bottom-color: {theme_danger};
+        }
+
+        .swot-quadrant.opportunities h3 {
+            color: {theme_primary};
+            border-bottom-color: {theme_primary};
+        }
+
+        .swot-quadrant.threats h3 {
+            color: {theme_warning};
+            border-bottom-color: {theme_warning};
+        }
+
+        .swot-quadrant ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+        }
+
+        .swot-quadrant li {
+            padding: 10px 0 10px 25px;
+            color: {theme_text};
+            font-size: 18px;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .swot-quadrant li:before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            font-size: 14px;
+        }
+
+        .swot-quadrant.strengths li:before {
+            color: {theme_success};
+        }
+
+        .swot-quadrant.weaknesses li:before {
+            color: {theme_danger};
+        }
+
+        .swot-quadrant.opportunities li:before {
+            color: {theme_primary};
+        }
+
+        .swot-quadrant.threats li:before {
+            color: {theme_warning};
+        }
+    </style>
+</head>
+<body>
+    <div class="swot-container">
+        <div class="swot-quadrant strengths">
+            <h3>Strengths</h3>
+            <ul>
+                {strengths_items}
+            </ul>
+        </div>
+
+        <div class="swot-quadrant weaknesses">
+            <h3>Weaknesses</h3>
+            <ul>
+                {weaknesses_items}
+            </ul>
+        </div>
+
+        <div class="swot-quadrant opportunities">
+            <h3>Opportunities</h3>
+            <ul>
+                {opportunities_items}
+            </ul>
+        </div>
+
+        <div class="swot-quadrant threats">
+            <h3>Threats</h3>
+            <ul>
+                {threats_items}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

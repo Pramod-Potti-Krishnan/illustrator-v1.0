@@ -1,0 +1,45 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_venn_2circle",
+  "slide_number": 1,
+  "illustration_type": "venn_2circle",
+  "variant_id": "base",
+  "topics": [
+    "Test topic 1",
+    "Test topic 2",
+    "Test topic 3"
+  ],
+  "narrative": "Test narrative for venn 2circle",
+  "data": {
+    "left_circle": {
+      "label": "Product A",
+      "items": [
+        "Lower price point",
+        "Traditional design",
+        "Established market"
+      ]
+    },
+    "right_circle": {
+      "label": "Product B",
+      "items": [
+        "Premium features",
+        "Modern aesthetics",
+        "Growing segment"
+      ]
+    },
+    "overlap": {
+      "label": "Common",
+      "items": [
+        "Quality materials",
+        "Reliable performance"
+      ]
+    }
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Venn 2Circle"
+  },
+  "layout_id": "L01",
+  "theme": "professional"
+}

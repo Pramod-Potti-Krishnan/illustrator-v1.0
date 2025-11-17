@@ -1,0 +1,95 @@
+{
+  "variant_id": "circular_process_base",
+  "illustration_type": "circular_process",
+  "template_path": "templates/circular_process/base.html",
+  "layout_compatible": ["L02"],
+  "dimensions": {
+    "diagram": {
+      "width": 1260,
+      "height": 720
+    },
+    "text": {
+      "width": 480,
+      "height": 720
+    }
+  },
+  "elements": [
+    {
+      "element_id": "center_label",
+      "element_type": "center_text",
+      "required_fields": ["text"],
+      "constraints": {
+        "text_chars": {
+          "baseline": 25,
+          "min": 15,
+          "max": 40
+        }
+      }
+    },
+    {
+      "element_id": "process_steps",
+      "element_type": "circular_sequence",
+      "required_fields": ["steps"],
+      "item_constraints": {
+        "min_items": 4,
+        "max_items": 4,
+        "baseline_items": 4,
+        "step_title_chars": {
+          "baseline": 18,
+          "min": 12,
+          "max": 28
+        },
+        "step_description_chars": {
+          "baseline": 50,
+          "min": 35,
+          "max": 70
+        }
+      }
+    },
+    {
+      "element_id": "explanatory_text",
+      "element_type": "text_panel",
+      "required_fields": ["paragraphs"],
+      "item_constraints": {
+        "min_paragraphs": 2,
+        "max_paragraphs": 4,
+        "baseline_paragraphs": 3,
+        "paragraph_chars": {
+          "baseline": 180,
+          "min": 120,
+          "max": 240
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "center_label": "Continuous Improvement Cycle",
+    "process_steps": [
+      {
+        "number": 1,
+        "title": "Plan",
+        "description": "Identify improvement opportunities and define objectives"
+      },
+      {
+        "number": 2,
+        "title": "Do",
+        "description": "Implement changes on small scale and collect data"
+      },
+      {
+        "number": 3,
+        "title": "Check",
+        "description": "Analyze results and compare to expected outcomes"
+      },
+      {
+        "number": 4,
+        "title": "Act",
+        "description": "Standardize successful changes or refine approach"
+      }
+    ],
+    "explanatory_text": [
+      "This PDCA cycle represents our approach to continuous improvement and iterative development. Each phase builds upon the previous one in a repeating pattern.",
+      "By maintaining discipline in each phase, we ensure systematic learning and progressive refinement of our processes. Data collection during the Do phase informs objective decision-making.",
+      "The cycle repeats continuously, with each iteration incorporating lessons learned and driving incremental improvements across all operational areas."
+    ]
+  }
+}

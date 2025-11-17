@@ -1,0 +1,52 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_circular_process",
+  "slide_number": 1,
+  "illustration_type": "circular_process",
+  "variant_id": "base",
+  "topics": [
+    "Continuous Improvement Cycle",
+    "{'number': 1, 'title': 'Plan', 'description': 'Identify improvement opportunities and define objectives'}",
+    "{'number': 2, 'title': 'Do', 'description': 'Implement changes on small scale and collect data'}",
+    "This PDCA cycle represents our approach to continuous improvement and iterative development. Each phase builds upon the previous one in a repeating pattern.",
+    "By maintaining discipline in each phase, we ensure systematic learning and progressive refinement of our processes. Data collection during the Do phase informs objective decision-making."
+  ],
+  "narrative": "Test narrative for circular process",
+  "data": {
+    "center_label": "Continuous Improvement Cycle",
+    "process_steps": [
+      {
+        "number": 1,
+        "title": "Plan",
+        "description": "Identify improvement opportunities and define objectives"
+      },
+      {
+        "number": 2,
+        "title": "Do",
+        "description": "Implement changes on small scale and collect data"
+      },
+      {
+        "number": 3,
+        "title": "Check",
+        "description": "Analyze results and compare to expected outcomes"
+      },
+      {
+        "number": 4,
+        "title": "Act",
+        "description": "Standardize successful changes or refine approach"
+      }
+    ],
+    "explanatory_text": [
+      "This PDCA cycle represents our approach to continuous improvement and iterative development. Each phase builds upon the previous one in a repeating pattern.",
+      "By maintaining discipline in each phase, we ensure systematic learning and progressive refinement of our processes. Data collection during the Do phase informs objective decision-making.",
+      "The cycle repeats continuously, with each iteration incorporating lessons learned and driving incremental improvements across all operational areas."
+    ]
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Circular Process"
+  },
+  "layout_id": "L02",
+  "theme": "professional"
+}

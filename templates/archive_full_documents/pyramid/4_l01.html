@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .pyramid-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1260px;
+            max-height: 720px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 60px;
+            font-family: Arial, sans-serif;
+        }
+
+        .pyramid-visual {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pyramid-level {
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pyramid-shape {
+            /* Height for 4-stage pyramid in L01 */
+            height: 140px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .pyramid-level:hover .pyramid-shape {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+        /* MATHEMATICALLY CORRECT TAPER:
+           Total height = ~600px (4×140 + 3×12 gap)
+           Taper constant C = 0.12
+           ΔW_trapezoid = C × h = 0.12 × 140 = 16.8%
+           ΔW_gap = C × g = 0.12 × 12 = 1.44%
+        */
+
+        /* Level 1 (Bottom): B1=100%, T1=100%-16.8%=83.2% */
+        .pyramid-level:nth-child(4) .pyramid-shape {
+            width: 100%;
+            clip-path: polygon(8.4% 0%, 91.6% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* Level 2: B2=83.2%-1.44%=81.76%, T2=81.76%-16.8%=64.96% */
+        .pyramid-level:nth-child(3) .pyramid-shape {
+            width: 81.76%;
+            clip-path: polygon(10.28% 0%, 89.72% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* Level 3: B3=64.96%-1.44%=63.52%, T3=63.52%-16.8%=46.72% */
+        .pyramid-level:nth-child(2) .pyramid-shape {
+            width: 63.52%;
+            clip-path: polygon(13.22% 0%, 86.78% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* Level 4 (Top): B4=46.72%-1.44%=45.28%, T4=45.28%-16.8%=28.48% */
+        .pyramid-level:nth-child(1) .pyramid-shape {
+            width: 45.28%;
+            clip-path: polygon(18.56% 0%, 81.44% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* MULTI-COLOR palette */
+        .level-4 .pyramid-shape { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }  /* Amber */
+        .level-3 .pyramid-shape { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }  /* Purple */
+        .level-2 .pyramid-shape { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }  /* Blue */
+        .level-1 .pyramid-shape { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }  /* Green */
+
+        .level-number {
+            color: white;
+            font-size: 48px;
+            font-weight: 900;
+        }
+
+        .level-label {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            padding: 0 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pyramid-container">
+        <div class="pyramid-visual">
+            <!-- Level 4 (Top - Narrowest) -->
+            <div class="pyramid-level level-4">
+                <div class="pyramid-shape">
+                    <div class="level-number">4</div>
+                    <div class="level-label">{level_4_label}</div>
+                </div>
+            </div>
+
+            <!-- Level 3 -->
+            <div class="pyramid-level level-3">
+                <div class="pyramid-shape">
+                    <div class="level-number">3</div>
+                    <div class="level-label">{level_3_label}</div>
+                </div>
+            </div>
+
+            <!-- Level 2 -->
+            <div class="pyramid-level level-2">
+                <div class="pyramid-shape">
+                    <div class="level-number">2</div>
+                    <div class="level-label">{level_2_label}</div>
+                </div>
+            </div>
+
+            <!-- Level 1 (Bottom - Widest) -->
+            <div class="pyramid-level level-1">
+                <div class="pyramid-shape">
+                    <div class="level-number">1</div>
+                    <div class="level-label">{level_1_label}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

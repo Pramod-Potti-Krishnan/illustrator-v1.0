@@ -1,0 +1,117 @@
+{
+  "variant_id": "org_chart_base",
+  "illustration_type": "org_chart",
+  "template_path": "templates/org_chart/base.html",
+  "layout_compatible": ["L02"],
+  "dimensions": {
+    "diagram": {
+      "width": 1260,
+      "height": 720
+    },
+    "text": {
+      "width": 480,
+      "height": 720
+    }
+  },
+  "elements": [
+    {
+      "element_id": "org_structure",
+      "element_type": "hierarchy",
+      "required_fields": ["levels"],
+      "constraints": {
+        "min_levels": 2,
+        "max_levels": 3,
+        "baseline_levels": 3,
+        "boxes_per_level": {
+          "level_1": {
+            "min": 1,
+            "max": 1,
+            "baseline": 1
+          },
+          "level_2": {
+            "min": 2,
+            "max": 4,
+            "baseline": 3
+          },
+          "level_3": {
+            "min": 3,
+            "max": 6,
+            "baseline": 4
+          }
+        },
+        "role_title_chars": {
+          "baseline": 18,
+          "min": 10,
+          "max": 30
+        },
+        "role_name_chars": {
+          "baseline": 15,
+          "min": 8,
+          "max": 25
+        }
+      }
+    },
+    {
+      "element_id": "explanatory_text",
+      "element_type": "text_panel",
+      "required_fields": ["paragraphs"],
+      "item_constraints": {
+        "min_paragraphs": 2,
+        "max_paragraphs": 4,
+        "baseline_paragraphs": 3,
+        "paragraph_chars": {
+          "baseline": 180,
+          "min": 120,
+          "max": 240
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "org_structure": {
+      "level_1": [
+        {
+          "role_title": "Chief Executive Officer",
+          "role_name": "Sarah Chen"
+        }
+      ],
+      "level_2": [
+        {
+          "role_title": "VP of Engineering",
+          "role_name": "Michael Rodriguez"
+        },
+        {
+          "role_title": "VP of Product",
+          "role_name": "Emily Thompson"
+        },
+        {
+          "role_title": "VP of Operations",
+          "role_name": "David Kim"
+        }
+      ],
+      "level_3": [
+        {
+          "role_title": "Backend Lead",
+          "role_name": "Alex Patel"
+        },
+        {
+          "role_title": "Frontend Lead",
+          "role_name": "Jessica Wu"
+        },
+        {
+          "role_title": "Product Manager",
+          "role_name": "Chris Johnson"
+        },
+        {
+          "role_title": "Operations Manager",
+          "role_name": "Maria Garcia"
+        }
+      ]
+    },
+    "explanatory_text": [
+      "Our organizational structure emphasizes clear reporting lines while fostering collaboration across functional areas. Each VP leads a specialized domain with dedicated teams.",
+      "The flat hierarchy enables rapid decision-making and direct communication between leadership and individual contributors. Team leads have autonomy within strategic guardrails.",
+      "Regular cross-functional meetings ensure alignment on company goals while maintaining accountability within each vertical function."
+    ]
+  }
+}

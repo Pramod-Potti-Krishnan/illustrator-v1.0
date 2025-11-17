@@ -1,0 +1,50 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_timeline_horizontal",
+  "slide_number": 1,
+  "illustration_type": "timeline_horizontal",
+  "variant_id": "base",
+  "topics": [
+    "{'date': 'Q1 2023', 'title': 'Market Research', 'description': 'Comprehensive analysis of customer needs and competitive landscape'}",
+    "{'date': 'Q2 2023', 'title': 'Product Design', 'description': 'Development of prototypes and user experience validation'}",
+    "This timeline represents our product development journey from initial research through full market release. Each phase built upon insights from the previous stage.",
+    "The iterative approach allowed us to validate assumptions early and incorporate customer feedback throughout the development process."
+  ],
+  "narrative": "Test narrative for timeline horizontal",
+  "data": {
+    "timeline_events": [
+      {
+        "date": "Q1 2023",
+        "title": "Market Research",
+        "description": "Comprehensive analysis of customer needs and competitive landscape"
+      },
+      {
+        "date": "Q2 2023",
+        "title": "Product Design",
+        "description": "Development of prototypes and user experience validation"
+      },
+      {
+        "date": "Q3 2023",
+        "title": "Beta Launch",
+        "description": "Limited release to selected customers for feedback collection"
+      },
+      {
+        "date": "Q4 2023",
+        "title": "Full Release",
+        "description": "General availability with marketing campaign and support infrastructure"
+      }
+    ],
+    "explanatory_text": [
+      "This timeline represents our product development journey from initial research through full market release. Each phase built upon insights from the previous stage.",
+      "The iterative approach allowed us to validate assumptions early and incorporate customer feedback throughout the development process.",
+      "By maintaining strict quarterly milestones, we ensured steady progress while remaining flexible to adapt based on market conditions and user needs."
+    ]
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Timeline Horizontal"
+  },
+  "layout_id": "L02",
+  "theme": "professional"
+}

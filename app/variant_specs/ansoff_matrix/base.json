@@ -1,0 +1,131 @@
+{
+  "variant_id": "ansoff_matrix_base",
+  "illustration_type": "ansoff_matrix",
+  "template_path": "templates/ansoff_matrix/base.html",
+  "layout_compatible": ["L25"],
+  "dimensions": {
+    "width": 1800,
+    "height": 720
+  },
+  "elements": [
+    {
+      "element_id": "axis_labels",
+      "element_type": "matrix_axes",
+      "required_fields": ["horizontal_axis_label", "vertical_axis_label", "col1_header", "col2_header"],
+      "constraints": {
+        "axis_label_chars": {
+          "baseline": 20,
+          "min": 10,
+          "max": 30
+        },
+        "header_chars": {
+          "baseline": 15,
+          "min": 8,
+          "max": 25
+        }
+      }
+    },
+    {
+      "element_id": "quadrant1",
+      "element_type": "strategy_cell",
+      "required_fields": ["title", "description", "risk_level"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 20,
+          "min": 15,
+          "max": 30
+        },
+        "description_chars": {
+          "baseline": 100,
+          "min": 70,
+          "max": 130
+        }
+      }
+    },
+    {
+      "element_id": "quadrant2",
+      "element_type": "strategy_cell",
+      "required_fields": ["title", "description", "risk_level"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 20,
+          "min": 15,
+          "max": 30
+        },
+        "description_chars": {
+          "baseline": 100,
+          "min": 70,
+          "max": 130
+        }
+      }
+    },
+    {
+      "element_id": "quadrant3",
+      "element_type": "strategy_cell",
+      "required_fields": ["title", "description", "risk_level"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 20,
+          "min": 15,
+          "max": 30
+        },
+        "description_chars": {
+          "baseline": 100,
+          "min": 70,
+          "max": 130
+        }
+      }
+    },
+    {
+      "element_id": "quadrant4",
+      "element_type": "strategy_cell",
+      "required_fields": ["title", "description", "risk_level"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 20,
+          "min": 15,
+          "max": 30
+        },
+        "description_chars": {
+          "baseline": 100,
+          "min": 70,
+          "max": 130
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "horizontal_axis_label": "Product",
+    "vertical_axis_label": "Market",
+    "col1_header": "Existing",
+    "col2_header": "New",
+    "q1": {
+      "title": "Market Penetration",
+      "description": "Increase market share with current products in existing markets through competitive pricing and marketing.",
+      "risk_level": "low",
+      "risk_label": "Low Risk",
+      "risk_class": "risk-low"
+    },
+    "q2": {
+      "title": "Product Development",
+      "description": "Create new products for existing customer base leveraging current market knowledge and relationships.",
+      "risk_level": "medium",
+      "risk_label": "Medium Risk",
+      "risk_class": "risk-medium"
+    },
+    "q3": {
+      "title": "Market Development",
+      "description": "Expand into new geographical markets or customer segments with existing products.",
+      "risk_level": "medium",
+      "risk_label": "Medium Risk",
+      "risk_class": "risk-medium"
+    },
+    "q4": {
+      "title": "Diversification",
+      "description": "Enter new markets with new products requiring significant investment and strategic capabilities.",
+      "risk_level": "high",
+      "risk_label": "High Risk",
+      "risk_class": "risk-high"
+    }
+  }
+}

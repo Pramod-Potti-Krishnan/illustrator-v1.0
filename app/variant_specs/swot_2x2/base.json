@@ -1,0 +1,96 @@
+{
+  "variant_id": "swot_2x2_base",
+  "illustration_type": "swot_2x2",
+  "template_path": "templates/swot_2x2/base.html",
+  "layout_compatible": ["L25"],
+  "dimensions": {
+    "width": 1800,
+    "height": 720
+  },
+  "elements": [
+    {
+      "element_id": "strengths",
+      "element_type": "quadrant",
+      "required_fields": ["items"],
+      "item_constraints": {
+        "min_items": 2,
+        "max_items": 5,
+        "baseline_items": 4,
+        "chars_per_item": {
+          "baseline": 45,
+          "min": 30,
+          "max": 60
+        }
+      }
+    },
+    {
+      "element_id": "weaknesses",
+      "element_type": "quadrant",
+      "required_fields": ["items"],
+      "item_constraints": {
+        "min_items": 2,
+        "max_items": 5,
+        "baseline_items": 3,
+        "chars_per_item": {
+          "baseline": 45,
+          "min": 30,
+          "max": 60
+        }
+      }
+    },
+    {
+      "element_id": "opportunities",
+      "element_type": "quadrant",
+      "required_fields": ["items"],
+      "item_constraints": {
+        "min_items": 2,
+        "max_items": 5,
+        "baseline_items": 4,
+        "chars_per_item": {
+          "baseline": 45,
+          "min": 30,
+          "max": 60
+        }
+      }
+    },
+    {
+      "element_id": "threats",
+      "element_type": "quadrant",
+      "required_fields": ["items"],
+      "item_constraints": {
+        "min_items": 2,
+        "max_items": 5,
+        "baseline_items": 3,
+        "chars_per_item": {
+          "baseline": 45,
+          "min": 30,
+          "max": 60
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "strengths": [
+      "Strong brand recognition in key markets",
+      "Market leader with 35% share",
+      "Robust financial position and reserves",
+      "Experienced leadership team"
+    ],
+    "weaknesses": [
+      "High operational costs vs competitors",
+      "Limited physical retail presence",
+      "Dependency on key suppliers"
+    ],
+    "opportunities": [
+      "Emerging markets expansion in Asia-Pacific",
+      "AI and machine learning integration",
+      "Strategic partnerships and acquisitions",
+      "Growing demand for sustainable solutions"
+    ],
+    "threats": [
+      "Intense competition in core markets",
+      "Regulatory challenges and compliance costs",
+      "Rapid technological changes"
+    ]
+  }
+}

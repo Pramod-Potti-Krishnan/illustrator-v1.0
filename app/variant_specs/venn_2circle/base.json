@@ -1,0 +1,103 @@
+{
+  "variant_id": "venn_2circle_base",
+  "illustration_type": "venn_2circle",
+  "template_path": "templates/venn_2circle/base.html",
+  "layout_compatible": ["L01"],
+  "dimensions": {
+    "width": 1800,
+    "height": 600
+  },
+  "elements": [
+    {
+      "element_id": "left_circle",
+      "element_type": "venn_section",
+      "required_fields": ["label", "items"],
+      "constraints": {
+        "label_chars": {
+          "baseline": 15,
+          "min": 8,
+          "max": 25
+        },
+        "item_count": {
+          "min": 2,
+          "max": 4,
+          "baseline": 3
+        },
+        "item_chars": {
+          "baseline": 30,
+          "min": 20,
+          "max": 45
+        }
+      }
+    },
+    {
+      "element_id": "right_circle",
+      "element_type": "venn_section",
+      "required_fields": ["label", "items"],
+      "constraints": {
+        "label_chars": {
+          "baseline": 15,
+          "min": 8,
+          "max": 25
+        },
+        "item_count": {
+          "min": 2,
+          "max": 4,
+          "baseline": 3
+        },
+        "item_chars": {
+          "baseline": 30,
+          "min": 20,
+          "max": 45
+        }
+      }
+    },
+    {
+      "element_id": "overlap",
+      "element_type": "venn_intersection",
+      "required_fields": ["label", "items"],
+      "constraints": {
+        "label_chars": {
+          "baseline": 15,
+          "min": 8,
+          "max": 25
+        },
+        "item_count": {
+          "min": 2,
+          "max": 3,
+          "baseline": 2
+        },
+        "item_chars": {
+          "baseline": 25,
+          "min": 15,
+          "max": 40
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "left_circle": {
+      "label": "Product A",
+      "items": [
+        "Lower price point",
+        "Traditional design",
+        "Established market"
+      ]
+    },
+    "right_circle": {
+      "label": "Product B",
+      "items": [
+        "Premium features",
+        "Modern aesthetics",
+        "Growing segment"
+      ]
+    },
+    "overlap": {
+      "label": "Common",
+      "items": [
+        "Quality materials",
+        "Reliable performance"
+      ]
+    }
+  }
+}

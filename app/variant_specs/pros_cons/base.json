@@ -1,0 +1,56 @@
+{
+  "variant_id": "pros_cons_base",
+  "illustration_type": "pros_cons",
+  "template_path": "templates/pros_cons/base.html",
+  "layout_compatible": ["L01"],
+  "dimensions": {
+    "width": 1800,
+    "height": 600
+  },
+  "elements": [
+    {
+      "element_id": "pros",
+      "element_type": "list",
+      "required_fields": ["items"],
+      "item_constraints": {
+        "min_items": 2,
+        "max_items": 6,
+        "baseline_items": 4,
+        "chars_per_item": {
+          "baseline": 50,
+          "min": 30,
+          "max": 70
+        }
+      }
+    },
+    {
+      "element_id": "cons",
+      "element_type": "list",
+      "required_fields": ["items"],
+      "item_constraints": {
+        "min_items": 2,
+        "max_items": 6,
+        "baseline_items": 4,
+        "chars_per_item": {
+          "baseline": 50,
+          "min": 30,
+          "max": 70
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "pros": [
+      "Proven track record in enterprise markets",
+      "Strong financial position and cash reserves",
+      "Experienced leadership team with domain expertise",
+      "Advanced technology platform with scalability"
+    ],
+    "cons": [
+      "High operational costs compared to competitors",
+      "Limited market presence in emerging regions",
+      "Dependency on few key strategic partnerships",
+      "Slower innovation cycle than industry leaders"
+    ]
+  }
+}

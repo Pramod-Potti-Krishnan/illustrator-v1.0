@@ -1,0 +1,33 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_before_after",
+  "slide_number": 1,
+  "illustration_type": "before_after",
+  "variant_id": "base",
+  "topics": [
+    "Manual data entry consuming 20 hours per week",
+    "Error rate of 15% requiring constant corrections",
+    "Automated data processing reducing time to 2 hours weekly",
+    "Error rate below 1% with validation and verification"
+  ],
+  "narrative": "Test narrative for before after",
+  "data": {
+    "before": [
+      "Manual data entry consuming 20 hours per week",
+      "Error rate of 15% requiring constant corrections",
+      "Limited visibility into real-time performance metrics"
+    ],
+    "after": [
+      "Automated data processing reducing time to 2 hours weekly",
+      "Error rate below 1% with validation and verification",
+      "Real-time dashboards providing instant insights and alerts"
+    ]
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Before After"
+  },
+  "layout_id": "L01",
+  "theme": "professional"
+}

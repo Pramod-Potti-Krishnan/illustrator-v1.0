@@ -1,0 +1,56 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_ansoff_matrix",
+  "slide_number": 1,
+  "illustration_type": "ansoff_matrix",
+  "variant_id": "base",
+  "topics": [
+    "Product",
+    "Market",
+    "Existing",
+    "New",
+    "Market Penetration"
+  ],
+  "narrative": "Test narrative for ansoff matrix",
+  "data": {
+    "horizontal_axis_label": "Product",
+    "vertical_axis_label": "Market",
+    "col1_header": "Existing",
+    "col2_header": "New",
+    "q1": {
+      "title": "Market Penetration",
+      "description": "Increase market share with current products in existing markets through competitive pricing and marketing.",
+      "risk_level": "low",
+      "risk_label": "Low Risk",
+      "risk_class": "risk-low"
+    },
+    "q2": {
+      "title": "Product Development",
+      "description": "Create new products for existing customer base leveraging current market knowledge and relationships.",
+      "risk_level": "medium",
+      "risk_label": "Medium Risk",
+      "risk_class": "risk-medium"
+    },
+    "q3": {
+      "title": "Market Development",
+      "description": "Expand into new geographical markets or customer segments with existing products.",
+      "risk_level": "medium",
+      "risk_label": "Medium Risk",
+      "risk_class": "risk-medium"
+    },
+    "q4": {
+      "title": "Diversification",
+      "description": "Enter new markets with new products requiring significant investment and strategic capabilities.",
+      "risk_level": "high",
+      "risk_label": "High Risk",
+      "risk_class": "risk-high"
+    }
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Ansoff Matrix"
+  },
+  "layout_id": "L25",
+  "theme": "professional"
+}

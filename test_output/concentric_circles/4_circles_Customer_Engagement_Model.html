@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concentric Circles - 4 Levels</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: white;
+            padding: 20px;
+        }
+
+        .concentric-container {
+            display: flex;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* LEFT SIDE - Concentric Circles */
+        .circles-section {
+            flex: 0 0 58%;
+            position: relative;
+            aspect-ratio: 1;
+            max-width: 500px;
+        }
+
+        .circles-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 4px solid white;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Circle 4 - Outermost (Diameter: 100%, Radius: 50%, Center at 50% from bottom) */
+        .circle-4 {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #7eb3d5 0%, #6ba3c7 100%);
+            z-index: 1;
+        }
+
+        /* Circle 3 (Diameter: 75%, Radius: 37.5%, Center at 37.5% from bottom) */
+        .circle-3 {
+            width: 75%;
+            height: 75%;
+            background: linear-gradient(135deg, #f9c74f 0%, #f3b52e 100%);
+            z-index: 2;
+        }
+
+        /* Circle 2 (Diameter: 55%, Radius: 27.5%, Center at 27.5% from bottom) */
+        .circle-2 {
+            width: 55%;
+            height: 55%;
+            background: linear-gradient(135deg, #9ca3af 0%, #848c99 100%);
+            z-index: 3;
+        }
+
+        /* Circle 1 - Core (Diameter: 35%, Radius: 17.5%, Center at 17.5% from bottom) */
+        .circle-1 {
+            width: 35%;
+            height: 35%;
+            background: linear-gradient(135deg, #4a90e2 0%, #3a7bc8 100%);
+            z-index: 4;
+        }
+
+        /* Text Labels - Positioned in circles-wrapper, not within circles */
+        .circle-label {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.2;
+            white-space: nowrap;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* Text positioning (optimized for 4 circles on 500px container):
+         * Circles: 35%, 55%, 75%, 100%
+         * User-specified positions:
+         * - T1 = 70px  = 14%
+         * - T2 = 210px = 42%
+         * - T3 = 310px = 62%
+         * - T4 = 430px = 86%
+         */
+
+        .label-1 {
+            bottom: 14%;
+            font-size: 13px;
+        }
+
+        .label-2 {
+            bottom: 42%;
+            font-size: 14px;
+        }
+
+        .label-3 {
+            bottom: 62%;
+            font-size: 15px;
+        }
+
+        .label-4 {
+            bottom: 86%;
+            font-size: 17px;
+        }
+
+        /* RIGHT SIDE - Legend Panel */
+        .legend-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .legend-item {
+            padding: 11.2px 18px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .legend-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .legend-bullets li {
+            font-size: 12.1px;
+            line-height: 1.57;
+            margin-bottom: 3.36px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .legend-bullets li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .legend-bullets li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Legend item colors matching circles */
+        .legend-item-4 {
+            background: linear-gradient(135deg, #7eb3d5 0%, #6ba3c7 100%);
+            color: white;
+        }
+
+        .legend-item-3 {
+            background: linear-gradient(135deg, #f9c74f 0%, #f3b52e 100%);
+            color: #2d3748;
+        }
+
+        .legend-item-2 {
+            background: linear-gradient(135deg, #9ca3af 0%, #848c99 100%);
+            color: white;
+        }
+
+        .legend-item-1 {
+            background: linear-gradient(135deg, #4a90e2 0%, #3a7bc8 100%);
+            color: white;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .concentric-container {
+                flex-direction: column;
+            }
+
+            .circles-section {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .legend-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="concentric-container">
+        <!-- LEFT SIDE - Concentric Circles -->
+        <div class="circles-section">
+            <div class="circles-wrapper">
+                <!-- Circles (background only, no text inside) -->
+                <div class="circle circle-4"></div>
+                <div class="circle circle-3"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-1"></div>
+
+                <!-- Text Labels (positioned absolutely in wrapper) -->
+                <!-- Label 4: 77% from bottom (385px, max 18 chars) -->
+                <span class="circle-label label-4">Customer Advocacy</span>
+
+                <!-- Label 3: 49% from bottom (245px, max 16 chars) -->
+                <span class="circle-label label-3">Active Listening</span>
+
+                <!-- Label 2: 26% from bottom (130px, max 14 chars) -->
+                <span class="circle-label label-2">Personalization</span>
+
+                <!-- Label 1: 8% from bottom (40px, max 12 chars, can use <br> for 2 lines) -->
+                <span class="circle-label label-1">Core Value</span>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE - Legend Panel -->
+        <div class="legend-section">
+            <!-- Legend Item 4 -->
+            <div class="legend-item legend-item-4">
+                <ul class="legend-bullets">
+                    <li>Turn customers into brand champions</li>
+                    <li>Encourage feedback and suggestions</li>
+                    <li>Reward loyalty and recognize advocacy</li>
+                    <li>Empower customers to share experiences</li>
+                </ul>
+            </div>
+
+            <!-- Legend Item 3 -->
+            <div class="legend-item legend-item-3">
+                <ul class="legend-bullets">
+                    <li>Understand customer pain points deeply</li>
+                    <li>Pay attention to verbal and nonverbal cues</li>
+                    <li>Show empathy and build rapport quickly</li>
+                    <li>Provide thoughtful, relevant responses</li>
+                </ul>
+            </div>
+
+            <!-- Legend Item 2 -->
+            <div class="legend-item legend-item-2">
+                <ul class="legend-bullets">
+                    <li>Tailor interactions to individual needs</li>
+                    <li>Use data to customize experiences</li>
+                    <li>Provide relevant content and offers</li>
+                    <li>Adapt to evolving customer preferences</li>
+                </ul>
+            </div>
+
+            <!-- Legend Item 1 -->
+            <div class="legend-item legend-item-1">
+                <ul class="legend-bullets">
+                    <li>Prioritize customer needs above all</li>
+                    <li>Focus on long-term relationships</li>
+                    <li>Create mutual value for all parties</li>
+                    <li>Trust and transparency are essential</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

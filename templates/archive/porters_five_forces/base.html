@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .porter-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1800px;
+            max-height: 720px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            gap: 15px;
+            padding: 30px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f8f9fa;
+        }
+
+        .force-box {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 2px solid;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .force-box:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            z-index: 10;
+        }
+
+        .force-box.center {
+            border-color: {theme_primary};
+            border-width: 3px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+        }
+
+        .force-box.top {
+            border-color: #0EA5E9;
+        }
+
+        .force-box.bottom {
+            border-color: #F59E0B;
+        }
+
+        .force-box.left {
+            border-color: #8B5CF6;
+        }
+
+        .force-box.right {
+            border-color: #EC4899;
+        }
+
+        .force-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .force-box.center .force-title {
+            font-size: 24px;
+            color: {theme_primary};
+        }
+
+        .force-box.top .force-title {
+            color: #0EA5E9;
+        }
+
+        .force-box.bottom .force-title {
+            color: #F59E0B;
+        }
+
+        .force-box.left .force-title {
+            color: #8B5CF6;
+        }
+
+        .force-box.right .force-title {
+            color: #EC4899;
+        }
+
+        .force-description {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #555;
+            text-align: center;
+        }
+
+        .force-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .empty-corner {
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="porter-container">
+        <!-- Top row -->
+        <div class="empty-corner"></div>
+        <div class="force-box top">
+            <div class="force-icon">⬆️</div>
+            <div class="force-title">{threat_new_entrants_title}</div>
+            <div class="force-description">{threat_new_entrants_description}</div>
+        </div>
+        <div class="empty-corner"></div>
+
+        <!-- Middle row -->
+        <div class="force-box left">
+            <div class="force-icon">⬅️</div>
+            <div class="force-title">{supplier_power_title}</div>
+            <div class="force-description">{supplier_power_description}</div>
+        </div>
+
+        <div class="force-box center">
+            <div class="force-icon">🎯</div>
+            <div class="force-title">{competitive_rivalry_title}</div>
+            <div class="force-description">{competitive_rivalry_description}</div>
+        </div>
+
+        <div class="force-box right">
+            <div class="force-icon">➡️</div>
+            <div class="force-title">{buyer_power_title}</div>
+            <div class="force-description">{buyer_power_description}</div>
+        </div>
+
+        <!-- Bottom row -->
+        <div class="empty-corner"></div>
+        <div class="force-box bottom">
+            <div class="force-icon">⬇️</div>
+            <div class="force-title">{threat_substitutes_title}</div>
+            <div class="force-description">{threat_substitutes_description}</div>
+        </div>
+        <div class="empty-corner"></div>
+    </div>
+</body>
+</html>

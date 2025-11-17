@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .before-after-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1800px;
+            max-height: 600px;
+            display: grid;
+            grid-template-columns: 1fr 80px 1fr;
+            gap: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 30px;
+        }
+
+        .comparison-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-header {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid;
+            text-align: center;
+        }
+
+        .panel.before .panel-header {
+            color: {theme_danger};
+            border-color: {theme_danger};
+        }
+
+        .panel.after .panel-header {
+            color: {theme_success};
+            border-color: {theme_success};
+        }
+
+        .panel-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .content-item {
+            font-size: 18px;
+            line-height: 1.5;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .panel.before .content-item {
+            border-left: 4px solid {theme_danger};
+        }
+
+        .panel.after .content-item {
+            border-left: 4px solid {theme_success};
+        }
+
+        .arrow-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: {theme_primary};
+        }
+    </style>
+</head>
+<body>
+    <div class="before-after-container">
+        <div class="comparison-panel panel before">
+            <div class="panel-header">Before</div>
+            <div class="panel-content">
+                {before_items}
+            </div>
+        </div>
+
+        <div class="arrow-divider">
+            →
+        </div>
+
+        <div class="comparison-panel panel after">
+            <div class="panel-header">After</div>
+            <div class="panel-content">
+                {after_items}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

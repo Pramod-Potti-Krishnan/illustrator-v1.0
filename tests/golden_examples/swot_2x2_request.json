@@ -1,0 +1,46 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_swot_2x2",
+  "slide_number": 1,
+  "illustration_type": "swot_2x2",
+  "variant_id": "base",
+  "topics": [
+    "Strong brand recognition in key markets",
+    "Market leader with 35% share",
+    "High operational costs vs competitors",
+    "Limited physical retail presence",
+    "Emerging markets expansion in Asia-Pacific"
+  ],
+  "narrative": "Test narrative for swot 2x2",
+  "data": {
+    "strengths": [
+      "Strong brand recognition in key markets",
+      "Market leader with 35% share",
+      "Robust financial position and reserves",
+      "Experienced leadership team"
+    ],
+    "weaknesses": [
+      "High operational costs vs competitors",
+      "Limited physical retail presence",
+      "Dependency on key suppliers"
+    ],
+    "opportunities": [
+      "Emerging markets expansion in Asia-Pacific",
+      "AI and machine learning integration",
+      "Strategic partnerships and acquisitions",
+      "Growing demand for sustainable solutions"
+    ],
+    "threats": [
+      "Intense competition in core markets",
+      "Regulatory challenges and compliance costs",
+      "Rapid technological changes"
+    ]
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Swot 2X2"
+  },
+  "layout_id": "L25",
+  "theme": "professional"
+}

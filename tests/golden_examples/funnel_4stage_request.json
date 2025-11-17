@@ -1,0 +1,43 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_funnel_4stage",
+  "slide_number": 1,
+  "illustration_type": "funnel_4stage",
+  "variant_id": "base",
+  "topics": [
+    "Awareness",
+    "Interest",
+    "Consideration",
+    "Conversion"
+  ],
+  "narrative": "Test narrative for funnel 4stage",
+  "data": {
+    "stage1": {
+      "title": "Awareness",
+      "description": "Initial contact with potential customers",
+      "metric": "10,000"
+    },
+    "stage2": {
+      "title": "Interest",
+      "description": "Engaged prospects requesting information",
+      "metric": "5,000"
+    },
+    "stage3": {
+      "title": "Consideration",
+      "description": "Qualified leads evaluating solutions",
+      "metric": "1,500"
+    },
+    "stage4": {
+      "title": "Conversion",
+      "description": "Customers completing purchase",
+      "metric": "500"
+    }
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Funnel 4Stage"
+  },
+  "layout_id": "L01",
+  "theme": "professional"
+}

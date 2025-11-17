@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .funnel-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1800px;
+            max-height: 720px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 60px;
+            font-family: Arial, sans-serif;
+            gap: 60px;
+        }
+
+        .funnel-visual {
+            flex: 0 0 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .funnel-stage {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .funnel-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 94px;
+            color: white;
+            font-size: 38px;
+            font-weight: 900;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .funnel-section:hover {
+            filter: brightness(1.15);
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        /* Constant taper angle: Each segment's bottom = 78% of its top width */
+        /* This maintains (T - B) / h = C across all segments */
+
+        /* Stage 1 (Top - Widest) */
+        .stage-1 .funnel-section {
+            width: 90%;
+            clip-path: polygon(0% 0%, 100% 0%, 89% 100%, 11% 100%);
+            background: linear-gradient(135deg, #c85a3d 0%, #b54935 100%);
+        }
+
+        /* Stage 2 - Top width = Stage 1 bottom (90% × 0.78 = 70.2%) */
+        .stage-2 .funnel-section {
+            width: 70.2%;
+            clip-path: polygon(0% 0%, 100% 0%, 89% 100%, 11% 100%);
+            background: linear-gradient(135deg, #daa520 0%, #c49419 100%);
+        }
+
+        /* Stage 3 - Top width = Stage 2 bottom (70.2% × 0.78 = 54.8%) */
+        .stage-3 .funnel-section {
+            width: 54.8%;
+            clip-path: polygon(0% 0%, 100% 0%, 89% 100%, 11% 100%);
+            background: linear-gradient(135deg, #5b8db8 0%, #4a7ba0 100%);
+        }
+
+        /* Stage 4 - Top width = Stage 3 bottom (54.8% × 0.78 = 42.7%) */
+        .stage-4 .funnel-section {
+            width: 42.7%;
+            clip-path: polygon(0% 0%, 100% 0%, 89% 100%, 11% 100%);
+            background: linear-gradient(135deg, #8ba846 0%, #7a9339 100%);
+        }
+
+        /* Stage 5 (Bottom - Narrowest) - Top width = Stage 4 bottom (42.7% × 0.78 = 33.3%) */
+        .stage-5 .funnel-section {
+            width: 33.3%;
+            clip-path: polygon(0% 0%, 100% 0%, 89% 100%, 11% 100%);
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
+        .descriptions-column {
+            flex: 0 0 55%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .description-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            height: 94px;
+            padding: 12px 30px;
+            background: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .description-item:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            transform: translateX(5px);
+        }
+
+        .stage-bullets {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .stage-bullets li {
+            font-size: 13px;
+            line-height: 1.3;
+            color: #6b7280;
+        }
+
+        .stage-bullets li::marker {
+            color: #9ca3af;
+        }
+
+        .stage-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .description-item:hover .stage-icon {
+            transform: rotate(360deg);
+        }
+
+        .icon-inner {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        /* Icon colors match funnel sections */
+        .desc-1 .icon-inner {
+            background: linear-gradient(135deg, #c85a3d 0%, #b54935 100%);
+        }
+
+        .desc-2 .icon-inner {
+            background: linear-gradient(135deg, #daa520 0%, #c49419 100%);
+        }
+
+        .desc-3 .icon-inner {
+            background: linear-gradient(135deg, #5b8db8 0%, #4a7ba0 100%);
+        }
+
+        .desc-4 .icon-inner {
+            background: linear-gradient(135deg, #8ba846 0%, #7a9339 100%);
+        }
+
+        .desc-5 .icon-inner {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
+        /* Stage label styling inside funnel */
+        .funnel-label {
+            font-size: 18px;
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .funnel-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .funnel-visual {
+                flex: 0 0 auto;
+                width: 80%;
+            }
+
+            .descriptions-column {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="funnel-container">
+        <!-- Funnel Visual (Left Side) -->
+        <div class="funnel-visual">
+            <!-- Stage 1 -->
+            <div class="funnel-stage stage-1">
+                <div class="funnel-section">
+                    <span class="funnel-label">{stage_1_name}</span>
+                </div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="funnel-stage stage-2">
+                <div class="funnel-section">
+                    <span class="funnel-label">{stage_2_name}</span>
+                </div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="funnel-stage stage-3">
+                <div class="funnel-section">
+                    <span class="funnel-label">{stage_3_name}</span>
+                </div>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="funnel-stage stage-4">
+                <div class="funnel-section">
+                    <span class="funnel-label">{stage_4_name}</span>
+                </div>
+            </div>
+
+            <!-- Stage 5 -->
+            <div class="funnel-stage stage-5">
+                <div class="funnel-section">
+                    <span class="funnel-label">{stage_5_name}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Descriptions (Right Side) -->
+        <div class="descriptions-column">
+            <!-- Description 1 -->
+            <div class="description-item desc-1">
+                <div class="stage-icon">
+                    <div class="icon-inner">1</div>
+                </div>
+                <ul class="stage-bullets">
+                    <li>{stage_1_bullet_1}</li>
+                    <li>{stage_1_bullet_2}</li>
+                    <li>{stage_1_bullet_3}</li>
+                </ul>
+            </div>
+
+            <!-- Description 2 -->
+            <div class="description-item desc-2">
+                <div class="stage-icon">
+                    <div class="icon-inner">2</div>
+                </div>
+                <ul class="stage-bullets">
+                    <li>{stage_2_bullet_1}</li>
+                    <li>{stage_2_bullet_2}</li>
+                    <li>{stage_2_bullet_3}</li>
+                </ul>
+            </div>
+
+            <!-- Description 3 -->
+            <div class="description-item desc-3">
+                <div class="stage-icon">
+                    <div class="icon-inner">3</div>
+                </div>
+                <ul class="stage-bullets">
+                    <li>{stage_3_bullet_1}</li>
+                    <li>{stage_3_bullet_2}</li>
+                    <li>{stage_3_bullet_3}</li>
+                </ul>
+            </div>
+
+            <!-- Description 4 -->
+            <div class="description-item desc-4">
+                <div class="stage-icon">
+                    <div class="icon-inner">4</div>
+                </div>
+                <ul class="stage-bullets">
+                    <li>{stage_4_bullet_1}</li>
+                    <li>{stage_4_bullet_2}</li>
+                    <li>{stage_4_bullet_3}</li>
+                </ul>
+            </div>
+
+            <!-- Description 5 -->
+            <div class="description-item desc-5">
+                <div class="stage-icon">
+                    <div class="icon-inner">5</div>
+                </div>
+                <ul class="stage-bullets">
+                    <li>{stage_5_bullet_1}</li>
+                    <li>{stage_5_bullet_2}</li>
+                    <li>{stage_5_bullet_3}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add click interactivity - highlight both funnel section and description
+        document.querySelectorAll('.funnel-section').forEach((section, index) => {
+            section.addEventListener('click', function() {
+                const desc = document.querySelectorAll('.description-item')[index];
+                desc.style.background = '#f3f4f6';
+                setTimeout(() => {
+                    desc.style.background = 'white';
+                }, 500);
+            });
+        });
+
+        document.querySelectorAll('.description-item').forEach((item, index) => {
+            item.addEventListener('click', function() {
+                const section = document.querySelectorAll('.funnel-section')[index];
+                section.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    section.style.transform = 'scale(1.0)';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>

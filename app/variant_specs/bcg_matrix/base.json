@@ -1,0 +1,119 @@
+{
+  "variant_id": "bcg_matrix_base",
+  "illustration_type": "bcg_matrix",
+  "template_path": "templates/bcg_matrix/base.html",
+  "layout_compatible": ["L25"],
+  "dimensions": {
+    "width": 1800,
+    "height": 720
+  },
+  "elements": [
+    {
+      "element_id": "axes",
+      "element_type": "matrix_axes",
+      "required_fields": ["horizontal_axis_label", "vertical_axis_label", "col1_label", "col2_label"],
+      "constraints": {
+        "axis_label_chars": {
+          "baseline": 25,
+          "min": 15,
+          "max": 40
+        },
+        "col_label_chars": {
+          "baseline": 12,
+          "min": 8,
+          "max": 20
+        }
+      }
+    },
+    {
+      "element_id": "stars",
+      "element_type": "bcg_quadrant",
+      "required_fields": ["description", "strategy"],
+      "constraints": {
+        "description_chars": {
+          "baseline": 90,
+          "min": 60,
+          "max": 120
+        },
+        "strategy_chars": {
+          "baseline": 70,
+          "min": 50,
+          "max": 95
+        }
+      }
+    },
+    {
+      "element_id": "question_marks",
+      "element_type": "bcg_quadrant",
+      "required_fields": ["description", "strategy"],
+      "constraints": {
+        "description_chars": {
+          "baseline": 90,
+          "min": 60,
+          "max": 120
+        },
+        "strategy_chars": {
+          "baseline": 70,
+          "min": 50,
+          "max": 95
+        }
+      }
+    },
+    {
+      "element_id": "cash_cows",
+      "element_type": "bcg_quadrant",
+      "required_fields": ["description", "strategy"],
+      "constraints": {
+        "description_chars": {
+          "baseline": 90,
+          "min": 60,
+          "max": 120
+        },
+        "strategy_chars": {
+          "baseline": 70,
+          "min": 50,
+          "max": 95
+        }
+      }
+    },
+    {
+      "element_id": "dogs",
+      "element_type": "bcg_quadrant",
+      "required_fields": ["description", "strategy"],
+      "constraints": {
+        "description_chars": {
+          "baseline": 90,
+          "min": 60,
+          "max": 120
+        },
+        "strategy_chars": {
+          "baseline": 70,
+          "min": 50,
+          "max": 95
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "horizontal_axis_label": "Relative Market Share",
+    "vertical_axis_label": "Market Growth Rate",
+    "col1_label": "High",
+    "col2_label": "Low",
+    "stars": {
+      "description": "High growth, high market share products requiring significant investment to maintain position",
+      "strategy": "Invest aggressively to maintain or grow market share"
+    },
+    "question_marks": {
+      "description": "High growth, low market share products with uncertain potential requiring careful evaluation",
+      "strategy": "Selectively invest or divest based on strategic fit"
+    },
+    "cash_cows": {
+      "description": "Low growth, high market share products generating consistent profits with minimal investment",
+      "strategy": "Maximize cash generation to fund Stars and Question Marks"
+    },
+    "dogs": {
+      "description": "Low growth, low market share products consuming resources without significant returns",
+      "strategy": "Divest or minimize investment to free up resources"
+    }
+  }
+}

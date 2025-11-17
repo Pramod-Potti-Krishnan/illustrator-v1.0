@@ -1,0 +1,119 @@
+{
+  "variant_id": "porters_five_forces_base",
+  "illustration_type": "porters_five_forces",
+  "template_path": "templates/porters_five_forces/base.html",
+  "layout_compatible": ["L25"],
+  "dimensions": {
+    "width": 1800,
+    "height": 720
+  },
+  "elements": [
+    {
+      "element_id": "threat_new_entrants",
+      "element_type": "force",
+      "required_fields": ["title", "description"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 25,
+          "min": 15,
+          "max": 40
+        },
+        "description_chars": {
+          "baseline": 80,
+          "min": 50,
+          "max": 110
+        }
+      }
+    },
+    {
+      "element_id": "supplier_power",
+      "element_type": "force",
+      "required_fields": ["title", "description"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 25,
+          "min": 15,
+          "max": 40
+        },
+        "description_chars": {
+          "baseline": 80,
+          "min": 50,
+          "max": 110
+        }
+      }
+    },
+    {
+      "element_id": "competitive_rivalry",
+      "element_type": "force_center",
+      "required_fields": ["title", "description"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 25,
+          "min": 15,
+          "max": 40
+        },
+        "description_chars": {
+          "baseline": 85,
+          "min": 55,
+          "max": 115
+        }
+      }
+    },
+    {
+      "element_id": "buyer_power",
+      "element_type": "force",
+      "required_fields": ["title", "description"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 25,
+          "min": 15,
+          "max": 40
+        },
+        "description_chars": {
+          "baseline": 80,
+          "min": 50,
+          "max": 110
+        }
+      }
+    },
+    {
+      "element_id": "threat_substitutes",
+      "element_type": "force",
+      "required_fields": ["title", "description"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 25,
+          "min": 15,
+          "max": 40
+        },
+        "description_chars": {
+          "baseline": 80,
+          "min": 50,
+          "max": 110
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "threat_new_entrants": {
+      "title": "Threat of New Entrants",
+      "description": "Moderate barriers including capital requirements and brand loyalty limit new competition"
+    },
+    "supplier_power": {
+      "title": "Bargaining Power of Suppliers",
+      "description": "Low power due to multiple alternative suppliers and standardized components"
+    },
+    "competitive_rivalry": {
+      "title": "Competitive Rivalry",
+      "description": "High intensity with numerous competitors competing on price, quality, and innovation"
+    },
+    "buyer_power": {
+      "title": "Bargaining Power of Buyers",
+      "description": "Strong buyer power driven by price sensitivity and low switching costs"
+    },
+    "threat_substitutes": {
+      "title": "Threat of Substitutes",
+      "description": "Growing threat from alternative solutions offering similar value at lower cost"
+    }
+  }
+}

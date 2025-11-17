@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .kpi-dashboard {
+            width: 100%;
+            height: 100%;
+            max-width: 1800px;
+            max-height: 720px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+            padding: 30px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f8f9fa;
+        }
+
+        .kpi-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .kpi-card.primary {
+            border-left-color: {theme_primary};
+        }
+
+        .kpi-card.success {
+            border-left-color: {theme_success};
+        }
+
+        .kpi-card.warning {
+            border-left-color: {theme_warning};
+        }
+
+        .kpi-card.danger {
+            border-left-color: {theme_danger};
+        }
+
+        .kpi-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .kpi-value {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .kpi-card.primary .kpi-value {
+            color: {theme_primary};
+        }
+
+        .kpi-card.success .kpi-value {
+            color: {theme_success};
+        }
+
+        .kpi-card.warning .kpi-value {
+            color: {theme_warning};
+        }
+
+        .kpi-card.danger .kpi-value {
+            color: {theme_danger};
+        }
+
+        .kpi-change {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .kpi-change.positive {
+            color: {theme_success};
+        }
+
+        .kpi-change.positive::before {
+            content: '↑ ';
+        }
+
+        .kpi-change.negative {
+            color: {theme_danger};
+        }
+
+        .kpi-change.negative::before {
+            content: '↓ ';
+        }
+
+        .kpi-change.neutral {
+            color: #6b7280;
+        }
+
+        .kpi-change.neutral::before {
+            content: '→ ';
+        }
+    </style>
+</head>
+<body>
+    <div class="kpi-dashboard">
+        <div class="kpi-card {kpi1_type}">
+            <div class="kpi-label">{kpi1_label}</div>
+            <div class="kpi-value">{kpi1_value}</div>
+            <div class="kpi-change {kpi1_trend}">{kpi1_change}</div>
+        </div>
+
+        <div class="kpi-card {kpi2_type}">
+            <div class="kpi-label">{kpi2_label}</div>
+            <div class="kpi-value">{kpi2_value}</div>
+            <div class="kpi-change {kpi2_trend}">{kpi2_change}</div>
+        </div>
+
+        <div class="kpi-card {kpi3_type}">
+            <div class="kpi-label">{kpi3_label}</div>
+            <div class="kpi-value">{kpi3_value}</div>
+            <div class="kpi-change {kpi3_trend}">{kpi3_change}</div>
+        </div>
+
+        <div class="kpi-card {kpi4_type}">
+            <div class="kpi-label">{kpi4_label}</div>
+            <div class="kpi-value">{kpi4_value}</div>
+            <div class="kpi-change {kpi4_trend}">{kpi4_change}</div>
+        </div>
+
+        <div class="kpi-card {kpi5_type}">
+            <div class="kpi-label">{kpi5_label}</div>
+            <div class="kpi-value">{kpi5_value}</div>
+            <div class="kpi-change {kpi5_trend}">{kpi5_change}</div>
+        </div>
+
+        <div class="kpi-card {kpi6_type}">
+            <div class="kpi-label">{kpi6_label}</div>
+            <div class="kpi-value">{kpi6_value}</div>
+            <div class="kpi-change {kpi6_trend}">{kpi6_change}</div>
+        </div>
+
+        <div class="kpi-card {kpi7_type}">
+            <div class="kpi-label">{kpi7_label}</div>
+            <div class="kpi-value">{kpi7_value}</div>
+            <div class="kpi-change {kpi7_trend}">{kpi7_change}</div>
+        </div>
+
+        <div class="kpi-card {kpi8_type}">
+            <div class="kpi-label">{kpi8_label}</div>
+            <div class="kpi-value">{kpi8_value}</div>
+            <div class="kpi-change {kpi8_trend}">{kpi8_change}</div>
+        </div>
+    </div>
+</body>
+</html>

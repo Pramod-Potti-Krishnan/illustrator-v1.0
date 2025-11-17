@@ -1,0 +1,87 @@
+{
+  "variant_id": "timeline_horizontal_base",
+  "illustration_type": "timeline_horizontal",
+  "template_path": "templates/timeline_horizontal/base.html",
+  "layout_compatible": ["L02"],
+  "dimensions": {
+    "diagram": {
+      "width": 1260,
+      "height": 720
+    },
+    "text": {
+      "width": 480,
+      "height": 720
+    }
+  },
+  "elements": [
+    {
+      "element_id": "timeline_events",
+      "element_type": "event_sequence",
+      "required_fields": ["events"],
+      "item_constraints": {
+        "min_items": 3,
+        "max_items": 5,
+        "baseline_items": 4,
+        "event_date_chars": {
+          "baseline": 12,
+          "min": 6,
+          "max": 20
+        },
+        "event_title_chars": {
+          "baseline": 25,
+          "min": 15,
+          "max": 40
+        },
+        "event_description_chars": {
+          "baseline": 60,
+          "min": 40,
+          "max": 85
+        }
+      }
+    },
+    {
+      "element_id": "explanatory_text",
+      "element_type": "text_panel",
+      "required_fields": ["paragraphs"],
+      "item_constraints": {
+        "min_paragraphs": 2,
+        "max_paragraphs": 4,
+        "baseline_paragraphs": 3,
+        "paragraph_chars": {
+          "baseline": 180,
+          "min": 120,
+          "max": 240
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "timeline_events": [
+      {
+        "date": "Q1 2023",
+        "title": "Market Research",
+        "description": "Comprehensive analysis of customer needs and competitive landscape"
+      },
+      {
+        "date": "Q2 2023",
+        "title": "Product Design",
+        "description": "Development of prototypes and user experience validation"
+      },
+      {
+        "date": "Q3 2023",
+        "title": "Beta Launch",
+        "description": "Limited release to selected customers for feedback collection"
+      },
+      {
+        "date": "Q4 2023",
+        "title": "Full Release",
+        "description": "General availability with marketing campaign and support infrastructure"
+      }
+    ],
+    "explanatory_text": [
+      "This timeline represents our product development journey from initial research through full market release. Each phase built upon insights from the previous stage.",
+      "The iterative approach allowed us to validate assumptions early and incorporate customer feedback throughout the development process.",
+      "By maintaining strict quarterly milestones, we ensured steady progress while remaining flexible to adapt based on market conditions and user needs."
+    ]
+  }
+}

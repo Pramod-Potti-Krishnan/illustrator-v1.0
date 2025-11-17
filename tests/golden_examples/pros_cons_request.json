@@ -1,0 +1,35 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_pros_cons",
+  "slide_number": 1,
+  "illustration_type": "pros_cons",
+  "variant_id": "base",
+  "topics": [
+    "Proven track record in enterprise markets",
+    "Strong financial position and cash reserves",
+    "High operational costs compared to competitors",
+    "Limited market presence in emerging regions"
+  ],
+  "narrative": "Test narrative for pros cons",
+  "data": {
+    "pros": [
+      "Proven track record in enterprise markets",
+      "Strong financial position and cash reserves",
+      "Experienced leadership team with domain expertise",
+      "Advanced technology platform with scalability"
+    ],
+    "cons": [
+      "High operational costs compared to competitors",
+      "Limited market presence in emerging regions",
+      "Dependency on few key strategic partnerships",
+      "Slower innovation cycle than industry leaders"
+    ]
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Pros Cons"
+  },
+  "layout_id": "L01",
+  "theme": "professional"
+}

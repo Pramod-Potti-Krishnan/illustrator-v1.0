@@ -1,0 +1,84 @@
+{
+  "success": true,
+  "html": "<!DOCTYPE html>\n<html>\n<head>\n    <style>\n        * {\n            margin: 0;\n            padding: 0;\n            box-sizing: border-box;\n        }\n\n        .pyramid-container {\n            width: 100%;\n            height: 100%;\n            max-width: 1800px;\n            max-height: 720px;\n            display: flex;\n            flex-direction: column;\n            padding: 30px 60px;\n            font-family: Arial, sans-serif;\n            gap: 25px;  /* Increased gap between pyramid and details box */\n        }\n\n        .pyramid-wrapper {\n            width: 100%;\n            flex: 0 0 55%;  /* Top section takes 55% of height */\n            display: flex;\n            align-items: center;\n            gap: 60px;\n        }\n\n        .horizontal-line {\n            width: 100%;\n            height: 2px;\n            background: #cbd5e1;  /* Gray line */\n        }\n\n        .details-box {\n            width: 100%;\n            background: transparent;  /* Transparent background */\n            border-radius: 8px;\n            padding: 36px 0;\n            display: flex;\n            flex-direction: column;\n            justify-content: flex-start;\n        }\n\n        .details-title {\n            font-size: 20px;\n            font-weight: 700;\n            color: #1e293b;\n            margin-bottom: 12px;\n            padding: 0 40px;\n        }\n\n        .details-text {\n            font-size: 15px;\n            line-height: 1.65;\n            color: #475569;\n            padding: 0 40px;\n        }\n\n        .pyramid-visual {\n            flex: 0 0 45%;  /* 45% of width for pyramid visual */\n            height: 60%;    /* 60% of pyramid-wrapper height for 3-stage */\n            display: flex;\n            flex-direction: column;\n            justify-content: center;\n            align-items: center;\n            gap: 7.5px;     /* Gap reduced by half (was 15px) */\n        }\n\n        .pyramid-level {\n            width: 100%;\n            position: relative;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n        }\n\n        .pyramid-shape {\n            /* Height: h = 59.5px for trapezoids, h_triangle = 89px for triangle */\n            height: 60px;\n            position: relative;\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            justify-content: center;\n            gap: 8px;\n            transition: all 0.3s ease;\n        }\n\n        .pyramid-level:hover .pyramid-shape {\n            filter: brightness(1.1);\n            transform: scale(1.02);\n        }\n\n        /* MATHEMATICALLY CORRECT TAPER WITH TRIANGLE CAP (2\u00d7 STEEPER):\n           H_total = 238px, W_total = 100% (base), N = 3\n           R_g = 0.25, R_t = 1.5\n           h = 60px, g = 15px, h_triangle = 90px\n           C = 0.420 (100% / 238px - proper steep pyramid)\n           \u0394W_trapezoid = 25.2%, \u0394W_gap = 6.3%\n        */\n\n        /* Level 1 (Bottom Trapezoid): B1=100%, T1=74.8% */\n        .pyramid-level:nth-child(3) .pyramid-shape {\n            width: 100%;\n            clip-path: polygon(12.6% 0%, 87.4% 0%, 100% 100%, 0% 100%);\n        }\n\n        /* Level 2 (Middle Trapezoid): B2=68.5%, T2=43.3% */\n        .pyramid-level:nth-child(2) .pyramid-shape {\n            width: 68.5%;\n            clip-path: polygon(18.4% 0%, 81.6% 0%, 100% 100%, 0% 100%);\n        }\n\n        /* Level 3 (Top TRIANGLE): B3=37%, T3=0% (point), Height=90px (1.5x) */\n        .pyramid-level:nth-child(1) .pyramid-shape {\n            width: 37%;\n            height: 90px;  /* Triangle is 1.5\u00d7 regular trapezoid height */\n            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);  /* Perfect triangle */\n        }\n\n        /* MULTI-COLOR palette for different sections */\n        .level-3 .pyramid-shape { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }  /* Purple */\n        .level-2 .pyramid-shape { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }  /* Blue */\n        .level-1 .pyramid-shape { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }  /* Green */\n\n        .level-number {\n            color: white;\n            font-size: 56px;\n            font-weight: 900;\n            margin-top: 0;  /* Aligned to top with padding */\n        }\n\n        .level-label {\n            color: white;\n            font-size: 24px;\n            font-weight: 600;\n            text-align: center;\n            padding: 0 30px;\n            margin-top: auto;  /* Push to bottom with padding */\n        }\n\n        .connector-line {\n            position: absolute;\n            right: -35px;\n            top: 50%;\n            width: 30px;\n            height: 2px;\n            background: #cbd5e1;\n            transform: translateY(-50%);\n        }\n\n        .descriptions-column {\n            flex: 0 0 27%;  /* Adjusted for wider pyramid */\n            height: 100%;\n            display: flex;\n            flex-direction: column;\n            justify-content: center;\n            gap: 7.5px;  /* Match pyramid gap */\n        }\n\n        .description-item {\n            display: flex;\n            align-items: center;\n            gap: 24px;\n            height: 60px;  /* Match trapezoid height for alignment */\n        }\n\n        .description-number {\n            font-size: 80px;\n            font-weight: 900;\n            min-width: 90px;\n            text-align: center;\n        }\n\n        /* Color numbers by their VALUE, not position */\n        /* Top to bottom: 3(purple), 2(blue), 1(green) */\n        /* Higher specificity to override viewer CSS */\n        .pyramid-container .descriptions-column .description-item:nth-child(1) > .description-number { color: #8b5cf6 !important; opacity: 1.0; }  /* 3 - Purple */\n        .pyramid-container .descriptions-column .description-item:nth-child(2) > .description-number { color: #3b82f6 !important; opacity: 1.0; }  /* 2 - Blue */\n        .pyramid-container .descriptions-column .description-item:nth-child(3) > .description-number { color: #10b981 !important; opacity: 1.0; }  /* 1 - Green */\n\n        .description-text {\n            flex: 1;\n            font-size: 17px;\n            line-height: 1.7;\n            color: #475569;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"pyramid-container\">\n        <div class=\"pyramid-wrapper\">\n            <!-- Pyramid Visual (Left Side) - TOP TO BOTTOM -->\n            <div class=\"pyramid-visual\">\n                <!-- Level 3 (Top - Narrowest) -->\n                <div class=\"pyramid-level level-3\">\n                    <div class=\"pyramid-shape\">\n                        <div class=\"level-number\">3</div>\n                        <div class=\"level-label\">Total Growth</div>\n                        <div class=\"connector-line\"></div>\n                    </div>\n                </div>\n\n                <!-- Level 2 (Middle) -->\n                <div class=\"pyramid-level level-2\">\n                    <div class=\"pyramid-shape\">\n                        <div class=\"level-number\">2</div>\n                        <div class=\"level-label\">Department Leadership</div>\n                        <div class=\"connector-line\"></div>\n                    </div>\n                </div>\n\n                <!-- Level 1 (Bottom - Widest) -->\n                <div class=\"pyramid-level level-1\">\n                    <div class=\"pyramid-shape\">\n                        <div class=\"level-number\">1</div>\n                        <div class=\"level-label\">Individual Contributors</div>\n                        <div class=\"connector-line\"></div>\n                    </div>\n                </div>\n            </div>\n\n            <!-- Descriptions (Right Side) - TOP TO BOTTOM -->\n            <div class=\"descriptions-column\">\n                <div class=\"description-item\">\n                    <div class=\"description-number\" style=\"color: #8b5cf6 !important;\">3</div>\n                    <div class=\"description-text\">Achieve <strong>sustainable</strong> and <strong>profitable</strong> expansion.</div>\n                </div>\n                <div class=\"description-item\">\n                    <div class=\"description-number\" style=\"color: #3b82f6 !important;\">2</div>\n                    <div class=\"description-text\">Manage teams & drive <strong>project execution</strong> effectively.</div>\n                </div>\n                <div class=\"description-item\">\n                    <div class=\"description-number\" style=\"color: #10b981 !important;\">1</div>\n                    <div class=\"description-text\">Focus on <strong>core tasks</strong> and <strong>deliverables</strong> consistently.</div>\n                </div>\n            </div>\n        </div>\n\n        <!-- Horizontal separator line -->\n        <div class=\"horizontal-line\"></div>\n\n        <!-- Details Box (Bottom Section) - Text box with padding -->\n        <div class=\"details-box\">\n            <div class=\"details-title\">Understanding Our Company Structure</div>\n            <div class=\"details-text\">This presentation clarifies our organizational hierarchy, illustrating the reporting structure from individual contributors to executive leadership. We aim to foster clear communication, efficient workflows, and a shared understanding of roles and responsibilities. This structure supports our mission to drive innovation and achieve sustainable growth in the technology sector. It ensures every team member understands their place within the company and how their work contributes to our overall success. By streamlining operations, we empower our employees.</div>\n        </div>\n    </div>\n</body>\n</html>\n",
+  "metadata": {
+    "num_levels": 3,
+    "template_file": "3.html",
+    "theme": "professional",
+    "size": "medium",
+    "topic": "Company Organizational Structure",
+    "generation_time_ms": 5540,
+    "attempts": 3,
+    "model": "gemini-2.0-flash-exp",
+    "usage": {
+      "prompt_token_count": 647,
+      "candidates_token_count": 217,
+      "total_token_count": 864
+    }
+  },
+  "generated_content": {
+    "level_3_label": "Total Growth",
+    "level_3_description": "Achieve <strong>sustainable</strong> and <strong>profitable</strong> expansion.",
+    "level_2_label": "Department Leadership",
+    "level_2_description": "Manage teams & drive <strong>project execution</strong> effectively.",
+    "level_1_label": "Individual Contributors",
+    "level_1_description": "Focus on <strong>core tasks</strong> and <strong>deliverables</strong> consistently.",
+    "overview_heading": "Understanding Our Company Structure",
+    "overview_text": "This presentation clarifies our organizational hierarchy, illustrating the reporting structure from individual contributors to executive leadership. We aim to foster clear communication, efficient workflows, and a shared understanding of roles and responsibilities. This structure supports our mission to drive innovation and achieve sustainable growth in the technology sector. It ensures every team member understands their place within the company and how their work contributes to our overall success. By streamlining operations, we empower our employees."
+  },
+  "character_counts": {
+    "level_3": {
+      "label": 12,
+      "description": 79
+    },
+    "level_2": {
+      "label": 21,
+      "description": 68
+    },
+    "level_1": {
+      "label": 23,
+      "description": 84
+    }
+  },
+  "validation": {
+    "valid": false,
+    "violations": [
+      {
+        "field": "level_3_description",
+        "actual_length": 45,
+        "min_required": 50,
+        "max_required": 60,
+        "status": "under",
+        "text": "Achieve <strong>sustainable</strong> and <strong>p..."
+      },
+      {
+        "field": "level_2_label",
+        "actual_length": 21,
+        "min_required": 12,
+        "max_required": 20,
+        "status": "over",
+        "text": "Department Leadership"
+      },
+      {
+        "field": "level_1_label",
+        "actual_length": 23,
+        "min_required": 12,
+        "max_required": 20,
+        "status": "over",
+        "text": "Individual Contributors"
+      },
+      {
+        "field": "overview_text",
+        "actual_length": 559,
+        "min_required": 200,
+        "max_required": 250,
+        "status": "over",
+        "text": "This presentation clarifies our organizational hierarchy, illustrating the reporting structure from ..."
+      }
+    ]
+  },
+  "generation_time_ms": 5543,
+  "presentation_id": "pres-demo-001",
+  "slide_id": "slide-2",
+  "slide_number": 2
+}

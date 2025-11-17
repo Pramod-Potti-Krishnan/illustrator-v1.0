@@ -1,0 +1,60 @@
+<div class="concentric-container" style="margin: 0 auto; padding: 20px; box-sizing: border-box; display: flex; gap: 40px; max-width: 1200px; align-items: center">
+<!-- LEFT SIDE - Concentric Circles -->
+<div class="circles-section" style="margin: 0; padding: 0; box-sizing: border-box; flex: 0 0 58%; position: relative; aspect-ratio: 1; max-width: 500px">
+<div class="circles-wrapper" style="margin: 0; padding: 0; box-sizing: border-box; position: relative; width: 100%; height: 100%">
+<!-- Circles (background only, no text inside) -->
+<div class="circle circle-4" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; border-radius: 50%; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 4px solid white; bottom: 0; left: 50%; transform: translatex(-50%); width: 100%; height: 100%; background: linear-gradient(135deg, #7eb3d5 0%, #6ba3c7 100%); z-index: 1"></div>
+<div class="circle circle-3" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; border-radius: 50%; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 4px solid white; bottom: 0; left: 50%; transform: translatex(-50%); width: 75%; height: 75%; background: linear-gradient(135deg, #f9c74f 0%, #f3b52e 100%); z-index: 2"></div>
+<div class="circle circle-2" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; border-radius: 50%; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 4px solid white; bottom: 0; left: 50%; transform: translatex(-50%); width: 55%; height: 55%; background: linear-gradient(135deg, #9ca3af 0%, #848c99 100%); z-index: 3"></div>
+<div class="circle circle-1" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; border-radius: 50%; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 4px solid white; bottom: 0; left: 50%; transform: translatex(-50%); width: 35%; height: 35%; background: linear-gradient(135deg, #4a90e2 0%, #3a7bc8 100%); z-index: 4"></div>
+<!-- Text Labels (positioned absolutely in wrapper) -->
+<!-- Label 4: 77% from bottom (385px, max 18 chars) -->
+<span class="circle-label label-4" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; left: 50%; transform: translatex(-50%); color: white; font-weight: 600; text-align: center; line-height: 1.2; white-space: nowrap; z-index: 10; pointer-events: none; bottom: 86%; font-size: 17px">{circle_4_label}</span>
+<!-- Label 3: 49% from bottom (245px, max 16 chars) -->
+<span class="circle-label label-3" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; left: 50%; transform: translatex(-50%); color: white; font-weight: 600; text-align: center; line-height: 1.2; white-space: nowrap; z-index: 10; pointer-events: none; bottom: 62%; font-size: 15px">{circle_3_label}</span>
+<!-- Label 2: 26% from bottom (130px, max 14 chars) -->
+<span class="circle-label label-2" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; left: 50%; transform: translatex(-50%); color: white; font-weight: 600; text-align: center; line-height: 1.2; white-space: nowrap; z-index: 10; pointer-events: none; bottom: 42%; font-size: 14px">{circle_2_label}</span>
+<!-- Label 1: 8% from bottom (40px, max 12 chars, can use <br> for 2 lines) -->
+<span class="circle-label label-1" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; left: 50%; transform: translatex(-50%); color: white; font-weight: 600; text-align: center; line-height: 1.2; white-space: nowrap; z-index: 10; pointer-events: none; bottom: 14%; font-size: 13px">{circle_1_label}</span>
+</div>
+</div>
+<!-- RIGHT SIDE - Legend Panel -->
+<div class="legend-section" style="margin: 0; padding: 0; box-sizing: border-box; flex: 1; display: flex; flex-direction: column; gap: 10px">
+<!-- Legend Item 4 -->
+<div class="legend-item legend-item-4" style="margin: 0; padding: 11.2px 18px; box-sizing: border-box; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #7eb3d5 0%, #6ba3c7 100%); color: white">
+<ul class="legend-bullets" style="margin: 0; padding: 0; box-sizing: border-box; list-style: none">
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_4_bullet_1}</li>
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_4_bullet_2}</li>
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_4_bullet_3}</li>
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_4_bullet_4}</li>
+</ul>
+</div>
+<!-- Legend Item 3 -->
+<div class="legend-item legend-item-3" style="margin: 0; padding: 11.2px 18px; box-sizing: border-box; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #f9c74f 0%, #f3b52e 100%); color: #2d3748">
+<ul class="legend-bullets" style="margin: 0; padding: 0; box-sizing: border-box; list-style: none">
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_3_bullet_1}</li>
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_3_bullet_2}</li>
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_3_bullet_3}</li>
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_3_bullet_4}</li>
+</ul>
+</div>
+<!-- Legend Item 2 -->
+<div class="legend-item legend-item-2" style="margin: 0; padding: 11.2px 18px; box-sizing: border-box; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #9ca3af 0%, #848c99 100%); color: white">
+<ul class="legend-bullets" style="margin: 0; padding: 0; box-sizing: border-box; list-style: none">
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_2_bullet_1}</li>
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_2_bullet_2}</li>
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_2_bullet_3}</li>
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_2_bullet_4}</li>
+</ul>
+</div>
+<!-- Legend Item 1 -->
+<div class="legend-item legend-item-1" style="margin: 0; padding: 11.2px 18px; box-sizing: border-box; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #4a90e2 0%, #3a7bc8 100%); color: white">
+<ul class="legend-bullets" style="margin: 0; padding: 0; box-sizing: border-box; list-style: none">
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_1_bullet_1}</li>
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_1_bullet_2}</li>
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_1_bullet_3}</li>
+<li style="margin: 0; padding: 0; box-sizing: border-box">{legend_1_bullet_4}</li>
+</ul>
+</div>
+</div>
+</div>

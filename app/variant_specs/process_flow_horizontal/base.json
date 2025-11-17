@@ -1,0 +1,56 @@
+{
+  "variant_id": "process_flow_horizontal_base",
+  "illustration_type": "process_flow_horizontal",
+  "template_path": "templates/process_flow_horizontal/base.html",
+  "layout_compatible": ["L01"],
+  "dimensions": {
+    "width": 1800,
+    "height": 600
+  },
+  "elements": [
+    {
+      "element_id": "process_steps",
+      "element_type": "step_sequence",
+      "required_fields": ["steps"],
+      "item_constraints": {
+        "min_items": 3,
+        "max_items": 6,
+        "baseline_items": 4,
+        "step_title_chars": {
+          "baseline": 20,
+          "min": 10,
+          "max": 30
+        },
+        "step_description_chars": {
+          "baseline": 60,
+          "min": 40,
+          "max": 80
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "steps": [
+      {
+        "number": 1,
+        "title": "Discovery",
+        "description": "Gather requirements and understand stakeholder needs through interviews"
+      },
+      {
+        "number": 2,
+        "title": "Design",
+        "description": "Create detailed specifications and technical architecture diagrams"
+      },
+      {
+        "number": 3,
+        "title": "Development",
+        "description": "Build solution following agile methodology with iterative releases"
+      },
+      {
+        "number": 4,
+        "title": "Deployment",
+        "description": "Launch to production with comprehensive testing and validation"
+      }
+    ]
+  }
+}

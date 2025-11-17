@@ -1,0 +1,298 @@
+{
+  "concentric_circles_3": {
+    "circle_1_label": {
+      "min_chars": 5,
+      "max_chars": 12,
+      "notes": "Core circle label - shortest, can use <br> for 2 lines if needed"
+    },
+    "circle_2_label": {
+      "min_chars": 8,
+      "max_chars": 16,
+      "notes": "Middle circle label"
+    },
+    "circle_3_label": {
+      "min_chars": 10,
+      "max_chars": 18,
+      "notes": "Outermost circle label"
+    },
+    "legend_1_bullet_1": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Core level description - bullet 1"
+    },
+    "legend_1_bullet_2": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Core level description - bullet 2"
+    },
+    "legend_1_bullet_3": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Core level description - bullet 3"
+    },
+    "legend_1_bullet_4": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Core level description - bullet 4"
+    },
+    "legend_1_bullet_5": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Core level description - bullet 5"
+    },
+    "legend_2_bullet_1": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Middle level description - bullet 1"
+    },
+    "legend_2_bullet_2": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Middle level description - bullet 2"
+    },
+    "legend_2_bullet_3": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Middle level description - bullet 3"
+    },
+    "legend_2_bullet_4": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Middle level description - bullet 4"
+    },
+    "legend_2_bullet_5": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Middle level description - bullet 5"
+    },
+    "legend_3_bullet_1": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Outer level description - bullet 1"
+    },
+    "legend_3_bullet_2": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Outer level description - bullet 2"
+    },
+    "legend_3_bullet_3": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Outer level description - bullet 3"
+    },
+    "legend_3_bullet_4": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Outer level description - bullet 4"
+    },
+    "legend_3_bullet_5": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Outer level description - bullet 5"
+    }
+  },
+  "concentric_circles_4": {
+    "circle_1_label": {
+      "min_chars": 5,
+      "max_chars": 12,
+      "notes": "Core circle label - can use <br> for 2 lines"
+    },
+    "circle_2_label": {
+      "min_chars": 8,
+      "max_chars": 14,
+      "notes": "Second circle label"
+    },
+    "circle_3_label": {
+      "min_chars": 8,
+      "max_chars": 16,
+      "notes": "Third circle label"
+    },
+    "circle_4_label": {
+      "min_chars": 10,
+      "max_chars": 18,
+      "notes": "Outermost circle label"
+    },
+    "legend_1_bullet_1": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Core level description - bullet 1"
+    },
+    "legend_1_bullet_2": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Core level description - bullet 2"
+    },
+    "legend_1_bullet_3": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Core level description - bullet 3"
+    },
+    "legend_1_bullet_4": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Core level description - bullet 4"
+    },
+    "legend_2_bullet_1": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Second level description - bullet 1"
+    },
+    "legend_2_bullet_2": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Second level description - bullet 2"
+    },
+    "legend_2_bullet_3": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Second level description - bullet 3"
+    },
+    "legend_2_bullet_4": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Second level description - bullet 4"
+    },
+    "legend_3_bullet_1": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Third level description - bullet 1"
+    },
+    "legend_3_bullet_2": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Third level description - bullet 2"
+    },
+    "legend_3_bullet_3": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Third level description - bullet 3"
+    },
+    "legend_3_bullet_4": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Third level description - bullet 4"
+    },
+    "legend_4_bullet_1": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Outer level description - bullet 1"
+    },
+    "legend_4_bullet_2": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Outer level description - bullet 2"
+    },
+    "legend_4_bullet_3": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Outer level description - bullet 3"
+    },
+    "legend_4_bullet_4": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Outer level description - bullet 4"
+    }
+  },
+  "concentric_circles_5": {
+    "circle_1_label": {
+      "min_chars": 5,
+      "max_chars": 12,
+      "notes": "Core circle label - can use <br> for 2 lines"
+    },
+    "circle_2_label": {
+      "min_chars": 8,
+      "max_chars": 14,
+      "notes": "Second circle label"
+    },
+    "circle_3_label": {
+      "min_chars": 8,
+      "max_chars": 16,
+      "notes": "Third circle label"
+    },
+    "circle_4_label": {
+      "min_chars": 8,
+      "max_chars": 18,
+      "notes": "Fourth circle label"
+    },
+    "circle_5_label": {
+      "min_chars": 10,
+      "max_chars": 18,
+      "notes": "Outermost circle label"
+    },
+    "legend_1_bullet_1": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Core level description - bullet 1"
+    },
+    "legend_1_bullet_2": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Core level description - bullet 2"
+    },
+    "legend_1_bullet_3": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Core level description - bullet 3"
+    },
+    "legend_2_bullet_1": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Second level description - bullet 1"
+    },
+    "legend_2_bullet_2": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Second level description - bullet 2"
+    },
+    "legend_2_bullet_3": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Second level description - bullet 3"
+    },
+    "legend_3_bullet_1": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Third level description - bullet 1"
+    },
+    "legend_3_bullet_2": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Third level description - bullet 2"
+    },
+    "legend_3_bullet_3": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Third level description - bullet 3"
+    },
+    "legend_4_bullet_1": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Fourth level description - bullet 1"
+    },
+    "legend_4_bullet_2": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Fourth level description - bullet 2"
+    },
+    "legend_4_bullet_3": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Fourth level description - bullet 3"
+    },
+    "legend_5_bullet_1": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Outermost level description - bullet 1"
+    },
+    "legend_5_bullet_2": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Outermost level description - bullet 2"
+    },
+    "legend_5_bullet_3": {
+      "min_chars": 30,
+      "max_chars": 45,
+      "notes": "Outermost level description - bullet 3"
+    }
+  }
+}

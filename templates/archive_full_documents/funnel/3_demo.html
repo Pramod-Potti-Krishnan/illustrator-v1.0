@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .funnel-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1800px;
+            max-height: 720px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 60px;
+            font-family: Arial, sans-serif;
+            gap: 60px;
+        }
+
+        .funnel-visual {
+            flex: 0 0 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .funnel-stage {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .funnel-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 163px;
+            color: white;
+            font-size: 48px;
+            font-weight: 900;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .funnel-section:hover {
+            filter: brightness(1.15);
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        /* Constant taper angle: Each segment's bottom = 78% of its top width */
+        /* This maintains (T - B) / h = C across all segments */
+
+        /* Stage 1 (Top - Widest) */
+        .stage-1 .funnel-section {
+            width: 90%;
+            clip-path: polygon(0% 0%, 100% 0%, 89% 100%, 11% 100%);
+            background: linear-gradient(135deg, #c85a3d 0%, #b54935 100%);
+        }
+
+        /* Stage 2 - Top width = Stage 1 bottom (90% × 0.78 = 70.2%) */
+        .stage-2 .funnel-section {
+            width: 70.2%;
+            clip-path: polygon(0% 0%, 100% 0%, 89% 100%, 11% 100%);
+            background: linear-gradient(135deg, #daa520 0%, #c49419 100%);
+        }
+
+        /* Stage 3 (Bottom - Narrowest) - Top width = Stage 2 bottom (70.2% × 0.78 = 54.8%) */
+        .stage-3 .funnel-section {
+            width: 54.8%;
+            clip-path: polygon(0% 0%, 100% 0%, 89% 100%, 11% 100%);
+            background: linear-gradient(135deg, #5b8db8 0%, #4a7ba0 100%);
+        }
+
+        .descriptions-column {
+            flex: 0 0 55%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .description-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            height: 163px;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .description-item:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            transform: translateX(5px);
+        }
+
+        .stage-bullets {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stage-bullets li {
+            font-size: 14px;
+            line-height: 1.4;
+            color: #6b7280;
+        }
+
+        .stage-bullets li::marker {
+            color: #9ca3af;
+        }
+
+        .stage-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .description-item:hover .stage-icon {
+            transform: rotate(360deg);
+        }
+
+        .icon-inner {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        /* Icon colors match funnel sections */
+        .desc-1 .icon-inner {
+            background: linear-gradient(135deg, #c85a3d 0%, #b54935 100%);
+        }
+
+        .desc-2 .icon-inner {
+            background: linear-gradient(135deg, #daa520 0%, #c49419 100%);
+        }
+
+        .desc-3 .icon-inner {
+            background: linear-gradient(135deg, #5b8db8 0%, #4a7ba0 100%);
+        }
+
+        /* Stage label styling inside funnel */
+        .funnel-label {
+            font-size: 22px;
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .funnel-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .funnel-visual {
+                flex: 0 0 auto;
+                width: 80%;
+            }
+
+            .descriptions-column {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="funnel-container">
+        <!-- Funnel Visual (Left Side) -->
+        <div class="funnel-visual">
+            <!-- Stage 1 -->
+            <div class="funnel-stage stage-1">
+                <div class="funnel-section">
+                    <span class="funnel-label">AWARENESS</span>
+                </div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="funnel-stage stage-2">
+                <div class="funnel-section">
+                    <span class="funnel-label">CONSIDERATION</span>
+                </div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="funnel-stage stage-3">
+                <div class="funnel-section">
+                    <span class="funnel-label">CONVERSION</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Descriptions (Right Side) -->
+        <div class="descriptions-column">
+            <!-- Description 1 -->
+            <div class="description-item desc-1">
+                <div class="stage-icon">
+                    <div class="icon-inner">1</div>
+                </div>
+                <ul class="stage-bullets">
+                    <li>Attract <strong>broad audience reach</strong> through multi-channel marketing initiatives and campaigns</li>
+                    <li>Establish <strong>strong brand presence</strong> and recognition across target markets and demographics</li>
+                    <li>Generate <strong>initial interest</strong> and engagement through compelling content and messaging</li>
+                </ul>
+            </div>
+
+            <!-- Description 2 -->
+            <div class="description-item desc-2">
+                <div class="stage-icon">
+                    <div class="icon-inner">2</div>
+                </div>
+                <ul class="stage-bullets">
+                    <li>Nurture <strong>qualified leads</strong> with targeted content, educational resources, and value propositions</li>
+                    <li>Demonstrate <strong>clear product benefits</strong> and competitive advantages through case studies and testimonials</li>
+                    <li>Build <strong>trust and credibility</strong> with potential customers through social proof and expert positioning</li>
+                </ul>
+            </div>
+
+            <!-- Description 3 -->
+            <div class="description-item desc-3">
+                <div class="stage-icon">
+                    <div class="icon-inner">3</div>
+                </div>
+                <ul class="stage-bullets">
+                    <li>Drive <strong>purchase decisions</strong> with compelling offers, clear calls-to-action, and streamlined processes</li>
+                    <li>Optimize <strong>conversion rates</strong> through A/B testing, user experience improvements, and friction reduction</li>
+                    <li>Maximize <strong>customer lifetime value</strong> with retention strategies, upselling, and loyalty programs</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add click interactivity - highlight both funnel section and description
+        document.querySelectorAll('.funnel-section').forEach((section, index) => {
+            section.addEventListener('click', function() {
+                const desc = document.querySelectorAll('.description-item')[index];
+                desc.style.background = '#f3f4f6';
+                setTimeout(() => {
+                    desc.style.background = 'white';
+                }, 500);
+            });
+        });
+
+        document.querySelectorAll('.description-item').forEach((item, index) => {
+            item.addEventListener('click', function() {
+                const section = document.querySelectorAll('.funnel-section')[index];
+                section.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    section.style.transform = 'scale(1.0)';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>

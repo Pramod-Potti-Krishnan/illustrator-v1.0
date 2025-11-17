@@ -1,0 +1,43 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_bcg_matrix",
+  "slide_number": 1,
+  "illustration_type": "bcg_matrix",
+  "variant_id": "base",
+  "topics": [
+    "Relative Market Share",
+    "Market Growth Rate",
+    "High",
+    "Low"
+  ],
+  "narrative": "Test narrative for bcg matrix",
+  "data": {
+    "horizontal_axis_label": "Relative Market Share",
+    "vertical_axis_label": "Market Growth Rate",
+    "col1_label": "High",
+    "col2_label": "Low",
+    "stars": {
+      "description": "High growth, high market share products requiring significant investment to maintain position",
+      "strategy": "Invest aggressively to maintain or grow market share"
+    },
+    "question_marks": {
+      "description": "High growth, low market share products with uncertain potential requiring careful evaluation",
+      "strategy": "Selectively invest or divest based on strategic fit"
+    },
+    "cash_cows": {
+      "description": "Low growth, high market share products generating consistent profits with minimal investment",
+      "strategy": "Maximize cash generation to fund Stars and Question Marks"
+    },
+    "dogs": {
+      "description": "Low growth, low market share products consuming resources without significant returns",
+      "strategy": "Divest or minimize investment to free up resources"
+    }
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Bcg Matrix"
+  },
+  "layout_id": "L25",
+  "theme": "professional"
+}

@@ -1,0 +1,61 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_value_chain",
+  "slide_number": 1,
+  "illustration_type": "value_chain",
+  "variant_id": "base",
+  "topics": [
+    "{'name': 'Inbound Logistics', 'description': 'Supplier management and material handling'}",
+    "{'name': 'Operations', 'description': 'Manufacturing and quality control processes'}",
+    "{'name': 'Technology', 'description': 'IT infrastructure and innovation platforms'}",
+    "{'name': 'Human Resources', 'description': 'Talent development and workforce planning'}",
+    "Our value chain analysis reveals key competitive advantages in operations efficiency and customer service delivery. Primary activities directly create value through product development and delivery."
+  ],
+  "narrative": "Test narrative for value chain",
+  "data": {
+    "primary_activities": [
+      {
+        "name": "Inbound Logistics",
+        "description": "Supplier management and material handling"
+      },
+      {
+        "name": "Operations",
+        "description": "Manufacturing and quality control processes"
+      },
+      {
+        "name": "Outbound Logistics",
+        "description": "Distribution and delivery management"
+      },
+      {
+        "name": "Marketing & Sales",
+        "description": "Customer acquisition and brand building"
+      }
+    ],
+    "support_activities": [
+      {
+        "name": "Technology",
+        "description": "IT infrastructure and innovation platforms"
+      },
+      {
+        "name": "Human Resources",
+        "description": "Talent development and workforce planning"
+      },
+      {
+        "name": "Procurement",
+        "description": "Strategic sourcing and vendor relationships"
+      }
+    ],
+    "explanatory_text": [
+      "Our value chain analysis reveals key competitive advantages in operations efficiency and customer service delivery. Primary activities directly create value through product development and delivery.",
+      "Support activities enable and enhance primary operations through strategic technology investments and talent development programs. Each function contributes to overall margin optimization.",
+      "By integrating activities across the value chain, we achieve synergies that competitors struggle to replicate, resulting in sustainable competitive advantage."
+    ]
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Value Chain"
+  },
+  "layout_id": "L02",
+  "theme": "professional"
+}

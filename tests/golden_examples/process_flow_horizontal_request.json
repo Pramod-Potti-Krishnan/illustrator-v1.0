@@ -1,0 +1,43 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_process_flow_horizontal",
+  "slide_number": 1,
+  "illustration_type": "process_flow_horizontal",
+  "variant_id": "base",
+  "topics": [
+    "{'number': 1, 'title': 'Discovery', 'description': 'Gather requirements and understand stakeholder needs through interviews'}",
+    "{'number': 2, 'title': 'Design', 'description': 'Create detailed specifications and technical architecture diagrams'}"
+  ],
+  "narrative": "Test narrative for process flow horizontal",
+  "data": {
+    "steps": [
+      {
+        "number": 1,
+        "title": "Discovery",
+        "description": "Gather requirements and understand stakeholder needs through interviews"
+      },
+      {
+        "number": 2,
+        "title": "Design",
+        "description": "Create detailed specifications and technical architecture diagrams"
+      },
+      {
+        "number": 3,
+        "title": "Development",
+        "description": "Build solution following agile methodology with iterative releases"
+      },
+      {
+        "number": 4,
+        "title": "Deployment",
+        "description": "Launch to production with comprehensive testing and validation"
+      }
+    ]
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Process Flow Horizontal"
+  },
+  "layout_id": "L01",
+  "theme": "professional"
+}

@@ -1,0 +1,112 @@
+{
+  "variant_id": "value_chain_base",
+  "illustration_type": "value_chain",
+  "template_path": "templates/value_chain/base.html",
+  "layout_compatible": ["L02"],
+  "dimensions": {
+    "diagram": {
+      "width": 1260,
+      "height": 720
+    },
+    "text": {
+      "width": 480,
+      "height": 720
+    }
+  },
+  "elements": [
+    {
+      "element_id": "primary_activities",
+      "element_type": "activity_chain",
+      "required_fields": ["activities"],
+      "item_constraints": {
+        "min_items": 3,
+        "max_items": 5,
+        "baseline_items": 4,
+        "activity_name_chars": {
+          "baseline": 18,
+          "min": 12,
+          "max": 28
+        },
+        "activity_desc_chars": {
+          "baseline": 45,
+          "min": 30,
+          "max": 65
+        }
+      }
+    },
+    {
+      "element_id": "support_activities",
+      "element_type": "activity_chain",
+      "required_fields": ["activities"],
+      "item_constraints": {
+        "min_items": 3,
+        "max_items": 4,
+        "baseline_items": 3,
+        "activity_name_chars": {
+          "baseline": 18,
+          "min": 12,
+          "max": 28
+        },
+        "activity_desc_chars": {
+          "baseline": 45,
+          "min": 30,
+          "max": 65
+        }
+      }
+    },
+    {
+      "element_id": "explanatory_text",
+      "element_type": "text_panel",
+      "required_fields": ["paragraphs"],
+      "item_constraints": {
+        "min_paragraphs": 2,
+        "max_paragraphs": 4,
+        "baseline_paragraphs": 3,
+        "paragraph_chars": {
+          "baseline": 180,
+          "min": 120,
+          "max": 240
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "primary_activities": [
+      {
+        "name": "Inbound Logistics",
+        "description": "Supplier management and material handling"
+      },
+      {
+        "name": "Operations",
+        "description": "Manufacturing and quality control processes"
+      },
+      {
+        "name": "Outbound Logistics",
+        "description": "Distribution and delivery management"
+      },
+      {
+        "name": "Marketing & Sales",
+        "description": "Customer acquisition and brand building"
+      }
+    ],
+    "support_activities": [
+      {
+        "name": "Technology",
+        "description": "IT infrastructure and innovation platforms"
+      },
+      {
+        "name": "Human Resources",
+        "description": "Talent development and workforce planning"
+      },
+      {
+        "name": "Procurement",
+        "description": "Strategic sourcing and vendor relationships"
+      }
+    ],
+    "explanatory_text": [
+      "Our value chain analysis reveals key competitive advantages in operations efficiency and customer service delivery. Primary activities directly create value through product development and delivery.",
+      "Support activities enable and enhance primary operations through strategic technology investments and talent development programs. Each function contributes to overall margin optimization.",
+      "By integrating activities across the value chain, we achieve synergies that competitors struggle to replicate, resulting in sustainable competitive advantage."
+    ]
+  }
+}

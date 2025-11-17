@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .venn-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1800px;
+            max-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .venn-diagram {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+        }
+
+        .venn-circle {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+            top: 25px;
+        }
+
+        .venn-circle.left {
+            left: 50px;
+            background: {theme_primary};
+            opacity: 0.3;
+            border: 3px solid {theme_primary};
+        }
+
+        .venn-circle.right {
+            right: 50px;
+            background: {theme_secondary};
+            opacity: 0.3;
+            border: 3px solid {theme_secondary};
+        }
+
+        .circle-label {
+            font-size: 24px;
+            font-weight: 700;
+            color: {theme_primary};
+            margin-bottom: 15px;
+        }
+
+        .circle-items {
+            list-style: none;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .circle-items li {
+            margin: 8px 0;
+        }
+
+        .overlap-section {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            padding: 25px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .overlap-label {
+            font-size: 22px;
+            font-weight: 700;
+            color: {theme_accent};
+            margin-bottom: 12px;
+        }
+
+        .overlap-items {
+            list-style: none;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .overlap-items li {
+            margin: 6px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="venn-container">
+        <div class="venn-diagram">
+            <div class="venn-circle left">
+                <div class="circle-label">{left_label}</div>
+                <ul class="circle-items">
+                    {left_items}
+                </ul>
+            </div>
+
+            <div class="venn-circle right">
+                <div class="circle-label">{right_label}</div>
+                <ul class="circle-items">
+                    {right_items}
+                </ul>
+            </div>
+
+            <div class="overlap-section">
+                <div class="overlap-label">{overlap_label}</div>
+                <ul class="overlap-items">
+                    {overlap_items}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

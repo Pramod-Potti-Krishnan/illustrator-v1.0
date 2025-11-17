@@ -1,0 +1,87 @@
+{
+  "funnel_3": {
+    "stage_1": {
+      "name": [8, 25],
+      "bullet_1": [30, 60],
+      "bullet_2": [30, 60],
+      "bullet_3": [30, 60],
+      "comment": "Top stage (widest): Name 8-25 chars, each bullet 30-60 chars"
+    },
+    "stage_2": {
+      "name": [8, 25],
+      "bullet_1": [30, 60],
+      "bullet_2": [30, 60],
+      "bullet_3": [30, 60],
+      "comment": "Middle stage: Name 8-25 chars, each bullet 30-60 chars"
+    },
+    "stage_3": {
+      "name": [8, 25],
+      "bullet_1": [30, 60],
+      "bullet_2": [30, 60],
+      "bullet_3": [30, 60],
+      "comment": "Bottom stage (narrowest): Name 8-25 chars, each bullet 30-60 chars"
+    }
+  },
+  "funnel_4": {
+    "stage_1": {
+      "name": [8, 25],
+      "bullet_1": [30, 60],
+      "bullet_2": [30, 60],
+      "bullet_3": [30, 60],
+      "comment": "Top stage (widest): Name 8-25 chars, each bullet 30-60 chars"
+    },
+    "stage_2": {
+      "name": [8, 25],
+      "bullet_1": [30, 60],
+      "bullet_2": [30, 60],
+      "bullet_3": [30, 60]
+    },
+    "stage_3": {
+      "name": [8, 25],
+      "bullet_1": [30, 60],
+      "bullet_2": [30, 60],
+      "bullet_3": [30, 60]
+    },
+    "stage_4": {
+      "name": [8, 25],
+      "bullet_1": [30, 60],
+      "bullet_2": [30, 60],
+      "bullet_3": [30, 60],
+      "comment": "Bottom stage (narrowest): Name 8-25 chars, each bullet 30-60 chars"
+    }
+  },
+  "funnel_5": {
+    "stage_1": {
+      "name": [8, 25],
+      "bullet_1": [30, 60],
+      "bullet_2": [30, 60],
+      "bullet_3": [30, 60],
+      "comment": "Top stage (widest): Name 8-25 chars, each bullet 30-60 chars"
+    },
+    "stage_2": {
+      "name": [8, 25],
+      "bullet_1": [30, 60],
+      "bullet_2": [30, 60],
+      "bullet_3": [30, 60]
+    },
+    "stage_3": {
+      "name": [8, 25],
+      "bullet_1": [30, 60],
+      "bullet_2": [30, 60],
+      "bullet_3": [30, 60]
+    },
+    "stage_4": {
+      "name": [8, 25],
+      "bullet_1": [30, 60],
+      "bullet_2": [30, 60],
+      "bullet_3": [30, 60]
+    },
+    "stage_5": {
+      "name": [8, 25],
+      "bullet_1": [30, 60],
+      "bullet_2": [30, 60],
+      "bullet_3": [30, 60],
+      "comment": "Bottom stage (narrowest): Name 8-25 chars, each bullet 30-60 chars"
+    }
+  }
+}

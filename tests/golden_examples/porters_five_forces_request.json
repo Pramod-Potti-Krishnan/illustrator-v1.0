@@ -1,0 +1,44 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_porters_five_forces",
+  "slide_number": 1,
+  "illustration_type": "porters_five_forces",
+  "variant_id": "base",
+  "topics": [
+    "Threat of New Entrants",
+    "Bargaining Power of Suppliers",
+    "Competitive Rivalry",
+    "Bargaining Power of Buyers",
+    "Threat of Substitutes"
+  ],
+  "narrative": "Test narrative for porters five forces",
+  "data": {
+    "threat_new_entrants": {
+      "title": "Threat of New Entrants",
+      "description": "Moderate barriers including capital requirements and brand loyalty limit new competition"
+    },
+    "supplier_power": {
+      "title": "Bargaining Power of Suppliers",
+      "description": "Low power due to multiple alternative suppliers and standardized components"
+    },
+    "competitive_rivalry": {
+      "title": "Competitive Rivalry",
+      "description": "High intensity with numerous competitors competing on price, quality, and innovation"
+    },
+    "buyer_power": {
+      "title": "Bargaining Power of Buyers",
+      "description": "Strong buyer power driven by price sensitivity and low switching costs"
+    },
+    "threat_substitutes": {
+      "title": "Threat of Substitutes",
+      "description": "Growing threat from alternative solutions offering similar value at lower cost"
+    }
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Porters Five Forces"
+  },
+  "layout_id": "L25",
+  "theme": "professional"
+}

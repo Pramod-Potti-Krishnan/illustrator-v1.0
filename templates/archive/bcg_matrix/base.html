@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .bcg-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1800px;
+            max-height: 720px;
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr;
+            grid-template-rows: 60px 1fr 1fr;
+            gap: 3px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #333;
+            padding: 20px;
+        }
+
+        .axis-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: white;
+            background: {theme_primary};
+            border-radius: 6px;
+        }
+
+        .axis-label.vertical {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
+        .corner-blank {
+            background: transparent;
+        }
+
+        .column-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 16px;
+            color: white;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+        }
+
+        .bcg-quadrant {
+            background: white;
+            border-radius: 12px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bcg-quadrant::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+        }
+
+        .bcg-quadrant.stars::before {
+            background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%);
+        }
+
+        .bcg-quadrant.cash-cows::before {
+            background: linear-gradient(90deg, #22C55E 0%, #16A34A 100%);
+        }
+
+        .bcg-quadrant.question-marks::before {
+            background: linear-gradient(90deg, #A855F7 0%, #7C3AED 100%);
+        }
+
+        .bcg-quadrant.dogs::before {
+            background: linear-gradient(90deg, #94A3B8 0%, #64748B 100%);
+        }
+
+        .quadrant-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+            align-self: center;
+        }
+
+        .quadrant-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .bcg-quadrant.stars .quadrant-title {
+            color: #F59E0B;
+        }
+
+        .bcg-quadrant.cash-cows .quadrant-title {
+            color: #16A34A;
+        }
+
+        .bcg-quadrant.question-marks .quadrant-title {
+            color: #7C3AED;
+        }
+
+        .bcg-quadrant.dogs .quadrant-title {
+            color: #64748B;
+        }
+
+        .quadrant-description {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #444;
+            margin-bottom: 12px;
+        }
+
+        .quadrant-strategy {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 2px solid #e5e7eb;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .quadrant-strategy strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bcg-container">
+        <!-- Corner blank -->
+        <div class="corner-blank"></div>
+
+        <!-- Horizontal axis -->
+        <div class="axis-label" style="grid-column: 2 / 4;">{horizontal_axis_label}</div>
+
+        <!-- Vertical axis -->
+        <div class="axis-label vertical" style="grid-row: 2 / 4;">{vertical_axis_label}</div>
+
+        <!-- Column labels -->
+        <div class="column-label">{col1_label}</div>
+        <div class="column-label">{col2_label}</div>
+
+        <!-- Stars Quadrant (High Market Growth, High Market Share) -->
+        <div class="bcg-quadrant stars">
+            <div class="quadrant-icon">⭐</div>
+            <div class="quadrant-title">Stars</div>
+            <div class="quadrant-description">{stars_description}</div>
+            <div class="quadrant-strategy">
+                <strong>Strategy:</strong>
+                {stars_strategy}
+            </div>
+        </div>
+
+        <!-- Question Marks Quadrant (High Market Growth, Low Market Share) -->
+        <div class="bcg-quadrant question-marks">
+            <div class="quadrant-icon">❓</div>
+            <div class="quadrant-title">Question Marks</div>
+            <div class="quadrant-description">{questions_description}</div>
+            <div class="quadrant-strategy">
+                <strong>Strategy:</strong>
+                {questions_strategy}
+            </div>
+        </div>
+
+        <!-- Cash Cows Quadrant (Low Market Growth, High Market Share) -->
+        <div class="bcg-quadrant cash-cows">
+            <div class="quadrant-icon">🐄</div>
+            <div class="quadrant-title">Cash Cows</div>
+            <div class="quadrant-description">{cows_description}</div>
+            <div class="quadrant-strategy">
+                <strong>Strategy:</strong>
+                {cows_strategy}
+            </div>
+        </div>
+
+        <!-- Dogs Quadrant (Low Market Growth, Low Market Share) -->
+        <div class="bcg-quadrant dogs">
+            <div class="quadrant-icon">🐕</div>
+            <div class="quadrant-title">Dogs</div>
+            <div class="quadrant-description">{dogs_description}</div>
+            <div class="quadrant-strategy">
+                <strong>Strategy:</strong>
+                {dogs_strategy}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

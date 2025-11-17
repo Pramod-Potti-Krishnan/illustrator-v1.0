@@ -1,0 +1,19 @@
+# Core FastAPI dependencies
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+pydantic==2.9.0
+python-multipart==0.0.12
+
+# LLM Integration (Gemini 2.5 Flash)
+google-cloud-aiplatform>=1.38.0
+google-auth>=2.23.0
+
+# For PNG conversion (Phase 1, Week 5-6)
+# playwright==1.40.0
+
+# Development dependencies
+# pytest==7.4.0
+# pytest-asyncio==0.21.0
+# httpx==0.26.0
+# black==24.1.0
+# ruff==0.1.14

@@ -1,0 +1,48 @@
+{
+  "total": 5,
+  "successful": 5,
+  "failed": 0,
+  "timestamp": "2025-11-13T22:47:07.092932",
+  "presentations": [
+    {
+      "illustration_type": "pros_cons",
+      "layout_id": "L01",
+      "title": "Pros & Cons Analysis",
+      "presentation_id": "075f6ccc-73c1-4b8d-aa18-1edf626d06bd",
+      "url": "https://web-production-f0d13.up.railway.app/p/075f6ccc-73c1-4b8d-aa18-1edf626d06bd",
+      "success": true
+    },
+    {
+      "illustration_type": "pyramid_3tier",
+      "layout_id": "L01",
+      "title": "3-Tier Pyramid Model",
+      "presentation_id": "b0b67676-13d0-49ea-a0a2-dd54e61933b1",
+      "url": "https://web-production-f0d13.up.railway.app/p/b0b67676-13d0-49ea-a0a2-dd54e61933b1",
+      "success": true
+    },
+    {
+      "illustration_type": "funnel_4stage",
+      "layout_id": "L01",
+      "title": "4-Stage Sales Funnel",
+      "presentation_id": "130a9b39-b694-4541-a758-bc282268dfce",
+      "url": "https://web-production-f0d13.up.railway.app/p/130a9b39-b694-4541-a758-bc282268dfce",
+      "success": true
+    },
+    {
+      "illustration_type": "venn_2circle",
+      "layout_id": "L01",
+      "title": "2-Circle Venn Diagram",
+      "presentation_id": "3cfce50a-5243-41ce-988c-7bd92562aa04",
+      "url": "https://web-production-f0d13.up.railway.app/p/3cfce50a-5243-41ce-988c-7bd92562aa04",
+      "success": true
+    },
+    {
+      "illustration_type": "before_after",
+      "layout_id": "L01",
+      "title": "Before & After Comparison",
+      "presentation_id": "b041cf8a-2475-4aa6-9dfd-1efd326ac495",
+      "url": "https://web-production-f0d13.up.railway.app/p/b041cf8a-2475-4aa6-9dfd-1efd326ac495",
+      "success": true
+    }
+  ]
+}

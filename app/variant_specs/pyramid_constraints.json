@@ -1,0 +1,98 @@
+{
+  "pyramid_3": {
+    "level_3": {
+      "label": [5, 18],
+      "description": [50, 60],
+      "comment": "Top level: 1-2 words, each word 5-9 chars, separated by <br>"
+    },
+    "level_2": {
+      "label": [8, 20],
+      "description": [50, 60],
+      "comment": "Second from top: max 20 chars total"
+    },
+    "level_1": {
+      "label": [12, 20],
+      "description": [50, 60]
+    },
+    "overview": {
+      "text": [200, 250],
+      "comment": "Only overview text generated - no heading displayed to avoid overflow"
+    }
+  },
+  "pyramid_4": {
+    "level_4": {
+      "label": [5, 18],
+      "description": [50, 60],
+      "comment": "Top level: 1-2 words, each word 5-9 chars, separated by <br>"
+    },
+    "level_3": {
+      "label": [8, 20],
+      "description": [50, 60],
+      "comment": "Second from top: max 20 chars total"
+    },
+    "level_2": {
+      "label": [12, 20],
+      "description": [50, 60]
+    },
+    "level_1": {
+      "label": [12, 20],
+      "description": [50, 60]
+    },
+    "overview": {
+      "text": [200, 250],
+      "comment": "Only overview text generated - no heading displayed to avoid overflow"
+    }
+  },
+  "pyramid_5": {
+    "level_5": {
+      "label": [5, 18],
+      "description": [50, 60],
+      "comment": "Top level: 1-2 words, each word 5-9 chars, separated by <br>"
+    },
+    "level_4": {
+      "label": [8, 20],
+      "description": [50, 60],
+      "comment": "Second from top: max 20 chars total"
+    },
+    "level_3": {
+      "label": [12, 20],
+      "description": [50, 60]
+    },
+    "level_2": {
+      "label": [12, 20],
+      "description": [50, 60]
+    },
+    "level_1": {
+      "label": [12, 20],
+      "description": [50, 60]
+    }
+  },
+  "pyramid_6": {
+    "level_6": {
+      "label": [5, 18],
+      "description": [50, 60],
+      "comment": "Top level: 1-2 words, each word 5-9 chars, separated by <br>"
+    },
+    "level_5": {
+      "label": [8, 20],
+      "description": [50, 60],
+      "comment": "Second from top: max 20 chars total"
+    },
+    "level_4": {
+      "label": [12, 20],
+      "description": [50, 60]
+    },
+    "level_3": {
+      "label": [12, 20],
+      "description": [50, 60]
+    },
+    "level_2": {
+      "label": [12, 20],
+      "description": [50, 60]
+    },
+    "level_1": {
+      "label": [12, 20],
+      "description": [50, 60]
+    }
+  }
+}

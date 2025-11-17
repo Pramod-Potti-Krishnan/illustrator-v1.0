@@ -1,0 +1,77 @@
+{
+  "variant_id": "pyramid_3tier_base",
+  "illustration_type": "pyramid_3tier",
+  "template_path": "templates/pyramid_3tier/base.html",
+  "layout_compatible": ["L01"],
+  "dimensions": {
+    "width": 1800,
+    "height": 600
+  },
+  "elements": [
+    {
+      "element_id": "tier1",
+      "element_type": "pyramid_level",
+      "required_fields": ["title", "description"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 25,
+          "min": 15,
+          "max": 40
+        },
+        "description_chars": {
+          "baseline": 50,
+          "min": 30,
+          "max": 70
+        }
+      }
+    },
+    {
+      "element_id": "tier2",
+      "element_type": "pyramid_level",
+      "required_fields": ["title", "description"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 25,
+          "min": 15,
+          "max": 40
+        },
+        "description_chars": {
+          "baseline": 50,
+          "min": 30,
+          "max": 70
+        }
+      }
+    },
+    {
+      "element_id": "tier3",
+      "element_type": "pyramid_level",
+      "required_fields": ["title", "description"],
+      "constraints": {
+        "title_chars": {
+          "baseline": 25,
+          "min": 15,
+          "max": 40
+        },
+        "description_chars": {
+          "baseline": 50,
+          "min": 30,
+          "max": 70
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "tier1": {
+      "title": "Strategic Vision",
+      "description": "Long-term goals and corporate direction setting"
+    },
+    "tier2": {
+      "title": "Tactical Planning",
+      "description": "Departmental initiatives and quarterly objectives"
+    },
+    "tier3": {
+      "title": "Operational Execution",
+      "description": "Day-to-day activities and process implementation"
+    }
+  }
+}

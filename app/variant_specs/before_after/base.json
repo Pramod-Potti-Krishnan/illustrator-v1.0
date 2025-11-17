@@ -1,0 +1,54 @@
+{
+  "variant_id": "before_after_base",
+  "illustration_type": "before_after",
+  "template_path": "templates/before_after/base.html",
+  "layout_compatible": ["L01"],
+  "dimensions": {
+    "width": 1800,
+    "height": 600
+  },
+  "elements": [
+    {
+      "element_id": "before",
+      "element_type": "comparison_list",
+      "required_fields": ["items"],
+      "item_constraints": {
+        "min_items": 2,
+        "max_items": 4,
+        "baseline_items": 3,
+        "chars_per_item": {
+          "baseline": 55,
+          "min": 35,
+          "max": 75
+        }
+      }
+    },
+    {
+      "element_id": "after",
+      "element_type": "comparison_list",
+      "required_fields": ["items"],
+      "item_constraints": {
+        "min_items": 2,
+        "max_items": 4,
+        "baseline_items": 3,
+        "chars_per_item": {
+          "baseline": 55,
+          "min": 35,
+          "max": 75
+        }
+      }
+    }
+  ],
+  "golden_example": {
+    "before": [
+      "Manual data entry consuming 20 hours per week",
+      "Error rate of 15% requiring constant corrections",
+      "Limited visibility into real-time performance metrics"
+    ],
+    "after": [
+      "Automated data processing reducing time to 2 hours weekly",
+      "Error rate below 1% with validation and verification",
+      "Real-time dashboards providing instant insights and alerts"
+    ]
+  }
+}

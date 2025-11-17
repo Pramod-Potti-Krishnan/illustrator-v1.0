@@ -1,0 +1,78 @@
+{
+  "presentation_id": "test_pres_001",
+  "slide_id": "slide_kpi_dashboard",
+  "slide_number": 1,
+  "illustration_type": "kpi_dashboard",
+  "variant_id": "base",
+  "topics": [
+    "Test topic 1",
+    "Test topic 2",
+    "Test topic 3"
+  ],
+  "narrative": "Test narrative for kpi dashboard",
+  "data": {
+    "kpi1": {
+      "label": "Total Revenue",
+      "value": "$2.4M",
+      "change": "+12.5%",
+      "trend": "positive",
+      "type": "primary"
+    },
+    "kpi2": {
+      "label": "Active Customers",
+      "value": "8,432",
+      "change": "+8.2%",
+      "trend": "positive",
+      "type": "success"
+    },
+    "kpi3": {
+      "label": "Conversion Rate",
+      "value": "3.2%",
+      "change": "-0.5%",
+      "trend": "negative",
+      "type": "warning"
+    },
+    "kpi4": {
+      "label": "Churn Rate",
+      "value": "2.1%",
+      "change": "+0.3%",
+      "trend": "negative",
+      "type": "danger"
+    },
+    "kpi5": {
+      "label": "Average Order Value",
+      "value": "$285",
+      "change": "+6.7%",
+      "trend": "positive",
+      "type": "primary"
+    },
+    "kpi6": {
+      "label": "Customer Satisfaction",
+      "value": "4.6/5",
+      "change": "0.0",
+      "trend": "neutral",
+      "type": "success"
+    },
+    "kpi7": {
+      "label": "Support Tickets",
+      "value": "142",
+      "change": "-18%",
+      "trend": "positive",
+      "type": "warning"
+    },
+    "kpi8": {
+      "label": "Team Productivity",
+      "value": "92%",
+      "change": "+3.1%",
+      "trend": "positive",
+      "type": "primary"
+    }
+  },
+  "context": {
+    "theme": "professional",
+    "audience": "executives",
+    "slide_title": "Test Kpi Dashboard"
+  },
+  "layout_id": "L25",
+  "theme": "professional"
+}
