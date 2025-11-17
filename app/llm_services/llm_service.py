@@ -3,16 +3,81 @@ LLM Service for Gemini 2.5 Flash Integration
 
 Provides async Gemini text generation for pyramid content creation.
 Uses Vertex AI with Application Default Credentials (ADC).
+
+Supports two authentication methods:
+1. GCP_CREDENTIALS_JSON environment variable (JSON string pasted directly)
+2. GOOGLE_APPLICATION_CREDENTIALS environment variable (file path)
 """
 
 import json
 import os
 import logging
+import tempfile
 from typing import Dict, Any, Optional
 from google.cloud import aiplatform
 from vertexai.generative_models import GenerativeModel, GenerationConfig
 
 logger = logging.getLogger(__name__)
+
+
+def _setup_gcp_credentials():
+    """
+    Set up GCP credentials from environment variables.
+
+    Supports two methods:
+    1. GCP_CREDENTIALS_JSON: JSON credentials pasted directly as string
+    2. GOOGLE_APPLICATION_CREDENTIALS: Path to credentials file
+
+    If GCP_CREDENTIALS_JSON is set, creates a temporary file and sets
+    GOOGLE_APPLICATION_CREDENTIALS to point to it.
+    """
+    # Check if credentials JSON is provided directly
+    credentials_json = os.getenv("GCP_CREDENTIALS_JSON")
+
+    if credentials_json:
+        try:
+            # Validate it's valid JSON
+            json.loads(credentials_json)
+
+            # Create a temporary file for the credentials
+            temp_file = tempfile.NamedTemporaryFile(
+                mode='w',
+                suffix='.json',
+                delete=False,
+                prefix='gcp_credentials_'
+            )
+
+            # Write credentials to temp file
+            temp_file.write(credentials_json)
+            temp_file.flush()
+            temp_file.close()
+
+            # Set GOOGLE_APPLICATION_CREDENTIALS to the temp file path
+            os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = temp_file.name
+
+            logger.info(f"GCP credentials loaded from GCP_CREDENTIALS_JSON environment variable")
+            logger.debug(f"Temporary credentials file created at: {temp_file.name}")
+
+        except json.JSONDecodeError as e:
+            logger.error(f"Invalid JSON in GCP_CREDENTIALS_JSON: {e}")
+            raise ValueError(
+                "GCP_CREDENTIALS_JSON contains invalid JSON. "
+                "Please ensure you've pasted the complete service account key."
+            )
+        except Exception as e:
+            logger.error(f"Error setting up GCP credentials from JSON: {e}")
+            raise
+
+    elif os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
+        # File-based credentials already configured
+        logger.info(f"Using GCP credentials from file: {os.getenv('GOOGLE_APPLICATION_CREDENTIALS')}")
+
+    else:
+        # No credentials configured - will attempt to use ADC
+        logger.warning(
+            "No GCP credentials found in GCP_CREDENTIALS_JSON or GOOGLE_APPLICATION_CREDENTIALS. "
+            "Will attempt to use Application Default Credentials (ADC)."
+        )
 
 
 class GeminiService:
@@ -31,10 +96,20 @@ class GeminiService:
             project_id: GCP project ID (reads from GCP_PROJECT_ID env if not provided)
             location: GCP region for Vertex AI (reads from GEMINI_LOCATION env if not provided)
             model_name: Gemini model to use (reads from LLM_PYRAMID env if not provided)
+
+        Environment Variables:
+            GCP_PROJECT_ID: GCP project ID (required)
+            GEMINI_LOCATION: Vertex AI region (required, default: us-central1)
+            LLM_PYRAMID/LLM_FUNNEL/LLM_CONCENTRIC_CIRCLES: Model name (required)
+            GCP_CREDENTIALS_JSON: Service account JSON pasted directly (option 1)
+            GOOGLE_APPLICATION_CREDENTIALS: Path to credentials file (option 2)
         """
+        # Set up GCP credentials from environment variables
+        _setup_gcp_credentials()
+
         # Read from environment variables
         self.project_id = project_id or os.getenv("GCP_PROJECT_ID")
-        self.location = location or os.getenv("GEMINI_LOCATION")
+        self.location = location or os.getenv("GEMINI_LOCATION", "us-central1")
         self.model_name = model_name or os.getenv("LLM_PYRAMID")
 
         # Validate required configuration
