@@ -35,16 +35,16 @@ The concentric circles templates had dimensions optimized for standard slides (1
 
 ---
 
-## Solution Applied
+## Solution Applied (v2 - Fixed Height Issue)
 
 Updated all 3 concentric circles templates (3.html, 4.html, 5.html):
 
 **Container dimensions**:
 ```html
-<!-- CORRECT (After) -->
+<!-- CORRECT (After v2 fix) -->
 <div style="width: 100%; max-width: 1800px; height: 720px; ...">
-  <div style="flex: 0 0 900px; max-height: 680px;"><!-- circles --></div>
-  <div style="flex: 1; max-width: 850px;"><!-- legend --></div>
+  <div style="flex: 0 0 680px; aspect-ratio: 1;"><!-- circles: 680×680px --></div>
+  <div style="flex: 1; max-width: 1060px;"><!-- legend --></div>
 </div>
 ```
 
@@ -54,19 +54,22 @@ Updated all 3 concentric circles templates (3.html, 4.html, 5.html):
    - Changed: `max-width: 1200px` → `width: 100%; max-width: 1800px`
    - Added: `height: 720px` (matches L25 content area height)
 
-2. **Circles section**:
-   - Changed: `flex: 0 0 58%; max-width: 500px` → `flex: 0 0 900px; max-height: 680px`
-   - Circles now fixed at 900px width (50% of 1800px)
-   - Max-height prevents overflow beyond 720px container
+2. **Circles section** (v2 fix):
+   - Changed: `flex: 0 0 58%; max-width: 500px` → `flex: 0 0 680px; aspect-ratio: 1`
+   - Circles now 680×680px (fits within 720px height with padding)
+   - Removed `max-height: 680px` (aspect-ratio: 1 + flex: 0 0 680px handles this correctly)
 
-3. **Legend section**:
-   - Changed: `flex: 1` → `flex: 1; max-width: 850px`
-   - Legend takes remaining space but capped at 850px
-   - Total: 900px (circles) + 40px (gap) + 850px (legend) = 1790px ✓
+3. **Legend section** (v2 fix):
+   - Changed: `flex: 1` → `flex: 1; max-width: 1060px`
+   - Legend takes remaining space but capped at 1060px
+   - Total: 680px (circles) + 40px (gap) + 1060px (legend) = 1780px ✓
+
+**Why v2 was needed**:
+The first fix set circles to `flex: 0 0 900px` which created a 900×900px square (due to aspect-ratio: 1), exceeding the 720px container height and causing bottom clipping. The v2 fix reduces circles to 680×680px, which fits comfortably within the 720px height.
 
 ---
 
-## L25 Layout Breakdown
+## L25 Layout Breakdown (v2)
 
 **Total available**: 1800×720px content area
 
@@ -77,7 +80,7 @@ Updated all 3 concentric circles templates (3.html, 4.html, 5.html):
 │                    1800×720px                           │
 ├──────────────────────┬────┬──────────────────────────────┤
 │   Circles Section    │ Gap│    Legend Section          │
-│      900×680px       │40px│    850×680px               │
+│      680×680px       │40px│    1060×680px              │
 │   (aspect 1:1)       │    │  (flex remaining space)    │
 │                      │    │                            │
 │   ┌────────────┐     │    │  ┌───────────────────┐    │
@@ -85,8 +88,8 @@ Updated all 3 concentric circles templates (3.html, 4.html, 5.html):
 │   │   nested   │     │    │  ├───────────────────┤    │
 │   │   display  │     │    │  │ Legend Item 4/3/2 │    │
 │   └────────────┘     │    │  ├───────────────────┤    │
-│                      │    │  │ Legend Item 3/2/1 │    │
-│                      │    │  └───────────────────┘    │
+│   Fits within        │    │  │ Legend Item 3/2/1 │    │
+│   720px height ✓     │    │  └───────────────────┘    │
 └──────────────────────┴────┴──────────────────────────────┘
 ```
 
