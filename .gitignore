@@ -64,3 +64,7 @@ dmypy.json
 *.tmp
 *.bak
 *.swp
+
+# Test outputs
+tests/outputs/
+test_output/

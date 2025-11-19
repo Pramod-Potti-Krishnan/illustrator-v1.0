@@ -30,6 +30,16 @@ The service will be available at `http://localhost:8000`
 - API Documentation: `http://localhost:8000/docs`
 - Health Check: `http://localhost:8000/health`
 
+## Documentation
+
+All documentation is organized in the `docs/` directory:
+
+- **[Documentation Index](docs/README.md)** - Start here for all documentation
+- **[API Specification](docs/api/API_SPECIFICATION.md)** - Complete API reference
+- **[Quick Start Guide](docs/guides/QUICK_START.md)** - Detailed getting started guide
+- **[Director Integration](docs/guides/DIRECTOR_INTEGRATION_SUMMARY.md)** - Integration with Director Agent
+- **[Architecture](docs/architecture/)** - Technical architecture and design principles
+
 ## How It Works
 
 This service uses a **simple template-based approach**:
@@ -101,25 +111,43 @@ curl -X POST http://localhost:8000/v1.0/generate \
 ## Project Structure
 
 ```
-agents/illustrator/v1.0/
-├── main.py                 # FastAPI entry point
-├── requirements.txt        # Dependencies
-├── app/
-│   ├── __init__.py
-│   ├── models.py          # Pydantic models
-│   ├── themes.py          # 4 color themes
-│   ├── sizes.py           # 3 size presets
-│   ├── services.py        # Template loading & filling
-│   └── routes.py          # API endpoints
-├── templates/             # HTML+CSS templates (human-validated)
-│   └── (illustration types will go here)
-├── tests/
-└── docs/                  # Comprehensive documentation
-    ├── ILLUSTRATION_TAXONOMY.md
-    ├── IMPLEMENTATION_ROADMAP.md
-    ├── TECHNICAL_APPROACH.md
-    └── API_SPECIFICATION.md
+illustrator/v1.0/
+├── main.py                     # FastAPI entry point
+├── requirements.txt            # Dependencies
+│
+├── app/                        # Application code
+│   ├── core/                  # Core logic (validators, template engine)
+│   ├── api_routes/            # API route handlers
+│   ├── llm_services/          # LLM content generators
+│   ├── variant_specs/         # Illustration constraints
+│   ├── models.py              # Pydantic models
+│   ├── themes.py              # Color themes
+│   └── sizes.py               # Size presets
+│
+├── templates/                  # HTML+CSS templates (human-validated)
+│   ├── pyramid/
+│   ├── funnel/
+│   ├── concentric_circles/
+│   └── archive/               # Deprecated templates
+│
+├── tests/                     # All test files
+│   ├── api/                  # API endpoint tests
+│   ├── integration/          # Integration tests
+│   ├── fixtures/             # Test data & golden examples
+│   └── outputs/              # Test-generated outputs
+│
+├── docs/                      # Documentation (organized by category)
+│   ├── README.md             # Documentation index
+│   ├── api/                  # API specifications
+│   ├── guides/               # Integration & usage guides
+│   ├── architecture/         # Technical architecture
+│   ├── workflows/            # Development workflows
+│   └── archive/              # Historical documentation
+│
+└── scripts/                   # Utility scripts
 ```
+
+**📚 For detailed documentation**, see [docs/README.md](docs/README.md)
 
 ## Available Endpoints
 
@@ -138,12 +166,15 @@ agents/illustrator/v1.0/
 3. **HTML+CSS first, SVG only when needed**
 4. **Each template validated before deployment**
 
-## Next Steps
+## Contributing
 
-1. Create first template: SWOT 2x2 with base variant
-2. Test generation end-to-end
-3. Present for validation
-4. Create 2-3 variants
-5. Move to next illustration type
+To add new illustration types or make changes, see:
+- **[New Illustration Workflow](docs/workflows/NEW_ILLUSTRATION_WORKFLOW.md)** - Process for adding new illustrations
+- **[Visual-Driven Workflow](docs/workflows/VISUAL_DRIVEN_WORKFLOW.md)** - Visual-first development approach
+- **[Illustrator API Design Principles](docs/architecture/ILLUSTRATOR_API_DESIGN_PRINCIPLES.md)** - Design guidelines
 
-See `docs/IMPLEMENTATION_ROADMAP.md` for full plan.
+## Additional Resources
+
+- **[Implementation Roadmap](docs/archive/IMPLEMENTATION_ROADMAP.md)** - Historical development roadmap
+- **[Archived Templates](docs/archive/ARCHIVED_TEMPLATES.md)** - Deprecated illustration types
+- **[Recent Updates](docs/archive/)** - Completion reports and bug fixes
