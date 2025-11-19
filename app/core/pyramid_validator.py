@@ -66,7 +66,7 @@ class PyramidValidator:
         Validate generated content against character constraints.
 
         Args:
-            content: Dict with level_N_label and level_N_description keys
+            content: Dict with level_N_label and level_N_bullet_1/2/3/4/5 keys
             num_levels: Number of pyramid levels
 
         Returns:
@@ -74,6 +74,8 @@ class PyramidValidator:
         """
         constraints = self.get_constraints_for_pyramid(num_levels)
         violations = []
+
+        import re
 
         for level_num in range(num_levels, 0, -1):
             level_key = f"level_{level_num}"
@@ -98,25 +100,27 @@ class PyramidValidator:
                         "text": label_text[:50] + "..." if len(label_text) > 50 else label_text
                     })
 
-            # Check description (strip HTML tags for character counting)
-            desc_key = f"{level_key}_description"
-            if desc_key in content:
-                desc_text = content[desc_key]
-                # Strip HTML tags for character counting
-                import re
-                desc_text_no_html = re.sub(r'<[^>]+>', '', desc_text)
-                desc_length = len(desc_text_no_html)
-                min_chars, max_chars = constraints[level_key]["description"]
+            # Check each bullet point (5 bullets per level)
+            for bullet_num in range(1, 6):
+                bullet_field_key = f"bullet_{bullet_num}"
+                if bullet_field_key in constraints[level_key]:
+                    bullet_key = f"{level_key}_bullet_{bullet_num}"
+                    if bullet_key in content:
+                        bullet_text = content[bullet_key]
+                        # Strip HTML tags for character counting
+                        bullet_text_no_html = re.sub(r'<[^>]+>', '', bullet_text)
+                        bullet_length = len(bullet_text_no_html)
+                        min_chars, max_chars = constraints[level_key][bullet_field_key]
 
-                if desc_length < min_chars or desc_length > max_chars:
-                    violations.append({
-                        "field": desc_key,
-                        "actual_length": desc_length,
-                        "min_required": min_chars,
-                        "max_required": max_chars,
-                        "status": "under" if desc_length < min_chars else "over",
-                        "text": desc_text[:50] + "..." if len(desc_text) > 50 else desc_text
-                    })
+                        if bullet_length < min_chars or bullet_length > max_chars:
+                            violations.append({
+                                "field": bullet_key,
+                                "actual_length": bullet_length,
+                                "min_required": min_chars,
+                                "max_required": max_chars,
+                                "status": "under" if bullet_length < min_chars else "over",
+                                "text": bullet_text[:50] + "..." if len(bullet_text) > 50 else bullet_text
+                            })
 
         # Check overview fields if present
         if "overview" in constraints:
@@ -170,19 +174,26 @@ class PyramidValidator:
         Returns:
             Dict mapping field names to character counts
         """
+        import re
         counts = {}
 
         for level_num in range(num_levels, 0, -1):
             level_key = f"level_{level_num}"
             counts[level_key] = {}
 
+            # Count label
             label_key = f"{level_key}_label"
             if label_key in content:
                 counts[level_key]["label"] = len(content[label_key])
 
-            desc_key = f"{level_key}_description"
-            if desc_key in content:
-                counts[level_key]["description"] = len(content[desc_key])
+            # Count each bullet (5 bullets per level)
+            for bullet_num in range(1, 6):
+                bullet_key = f"{level_key}_bullet_{bullet_num}"
+                if bullet_key in content:
+                    bullet_text = content[bullet_key]
+                    # Strip HTML tags for accurate character counting
+                    bullet_text_no_html = re.sub(r'<[^>]+>', '', bullet_text)
+                    counts[level_key][f"bullet_{bullet_num}"] = len(bullet_text_no_html)
 
         return counts
 

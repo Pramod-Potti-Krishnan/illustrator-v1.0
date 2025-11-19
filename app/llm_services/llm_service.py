@@ -301,47 +301,58 @@ class GeminiService:
                         previous_context_str += f"\n  {slide_summary}"
                 previous_context_str += "\n\nIMPORTANT: Ensure this pyramid builds upon and complements the narrative established in previous slides."
 
-        # Build constraints string
+        # Build constraints string with bullets
         constraints_str = "\n\nCharacter Constraints (MUST FOLLOW EXACTLY):"
 
         # Top level (special constraints - 1-2 words with <br>)
         top_level_key = f"level_{num_levels}"
         second_level_key = f"level_{num_levels - 1}"
 
-        if top_level_key in constraints:
-            label_min, label_max = constraints[top_level_key]["label"]
-            desc_min, desc_max = constraints[top_level_key]["description"]
-            constraints_str += f"\n- Level {num_levels} label (TOP): 1-2 words ONLY, each word 5-9 chars"
-            constraints_str += f"\n  If 2 words, format as: Word1<br>Word2 (e.g., 'Vision<br>Driven')"
-            constraints_str += f"\n  Total length (excluding <br>): {label_min}-{label_max} characters"
-            constraints_str += f"\n- Level {num_levels} description: {desc_min}-{desc_max} characters (use <strong> tags to emphasize 1-2 key words)"
-
-        # Second from top (special - max 20 chars)
-        if second_level_key in constraints:
-            label_min, label_max = constraints[second_level_key]["label"]
-            desc_min, desc_max = constraints[second_level_key]["description"]
-            constraints_str += f"\n- Level {num_levels - 1} label (SECOND FROM TOP): MAX 20 characters total"
-            constraints_str += f"\n- Level {num_levels - 1} description: {desc_min}-{desc_max} characters (use <strong> tags to emphasize 1-2 key words)"
-
-        # Other levels (standard constraints)
-        for level_num in range(num_levels - 2, 0, -1):
+        # Build constraints for each level (top to bottom)
+        for level_num in range(num_levels, 0, -1):
             level_key = f"level_{level_num}"
-            if level_key in constraints:
-                label_min, label_max = constraints[level_key]["label"]
-                desc_min, desc_max = constraints[level_key]["description"]
-                constraints_str += f"\n- Level {level_num} label: {label_min}-{label_max} characters"
-                constraints_str += f"\n- Level {level_num} description: {desc_min}-{desc_max} characters (use <strong> tags to emphasize 1-2 key words)"
+            if level_key not in constraints:
+                continue
+
+            level_constraints = constraints[level_key]
+            label_min, label_max = level_constraints["label"]
+
+            # Special handling for top level
+            if level_num == num_levels:
+                constraints_str += f"\n\nLevel {level_num} (TOP):"
+                constraints_str += f"\n- Label: 1-2 words ONLY, each word 5-9 chars"
+                constraints_str += f"\n  If 2 words, format as: Word1<br>Word2 (e.g., 'Vision<br>Driven')"
+                constraints_str += f"\n  Total length (excluding <br>): {label_min}-{label_max} characters"
+            # Special handling for second from top
+            elif level_num == num_levels - 1:
+                constraints_str += f"\n\nLevel {level_num} (SECOND FROM TOP):"
+                constraints_str += f"\n- Label: MAX 20 characters total"
+            # Standard handling for other levels
+            else:
+                constraints_str += f"\n\nLevel {level_num}:"
+                constraints_str += f"\n- Label: {label_min}-{label_max} characters"
+
+            # Add bullet constraints
+            constraints_str += f"\n- Bullets: Each level has exactly 5 bullet points"
+            for bullet_num in range(1, 6):
+                bullet_key = f"bullet_{bullet_num}"
+                if bullet_key in level_constraints:
+                    bullet_min, bullet_max = level_constraints[bullet_key]
+                    constraints_str += f"\n  - Bullet {bullet_num}: {bullet_min}-{bullet_max} characters"
 
         # Overview constraints (if requested)
         if generate_overview and "overview" in constraints:
             text_min, text_max = constraints["overview"]["text"]
-            constraints_str += f"\n- Overview text: {text_min}-{text_max} characters"
+            constraints_str += f"\n\nOverview:"
+            constraints_str += f"\n- Text: {text_min}-{text_max} characters"
 
-        # Build JSON structure
+        # Build JSON structure with bullets
         json_fields = {}
         for level_num in range(num_levels, 0, -1):
             json_fields[f"level_{level_num}_label"] = f"Level {level_num} label text"
-            json_fields[f"level_{level_num}_description"] = f"Level {level_num} description with <strong>key words</strong>"
+            # Add 5 bullets per level
+            for bullet_num in range(1, 6):
+                json_fields[f"level_{level_num}_bullet_{bullet_num}"] = f"Level {level_num} bullet {bullet_num} with <strong>key words</strong>"
 
         # Add overview fields if requested
         if generate_overview:
@@ -365,9 +376,11 @@ Instructions:
      * If 1 word, no <br> needed (e.g., "Excellence")
    - Level {num_levels - 1} (SECOND FROM TOP): MAX 20 characters total
    - Other levels: Keep concise, 12-20 characters
-6. Descriptions should provide clear, meaningful explanations
-   - Use <strong> tags to emphasize 1-2 key words per description
-   - Example: "Develop the <strong>product vision</strong> and create a detailed blueprint"
+6. Each level should have exactly 5 bullet points that:
+   - Describe key elements, actions, or characteristics of that level
+   - Are concise but informative (25-45 characters each)
+   - Use <strong> tags to emphasize 1-2 key words per bullet
+   - Example: "Develop the <strong>product vision</strong> and strategy"
 7. Maintain consistency and logical flow between levels
 8. Use {tone} tone appropriate for {audience} audience
 {"9. Generate overview section with detailed explanatory text (no heading needed)" if generate_overview else ""}
@@ -381,8 +394,8 @@ CRITICAL:
 - Every field must meet its character constraints exactly
 - Count characters carefully (spaces count!)
 - Top level label MUST be 2 words maximum (e.g., "Market Leadership" NOT "Achieve Market Leadership")
-- ALL descriptions MUST include <strong> tags around 1-2 key words
-- HTML tags do NOT count toward character limits"""
+- ALL bullets MUST include <strong> tags around 1-2 key words
+- HTML tags (<br>, <strong>) do NOT count toward character limits"""
 
         return prompt
 
