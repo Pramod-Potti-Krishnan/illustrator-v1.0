@@ -246,12 +246,24 @@ class GeminiService:
             generate_overview=generate_overview
         )
 
+        # LOG: Show what we're asking for (v1.0.1 - bullets)
+        logger.info(f"Pyramid prompt requesting {num_levels} levels with bullet-based structure")
+
         result = await self.generate_content(
             prompt=prompt,
             temperature=0.7,
             max_tokens=2048,
             response_format="json"
         )
+
+        # LOG: Show what we got back
+        if result.get("success") and result.get("content"):
+            content_keys = list(result["content"].keys())
+            logger.info(f"Pyramid LLM returned {len(content_keys)} fields")
+            logger.info(f"Returned keys sample: {content_keys[:5]}")
+            has_bullets = any("bullet" in k for k in content_keys)
+            has_description = any("description" in k for k in content_keys)
+            logger.info(f"Field types - bullets: {has_bullets}, description: {has_description}")
 
         return result
 

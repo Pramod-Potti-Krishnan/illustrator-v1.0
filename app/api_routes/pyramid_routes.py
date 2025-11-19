@@ -86,14 +86,28 @@ async def generate_pyramid_with_llm(request: PyramidGenerationRequest):
 
         # Fill template with generated content
         filled_html = template_html
+
+        # LOG: Debug what we're filling (v1.0.1 - bullet-based)
+        logger.info(f"Filling template with {len(generated_content)} fields")
+        logger.info(f"Generated content keys: {sorted(generated_content.keys())}")
+
         for key, value in generated_content.items():
             placeholder = f"{{{key}}}"
+            # Count how many times this placeholder appears
+            count = template_html.count(placeholder)
+            if count > 0:
+                logger.info(f"Replacing {placeholder} ({count} occurrences) with: {value[:50]}...")
             filled_html = filled_html.replace(placeholder, value)
 
         # Remove any remaining placeholders (e.g., overview fields when not requested)
         import re
         filled_html = re.sub(r'\{overview_heading\}', '', filled_html)
         filled_html = re.sub(r'\{overview_text\}', '', filled_html)
+
+        # LOG: Check for any remaining placeholders
+        remaining = re.findall(r'\{[^}]+\}', filled_html)
+        if remaining:
+            logger.warning(f"Remaining unfilled placeholders: {remaining[:10]}")
 
         # Calculate total generation time
         total_time = int((time.time() - start_time) * 1000)
@@ -108,6 +122,7 @@ async def generate_pyramid_with_llm(request: PyramidGenerationRequest):
                 "theme": request.theme,
                 "size": request.size,
                 "topic": request.topic,
+                "code_version": "v1.0.1-bullets",  # Version marker to confirm new code
                 **gen_result.get("metadata", {})
             },
             generated_content=generated_content,
