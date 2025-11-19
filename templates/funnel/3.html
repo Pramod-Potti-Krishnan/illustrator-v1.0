@@ -84,6 +84,32 @@
                 }, 300);
             });
         });
+
+        // Hover interaction - highlight corresponding description box when hovering funnel segment
+        document.querySelectorAll('.funnel-section').forEach((section, index) => {
+            const desc = document.querySelectorAll('.description-item')[index];
+            const icon = desc ? desc.querySelector('.stage-icon') : null;
+
+            section.addEventListener('mouseenter', function() {
+                if (desc) {
+                    desc.style.transform = 'scale(1.03)';
+                    desc.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.15)';
+                }
+                if (icon) {
+                    icon.style.transform = 'translateY(-50%) scale(1.1)';
+                }
+            });
+
+            section.addEventListener('mouseleave', function() {
+                if (desc) {
+                    desc.style.transform = '';
+                    desc.style.boxShadow = '';
+                }
+                if (icon) {
+                    icon.style.transform = '';
+                }
+            });
+        });
     </script>
 <script style="margin: 0; padding: 0; box-sizing: border-box">
         // Add click interactivity - highlight both funnel section and description
@@ -104,6 +130,32 @@
                 setTimeout(() => {
                     section.style.transform = 'scale(1.0)';
                 }, 300);
+            });
+        });
+
+        // Hover interaction - highlight corresponding description box when hovering funnel segment
+        document.querySelectorAll('.funnel-section').forEach((section, index) => {
+            const desc = document.querySelectorAll('.description-item')[index];
+            const icon = desc ? desc.querySelector('.stage-icon') : null;
+
+            section.addEventListener('mouseenter', function() {
+                if (desc) {
+                    desc.style.transform = 'scale(1.03)';
+                    desc.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.15)';
+                }
+                if (icon) {
+                    icon.style.transform = 'translateY(-50%) scale(1.1)';
+                }
+            });
+
+            section.addEventListener('mouseleave', function() {
+                if (desc) {
+                    desc.style.transform = '';
+                    desc.style.boxShadow = '';
+                }
+                if (icon) {
+                    icon.style.transform = '';
+                }
             });
         });
     </script>

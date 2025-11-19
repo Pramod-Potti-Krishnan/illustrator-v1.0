@@ -41,7 +41,7 @@
 <div class="level-icon" style="margin: 0; padding: 0; box-sizing: border-box; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); position: absolute; left: -70px; top: 50%; transform: translateY(-50%)">
 <div class="icon-inner" style="margin: 0; padding: 0; box-sizing: border-box; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #ec4899 0%, #db2777 100%)">5</div>
 </div>
-<ul class="level-bullets" style="margin: 0; padding: 0; box-sizing: border-box; list-style-type: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; font-size: 19.2px; color: white">
+<ul class="level-bullets" style="margin: 0; padding: 0; box-sizing: border-box; list-style-type: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; font-size: 18px; color: white">
 <li style="margin: 0; padding: 0; box-sizing: border-box">{level_5_bullet_1}</li>
 <li style="margin: 0; padding: 0; box-sizing: border-box">{level_5_bullet_2}</li>
 <li style="margin: 0; padding: 0; box-sizing: border-box">{level_5_bullet_3}</li>
@@ -52,7 +52,7 @@
 <div class="level-icon" style="margin: 0; padding: 0; box-sizing: border-box; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); position: absolute; left: -70px; top: 50%; transform: translateY(-50%)">
 <div class="icon-inner" style="margin: 0; padding: 0; box-sizing: border-box; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%)">4</div>
 </div>
-<ul class="level-bullets" style="margin: 0; padding: 0; box-sizing: border-box; list-style-type: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; font-size: 16px; color: white">
+<ul class="level-bullets" style="margin: 0; padding: 0; box-sizing: border-box; list-style-type: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; font-size: 18px; color: white">
 <li style="margin: 0; padding: 0; box-sizing: border-box">{level_4_bullet_1}</li>
 <li style="margin: 0; padding: 0; box-sizing: border-box">{level_4_bullet_2}</li>
 <li style="margin: 0; padding: 0; box-sizing: border-box">{level_4_bullet_3}</li>
@@ -113,4 +113,39 @@
         transform: translateY(-50%) scale(1.1) !important;
     }
 </style>
+<script>
+    // Bidirectional hover highlighting for pyramid segments and description boxes
+    document.querySelectorAll('.pyramid-shape').forEach((shape, index) => {
+        const level = shape.closest('.pyramid-level');
+        if (level) {
+            const levelClass = Array.from(level.classList).find(cls => cls.startsWith('level-'));
+            if (levelClass) {
+                const descBox = document.querySelector(`.desc-${levelClass.split('-')[1]}`);
+
+                // Hover on pyramid segment -> highlight description box and icon
+                shape.addEventListener('mouseenter', function() {
+                    if (descBox) {
+                        descBox.style.transform = 'scale(1.03)';
+                        descBox.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.2)';
+                        const icon = descBox.querySelector('.level-icon');
+                        if (icon) {
+                            icon.style.transform = 'translateY(-50%) scale(1.1)';
+                        }
+                    }
+                });
+
+                shape.addEventListener('mouseleave', function() {
+                    if (descBox) {
+                        descBox.style.transform = '';
+                        descBox.style.boxShadow = '';
+                        const icon = descBox.querySelector('.level-icon');
+                        if (icon) {
+                            icon.style.transform = '';
+                        }
+                    }
+                });
+            }
+        }
+    });
+</script>
 </div>

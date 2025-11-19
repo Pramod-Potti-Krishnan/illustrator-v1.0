@@ -100,4 +100,39 @@
         transform: translateY(-50%) scale(1.1) !important;
     }
 </style>
+<script>
+    // Bidirectional hover highlighting for pyramid segments and description boxes
+    document.querySelectorAll('.pyramid-shape').forEach((shape, index) => {
+        const level = shape.closest('.pyramid-level');
+        if (level) {
+            const levelClass = Array.from(level.classList).find(cls => cls.startsWith('level-'));
+            if (levelClass) {
+                const descBox = document.querySelector(`.desc-${levelClass.split('-')[1]}`);
+
+                // Hover on pyramid segment -> highlight description box and icon
+                shape.addEventListener('mouseenter', function() {
+                    if (descBox) {
+                        descBox.style.transform = 'scale(1.03)';
+                        descBox.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.2)';
+                        const icon = descBox.querySelector('.level-icon');
+                        if (icon) {
+                            icon.style.transform = 'translateY(-50%) scale(1.1)';
+                        }
+                    }
+                });
+
+                shape.addEventListener('mouseleave', function() {
+                    if (descBox) {
+                        descBox.style.transform = '';
+                        descBox.style.boxShadow = '';
+                        const icon = descBox.querySelector('.level-icon');
+                        if (icon) {
+                            icon.style.transform = '';
+                        }
+                    }
+                });
+            }
+        }
+    });
+</script>
 </div>
