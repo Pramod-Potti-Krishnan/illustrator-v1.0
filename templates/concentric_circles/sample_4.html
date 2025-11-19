@@ -64,7 +64,7 @@
         .circle-3 {
             width: 75%;
             height: 75%;
-            background: linear-gradient(135deg, #f9c74f 0%, #f3b52e 100%);
+            background: linear-gradient(135deg, #d4a528 0%, #b8912a 100%);
             z-index: 2;
         }
 
@@ -219,7 +219,7 @@
         }
 
         .number-3 .number-inner {
-            background: linear-gradient(135deg, #f9c74f 0%, #f3b52e 100%);
+            background: linear-gradient(135deg, #d4a528 0%, #b8912a 100%);
         }
 
         .number-4 .number-inner {
@@ -282,8 +282,8 @@
         }
 
         .legend-item-3 {
-            background: linear-gradient(135deg, #f9c74f 0%, #f3b52e 100%);
-            color: #2d3748;
+            background: linear-gradient(135deg, #d4a528 0%, #b8912a 100%);
+            color: white;
         }
 
         .legend-item-2 {
@@ -396,4 +396,55 @@
         </div>
     </div>
 </body>
-</html>
+<style>
+    /* Circle hover effects */
+    .circle:hover {
+        transform: translateX(-50%) scale(1.05) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+        cursor: pointer;
+        transition: all 0.3s ease !important;
+    }
+    
+    /* Legend item hover effects */
+    .legend-item:hover {
+        transform: scale(1.03) !important;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25) !important;
+        cursor: pointer;
+    }
+    
+    /* Icon hover effect */
+    .legend-icon:hover {
+        transform: translateY(-50%) scale(1.15) !important;
+    }
+</style>
+<script>
+    // Add click interactivity between circles and legend items
+    document.querySelectorAll('.circle').forEach((circle, index) => {
+        circle.addEventListener('click', function() {
+            const legends = document.querySelectorAll('.legend-item');
+            const matchingLegend = legends[legends.length - 1 - index];
+            if (matchingLegend) {
+                matchingLegend.style.transform = 'scale(1.05)';
+                matchingLegend.style.boxShadow = '0 16px 32px rgba(0, 0, 0, 0.3)';
+                setTimeout(() => {
+                    matchingLegend.style.transform = 'scale(1.0)';
+                    matchingLegend.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+                }, 400);
+            }
+        });
+    });
+    
+    document.querySelectorAll('.legend-item').forEach((item, index) => {
+        item.addEventListener('click', function() {
+            const circles = document.querySelectorAll('.circle');
+            const matchingCircle = circles[circles.length - 1 - index];
+            if (matchingCircle) {
+                matchingCircle.style.transform = 'translateX(-50%) scale(1.1)';
+                setTimeout(() => {
+                    matchingCircle.style.transform = 'translateX(-50%) scale(1.0)';
+                }, 400);
+            }
+        });
+    });
+</script>
+</div>

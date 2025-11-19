@@ -114,23 +114,28 @@ class FunnelValidator:
                         "text": name_text[:50] + "..." if len(name_text) > 50 else name_text
                     })
 
-            # Check each bullet point (1-3)
-            for bullet_num in range(1, 4):
-                bullet_key = f"{stage_key}_bullet_{bullet_num}"
-                if bullet_key in content:
-                    bullet_text = content[bullet_key]
-                    bullet_length = self._count_characters(bullet_text)
-                    min_chars, max_chars = constraints[stage_key][f"bullet_{bullet_num}"]
+            # Check each bullet point (dynamic count based on constraints)
+            # Determine max bullets by checking which bullet keys exist in constraints
+            max_bullets = sum(1 for key in constraints[stage_key].keys() if key.startswith("bullet_"))
 
-                    if bullet_length < min_chars or bullet_length > max_chars:
-                        violations.append({
-                            "field": bullet_key,
-                            "actual_length": bullet_length,
-                            "min_required": min_chars,
-                            "max_required": max_chars,
-                            "status": "under" if bullet_length < min_chars else "over",
-                            "text": bullet_text[:50] + "..." if len(bullet_text) > 50 else bullet_text
-                        })
+            for bullet_num in range(1, max_bullets + 1):
+                bullet_field_key = f"bullet_{bullet_num}"
+                if bullet_field_key in constraints[stage_key]:
+                    bullet_key = f"{stage_key}_bullet_{bullet_num}"
+                    if bullet_key in content:
+                        bullet_text = content[bullet_key]
+                        bullet_length = self._count_characters(bullet_text)
+                        min_chars, max_chars = constraints[stage_key][bullet_field_key]
+
+                        if bullet_length < min_chars or bullet_length > max_chars:
+                            violations.append({
+                                "field": bullet_key,
+                                "actual_length": bullet_length,
+                                "min_required": min_chars,
+                                "max_required": max_chars,
+                                "status": "under" if bullet_length < min_chars else "over",
+                                "text": bullet_text[:50] + "..." if len(bullet_text) > 50 else bullet_text
+                            })
 
         is_valid = len(violations) == 0
         return is_valid, violations
@@ -161,11 +166,15 @@ class FunnelValidator:
             if name_key in content:
                 counts[stage_key]["name"] = self._count_characters(content[name_key])
 
-            # Count each bullet
-            for bullet_num in range(1, 4):
+            # Count each bullet (dynamic - check content for all bullet keys)
+            bullet_num = 1
+            while True:
                 bullet_key = f"{stage_key}_bullet_{bullet_num}"
                 if bullet_key in content:
                     counts[stage_key][f"bullet_{bullet_num}"] = self._count_characters(content[bullet_key])
+                    bullet_num += 1
+                else:
+                    break
 
         return counts
 

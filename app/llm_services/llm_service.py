@@ -475,30 +475,37 @@ CRITICAL:
                         previous_context_str += f"\n  {slide_summary}"
                 previous_context_str += "\n\nIMPORTANT: Ensure this funnel builds upon and complements the narrative established in previous slides."
 
+        # Determine bullets per stage based on num_stages
+        bullets_per_stage = {3: 5, 4: 4, 5: 3}
+        num_bullets = bullets_per_stage.get(num_stages, 3)
+
         # Build constraints string
         constraints_str = "\n\nCharacter Constraints (MUST FOLLOW EXACTLY):"
 
         for stage_num in range(1, num_stages + 1):
             stage_key = f"stage_{stage_num}"
             if stage_key in constraints:
-                name_min, name_max = constraints[stage_key]["name"]
-                bullet_1_min, bullet_1_max = constraints[stage_key]["bullet_1"]
-                bullet_2_min, bullet_2_max = constraints[stage_key]["bullet_2"]
-                bullet_3_min, bullet_3_max = constraints[stage_key]["bullet_3"]
+                stage_constraints = constraints[stage_key]
+                name_min, name_max = stage_constraints["name"]
 
                 constraints_str += f"\n\nStage {stage_num}:"
                 constraints_str += f"\n  - Name: {name_min}-{name_max} characters"
-                constraints_str += f"\n  - Bullet 1: {bullet_1_min}-{bullet_1_max} characters"
-                constraints_str += f"\n  - Bullet 2: {bullet_2_min}-{bullet_2_max} characters"
-                constraints_str += f"\n  - Bullet 3: {bullet_3_min}-{bullet_3_max} characters"
+
+                # Add bullet constraints dynamically based on available bullets
+                for bullet_num in range(1, num_bullets + 1):
+                    bullet_key = f"bullet_{bullet_num}"
+                    if bullet_key in stage_constraints:
+                        bullet_min, bullet_max = stage_constraints[bullet_key]
+                        constraints_str += f"\n  - Bullet {bullet_num}: {bullet_min}-{bullet_max} characters"
 
         # Build JSON structure
         json_fields = {}
         for stage_num in range(1, num_stages + 1):
             json_fields[f"stage_{stage_num}_name"] = f"Stage {stage_num} name"
-            json_fields[f"stage_{stage_num}_bullet_1"] = f"First key action or characteristic"
-            json_fields[f"stage_{stage_num}_bullet_2"] = f"Second key action or characteristic"
-            json_fields[f"stage_{stage_num}_bullet_3"] = f"Third key action or characteristic"
+            for bullet_num in range(1, num_bullets + 1):
+                ordinals = ["First", "Second", "Third", "Fourth", "Fifth"]
+                ordinal = ordinals[bullet_num - 1] if bullet_num <= 5 else f"{bullet_num}th"
+                json_fields[f"stage_{stage_num}_bullet_{bullet_num}"] = f"{ordinal} key action or characteristic"
 
         json_example = json.dumps(json_fields, indent=2)
 
@@ -514,7 +521,7 @@ Instructions:
 4. Stage {num_stages} (BOTTOM/NARROWEST) should represent the final outcome or conversion
 5. Stage names should be concise, clear labels (8-25 characters)
    - Examples: "Awareness", "Lead Generation", "Qualification", "Conversion", "Retention"
-6. Each stage should have exactly 3 bullet points that:
+6. Each stage should have exactly {num_bullets} bullet points that:
    - Describe key actions, characteristics, or metrics for that stage
    - Are concise but informative (30-60 characters each)
    - Use <strong> tags to emphasize 1-2 key words per bullet
@@ -679,6 +686,8 @@ CONTENT REQUIREMENTS:
    - Provide detailed explanations and examples
    - Must be substantive and informative
    - NO generic fluff or filler
+   - Use <strong> tags to emphasize 1-2 key words per bullet
+   - Example: "Establish <strong>core competencies</strong> and competitive advantages"
 
 3. Content Flow:
    - Core circle: Most fundamental/essential concept
@@ -701,7 +710,8 @@ CRITICAL:
 - Count characters carefully (spaces count!)
 - Circle labels should be SHORT and impactful
 - Legend bullets should be detailed and substantive
-- HTML tags (<br>) do NOT count toward character limits
+- ALL legend bullets MUST include <strong> tags around 1-2 key words
+- HTML tags (<br>, <strong>) do NOT count toward character limits
 - Maintain logical progression from core to outer circles"""
 
         return prompt

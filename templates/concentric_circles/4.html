@@ -4,7 +4,7 @@
 <div class="circles-wrapper" style="margin: 0; padding: 0; box-sizing: border-box; position: relative; width: 100%; height: 100%">
 <!-- Circles (background only, no text inside) -->
 <div class="circle circle-4" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; border-radius: 50%; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 4px solid white; bottom: 0; left: 50%; transform: translatex(-50%); width: 100%; height: 100%; background: linear-gradient(135deg, #7eb3d5 0%, #6ba3c7 100%); z-index: 1"></div>
-<div class="circle circle-3" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; border-radius: 50%; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 4px solid white; bottom: 0; left: 50%; transform: translatex(-50%); width: 75%; height: 75%; background: linear-gradient(135deg, #f9c74f 0%, #f3b52e 100%); z-index: 2"></div>
+<div class="circle circle-3" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; border-radius: 50%; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 4px solid white; bottom: 0; left: 50%; transform: translatex(-50%); width: 75%; height: 75%; background: linear-gradient(135deg, #d4a528 0%, #b8912a 100%); z-index: 2"></div>
 <div class="circle circle-2" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; border-radius: 50%; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 4px solid white; bottom: 0; left: 50%; transform: translatex(-50%); width: 55%; height: 55%; background: linear-gradient(135deg, #9ca3af 0%, #848c99 100%); z-index: 3"></div>
 <div class="circle circle-1" style="margin: 0; padding: 0; box-sizing: border-box; position: absolute; border-radius: 50%; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 4px solid white; bottom: 0; left: 50%; transform: translatex(-50%); width: 35%; height: 35%; background: linear-gradient(135deg, #4a90e2 0%, #3a7bc8 100%); z-index: 4"></div>
 <!-- Text Labels (positioned absolutely in wrapper) -->
@@ -33,9 +33,9 @@
 </ul>
 </div>
 <!-- Legend Item 3 -->
-<div class="legend-item legend-item-3" style="margin: 0; padding: 15px 20px; box-sizing: border-box; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #f9c74f 0%, #f3b52e 100%); color: white; position: relative; margin-left: 70px">
+<div class="legend-item legend-item-3" style="margin: 0; padding: 15px 20px; box-sizing: border-box; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #d4a528 0%, #b8912a 100%); color: white; position: relative; margin-left: 70px">
 <div class="legend-icon" style="margin: 0; padding: 0; box-sizing: border-box; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); position: absolute; left: -70px; top: 50%; transform: translateY(-50%)">
-<div class="icon-inner" style="margin: 0; padding: 0; box-sizing: border-box; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #f9c74f 0%, #f3b52e 100%)">3</div>
+<div class="icon-inner" style="margin: 0; padding: 0; box-sizing: border-box; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #d4a528 0%, #b8912a 100%)">3</div>
 </div>
 <ul class="legend-bullets" style="margin: 0; padding: 0; box-sizing: border-box; list-style-type: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; font-size: 19.2px; color: white">
 <li style="margin: 0; padding: 0; box-sizing: border-box">{legend_3_bullet_1}</li>
@@ -69,4 +69,55 @@
 </ul>
 </div>
 </div>
+<style>
+    /* Circle hover effects */
+    .circle:hover {
+        transform: translateX(-50%) scale(1.05) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+        cursor: pointer;
+        transition: all 0.3s ease !important;
+    }
+    
+    /* Legend item hover effects */
+    .legend-item:hover {
+        transform: scale(1.03) !important;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25) !important;
+        cursor: pointer;
+    }
+    
+    /* Icon hover effect */
+    .legend-icon:hover {
+        transform: translateY(-50%) scale(1.15) !important;
+    }
+</style>
+<script>
+    // Add click interactivity between circles and legend items
+    document.querySelectorAll('.circle').forEach((circle, index) => {
+        circle.addEventListener('click', function() {
+            const legends = document.querySelectorAll('.legend-item');
+            const matchingLegend = legends[legends.length - 1 - index];
+            if (matchingLegend) {
+                matchingLegend.style.transform = 'scale(1.05)';
+                matchingLegend.style.boxShadow = '0 16px 32px rgba(0, 0, 0, 0.3)';
+                setTimeout(() => {
+                    matchingLegend.style.transform = 'scale(1.0)';
+                    matchingLegend.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+                }, 400);
+            }
+        });
+    });
+    
+    document.querySelectorAll('.legend-item').forEach((item, index) => {
+        item.addEventListener('click', function() {
+            const circles = document.querySelectorAll('.circle');
+            const matchingCircle = circles[circles.length - 1 - index];
+            if (matchingCircle) {
+                matchingCircle.style.transform = 'translateX(-50%) scale(1.1)';
+                setTimeout(() => {
+                    matchingCircle.style.transform = 'translateX(-50%) scale(1.0)';
+                }, 400);
+            }
+        });
+    });
+</script>
 </div>
