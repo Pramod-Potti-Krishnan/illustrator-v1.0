@@ -128,6 +128,7 @@ layout_payload = {
 - ⏳ `POST /v1.0/concentric_circles/generate`
 - ⏳ `POST /v1.0/pyramid/generate`
 - ⏳ `POST /v1.0/funnel/generate`
+- ⏳ `POST /concept-spread/generate`
 
 **Error**: `"Permission denied on resource project your-gcp-project-id"` - This means the placeholder `GCP_PROJECT_ID` is still set instead of the actual project ID.
 
@@ -140,6 +141,7 @@ GCP_CREDENTIALS_JSON={"type":"service_account",...}  # Paste actual JSON
 LLM_PYRAMID=gemini-2.5-flash-lite
 LLM_FUNNEL=gemini-2.5-flash-lite
 LLM_CONCENTRIC_CIRCLES=gemini-2.5-flash-lite
+LLM_CONCEPT_SPREAD=gemini-2.5-flash-lite
 ```
 
 ---
@@ -275,6 +277,82 @@ LLM_CONCENTRIC_CIRCLES=gemini-2.5-flash-lite
 ```
 
 **Note**: Funnel templates include JavaScript for click interactions - this is preserved in the fragment.
+
+---
+
+### **4. Concept Spread Generation**
+
+**Endpoint**: `POST /concept-spread/generate`
+
+**Request**:
+```json
+{
+  "topic": "Digital Transformation Strategy",
+  "num_hexagons": 6,
+  "presentation_id": "pres-123",
+  "slide_id": "slide-459",
+  "slide_number": 7,
+  "context": {
+    "previous_slides": [
+      {
+        "slide_number": 1,
+        "slide_title": "Introduction",
+        "summary": "Overview of digital transformation journey"
+      }
+    ]
+  },
+  "tone": "professional",
+  "audience": "executives"
+}
+```
+
+**Response** (HTTP 200):
+```json
+{
+  "success": true,
+  "html": "<div class=\"concept-spread-container\" style=\"...\">...<script>/* Two-way hover animation */</script></div>",
+  "generated_content": {
+    "central_text": "<strong>DIGITAL TRANSFORMATION</strong>",
+    "hex_1_label": "VISION",
+    "hex_1_icon": "★",
+    "box_1_bullet_1": "Define a clear <strong>future state</strong> for digital integration",
+    "box_1_bullet_2": "Align leadership on <strong>strategic objectives</strong> and goals",
+    "box_1_bullet_3": "Create a compelling <strong>vision statement</strong> for change",
+    "hex_2_label": "ASSESS",
+    "hex_2_icon": "∑",
+    "box_2_bullet_1": "Evaluate current <strong>digital capabilities</strong> and gaps",
+    ...
+  },
+  "character_counts": {
+    "central_text": {"char_count": 23, "with_html": 38},
+    "hex_1_label": {"char_count": 6, "with_html": 6},
+    ...
+  },
+  "validation": {
+    "valid": true,
+    "violations": []
+  },
+  "metadata": {
+    "model": "gemini-2.5-flash-lite",
+    "generation_time_ms": 4091,
+    "attempts": 1
+  },
+  "presentation_id": "pres-123",
+  "slide_id": "slide-459",
+  "slide_number": 7
+}
+```
+
+**Key Features**:
+- ✅ 6-hexagon honeycomb layout with central framework name
+- ✅ Unicode icons for cross-platform compatibility (★ ∑ → ▶ ∞ Ω)
+- ✅ Interactive two-way hover animation (hexagon ↔ description box)
+- ✅ Previous slides context for narrative continuity
+- ✅ Session field echoing (presentation_id, slide_id, slide_number)
+- ✅ Character constraint validation with retry logic (max 3 attempts)
+- ✅ Graceful degradation (returns content even if validation fails)
+
+**Note**: Concept-spread templates include JavaScript for interactive hover - this is preserved in the fragment.
 
 ---
 

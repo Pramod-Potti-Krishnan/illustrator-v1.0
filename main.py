@@ -31,6 +31,7 @@ from app.routes import router
 from app.api_routes.pyramid_routes import router as pyramid_router
 from app.api_routes.funnel_routes import router as funnel_router
 from app.api_routes.concentric_circles_routes import router as concentric_circles_router
+from app.routes.concept_spread_routes import router as concept_spread_router
 
 # Configure logging
 logging.basicConfig(
@@ -60,6 +61,7 @@ app.include_router(router)
 app.include_router(pyramid_router)
 app.include_router(funnel_router)
 app.include_router(concentric_circles_router)
+app.include_router(concept_spread_router)
 
 
 @app.get("/")
@@ -74,6 +76,7 @@ async def root():
             "pyramid_generate": "POST /v1.0/pyramid/generate (LLM-powered)",
             "funnel_generate": "POST /v1.0/funnel/generate (LLM-powered)",
             "concentric_circles_generate": "POST /v1.0/concentric_circles/generate (LLM-powered)",
+            "concept_spread_generate": "POST /concept-spread/generate (LLM-powered)",
             "list_illustrations": "GET /v1.0/illustrations",
             "illustration_details": "GET /v1.0/illustration/{type}",
             "list_themes": "GET /v1.0/themes",
