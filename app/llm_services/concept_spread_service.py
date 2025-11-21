@@ -3,16 +3,81 @@ Concept Spread LLM Service
 
 Generates hexagon labels, icons, and description bullets for concept-spread illustrations.
 Uses Vertex AI Gemini to create structured content with Unicode icons.
+
+Supports two authentication methods:
+1. GCP_CREDENTIALS_JSON environment variable (JSON string pasted directly)
+2. GOOGLE_APPLICATION_CREDENTIALS environment variable (file path)
 """
 
 import os
 import json
 import logging
+import tempfile
 from typing import Dict, Any, Optional
 from google.cloud import aiplatform
 from vertexai.generative_models import GenerativeModel, GenerationConfig
 
 logger = logging.getLogger(__name__)
+
+
+def _setup_gcp_credentials():
+    """
+    Set up GCP credentials from environment variables.
+
+    Supports two methods:
+    1. GCP_CREDENTIALS_JSON: JSON credentials pasted directly as string
+    2. GOOGLE_APPLICATION_CREDENTIALS: Path to credentials file
+
+    If GCP_CREDENTIALS_JSON is set, creates a temporary file and sets
+    GOOGLE_APPLICATION_CREDENTIALS to point to it.
+    """
+    # Check if credentials JSON is provided directly
+    credentials_json = os.getenv("GCP_CREDENTIALS_JSON")
+
+    if credentials_json:
+        try:
+            # Validate it's valid JSON
+            json.loads(credentials_json)
+
+            # Create a temporary file for the credentials
+            temp_file = tempfile.NamedTemporaryFile(
+                mode='w',
+                suffix='.json',
+                delete=False,
+                prefix='gcp_credentials_'
+            )
+
+            # Write credentials to temp file
+            temp_file.write(credentials_json)
+            temp_file.flush()
+            temp_file.close()
+
+            # Set GOOGLE_APPLICATION_CREDENTIALS to the temp file path
+            os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = temp_file.name
+
+            logger.info(f"GCP credentials loaded from GCP_CREDENTIALS_JSON environment variable")
+            logger.debug(f"Temporary credentials file created at: {temp_file.name}")
+
+        except json.JSONDecodeError as e:
+            logger.error(f"Invalid JSON in GCP_CREDENTIALS_JSON: {e}")
+            raise ValueError(
+                "GCP_CREDENTIALS_JSON contains invalid JSON. "
+                "Please ensure you've pasted the complete service account key."
+            )
+        except Exception as e:
+            logger.error(f"Error setting up GCP credentials from JSON: {e}")
+            raise
+
+    elif os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
+        # File-based credentials already configured
+        logger.info(f"Using GCP credentials from file: {os.getenv('GOOGLE_APPLICATION_CREDENTIALS')}")
+
+    else:
+        # No credentials configured - will attempt to use ADC
+        logger.warning(
+            "No GCP credentials found in GCP_CREDENTIALS_JSON or GOOGLE_APPLICATION_CREDENTIALS. "
+            "Will attempt to use Application Default Credentials (ADC)."
+        )
 
 
 class ConceptSpreadService:
@@ -25,6 +90,9 @@ class ConceptSpreadService:
         Args:
             model_name: Gemini model name (defaults to LLM_CONCEPT_SPREAD env var)
         """
+        # Set up GCP credentials
+        _setup_gcp_credentials()
+
         # Read environment variables
         self.project_id = os.getenv("GCP_PROJECT_ID")
         self.location = os.getenv("GEMINI_LOCATION")
