@@ -31,7 +31,7 @@ from app.routes import router
 from app.api_routes.pyramid_routes import router as pyramid_router
 from app.api_routes.funnel_routes import router as funnel_router
 from app.api_routes.concentric_circles_routes import router as concentric_circles_router
-from app.routes.concept_spread_routes import router as concept_spread_router
+from app.api_routes.concept_spread_routes import router as concept_spread_router
 
 # Configure logging
 logging.basicConfig(
