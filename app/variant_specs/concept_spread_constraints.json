@@ -31,39 +31,39 @@
       "comment": "Label: 1 word, uppercase. Icon: single Unicode character/emoji"
     },
     "box_1": {
-      "bullet_1": [40, 70],
-      "bullet_2": [40, 70],
-      "bullet_3": [40, 70],
+      "bullet_1": [36, 63],
+      "bullet_2": [36, 63],
+      "bullet_3": [36, 63],
       "comment": "3 bullets per box, use <strong> for 1-2 keywords"
     },
     "box_2": {
-      "bullet_1": [40, 70],
-      "bullet_2": [40, 70],
-      "bullet_3": [40, 70],
+      "bullet_1": [36, 63],
+      "bullet_2": [36, 63],
+      "bullet_3": [36, 63],
       "comment": "3 bullets per box, use <strong> for 1-2 keywords"
     },
     "box_3": {
-      "bullet_1": [40, 70],
-      "bullet_2": [40, 70],
-      "bullet_3": [40, 70],
+      "bullet_1": [36, 63],
+      "bullet_2": [36, 63],
+      "bullet_3": [36, 63],
       "comment": "3 bullets per box, use <strong> for 1-2 keywords"
     },
     "box_4": {
-      "bullet_1": [40, 70],
-      "bullet_2": [40, 70],
-      "bullet_3": [40, 70],
+      "bullet_1": [36, 63],
+      "bullet_2": [36, 63],
+      "bullet_3": [36, 63],
       "comment": "3 bullets per box, use <strong> for 1-2 keywords"
     },
     "box_5": {
-      "bullet_1": [40, 70],
-      "bullet_2": [40, 70],
-      "bullet_3": [40, 70],
+      "bullet_1": [36, 63],
+      "bullet_2": [36, 63],
+      "bullet_3": [36, 63],
       "comment": "3 bullets per box, use <strong> for 1-2 keywords"
     },
     "box_6": {
-      "bullet_1": [40, 70],
-      "bullet_2": [40, 70],
-      "bullet_3": [40, 70],
+      "bullet_1": [36, 63],
+      "bullet_2": [36, 63],
+      "bullet_3": [36, 63],
       "comment": "3 bullets per box, use <strong> for 1-2 keywords"
     }
   }

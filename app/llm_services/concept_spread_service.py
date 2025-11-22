@@ -252,19 +252,20 @@ HEXAGON REQUIREMENTS:
 - Concepts should be logically connected and comprehensive
 
 UNICODE ICON SELECTION:
-- Use SIMPLE Unicode symbols/pictographs (NOT complex emojis)
-- Prefer geometric shapes, arrows, mathematical symbols
-- Examples: ● ■ ▲ ► ◆ ★ ☆ ✓ ✕ ↑ → ≡ ∞ ± ≈
-- Business symbols: © ® ™ § ¶ † ‡ • ◦
-- Greek letters: α β γ δ ε ζ η θ λ μ π σ ω Σ Δ Φ Ω
-- Math symbols: ∑ ∏ √ ∫ ∂ ∇ ∞ ≠ ≤ ≥
-- Icons should visually represent the hexagon concept
-- MUST be single character that displays correctly across all platforms
-- AVOID complex emojis (🚀💡📊) as they may render incorrectly
+- Use COLORFUL, REPRESENTATIVE Unicode glyphs that visually match concepts
+- PREFER colorful pictographs and symbols with visual impact
+- Geometric shapes: ● ■ ▲ ▶ ◆ ★ ☆ ◉ ◈ ◊ ▣ ▢ ▧ ▨
+- Arrows and directional: → ➜ ➤ ➔ ➡ ⇒ ⇨ ⇾ ↑ ↗ ↓ ↘
+- Math and special: ∑ ∏ √ ∫ ∞ ≈ ± ∆ Φ Ω Σ
+- Pictographs: ☀ ☁ ☂ ☃ ☄ ♠ ♣ ♥ ♦ ♪ ♫ ☎ ✈ ⚡ ⚙ ⚛
+- Representative symbols: Choose icons that VISUALLY represent the concept
+- Icons should be colorful, distinctive, and cross-platform compatible
+- MUST be single character glyphs (not compound emojis like 🚀)
+- Prioritize visual representation over simplicity
 
 DESCRIPTION BOX REQUIREMENTS:
 - Each hexagon has a corresponding description box
-- Each box contains 3 bullets (40-70 characters each)
+- Each box contains 3 bullets (36-63 characters each)
 - Use <strong> tags to emphasize 1-2 key words per bullet
 - Bullets should explain/expand on the hexagon concept
 - NO title/heading in description box (bullets only)
