@@ -68,22 +68,6 @@ class ConstraintValidator:
         """
         violations = []
 
-        # Validate central_text
-        if "central_text" in constraints and "central_text" in generated_content:
-            central_text_value = generated_content["central_text"]
-            text_min, text_max = constraints["central_text"]["text"]
-            text_count = self.count_characters(central_text_value)
-
-            if text_count < text_min or text_count > text_max:
-                violations.append({
-                    "field": "central_text",
-                    "value": central_text_value,
-                    "char_count": text_count,
-                    "min_allowed": text_min,
-                    "max_allowed": text_max,
-                    "violation_type": "too_short" if text_count < text_min else "too_long"
-                })
-
         # Validate each hexagon
         for i in range(1, 7):
             hex_key = f"hex_{i}"

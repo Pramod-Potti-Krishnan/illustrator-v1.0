@@ -204,12 +204,6 @@ class ConceptSpreadService:
         """Build constraints section for prompt"""
         constraints_str = "\n\nCharacter Constraints (MUST FOLLOW EXACTLY):"
 
-        # Central text constraint
-        if "central_text" in constraints:
-            text_min, text_max = constraints["central_text"]["text"]
-            constraints_str += f"\n\nCENTRAL TEXT:"
-            constraints_str += f"\n- Framework/topic name: {text_min}-{text_max} characters, bold uppercase"
-
         # Hexagon constraints
         constraints_str += "\n\nHEXAGONS (6 total):"
         for i in range(1, 7):
@@ -281,7 +275,6 @@ DESCRIPTION BOX REQUIREMENTS:
 
 Return ONLY valid JSON in this exact format:
 {{
-  "central_text": "FRAMEWORK NAME",
   "hex_1_label": "CONCEPT",
   "hex_1_icon": "●",
   "box_1_bullet_1": "First bullet with <strong>emphasis</strong> on keywords",

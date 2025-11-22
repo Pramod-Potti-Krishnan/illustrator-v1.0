@@ -1,9 +1,5 @@
 {
   "concept_spread_6": {
-    "central_text": {
-      "text": [5, 30],
-      "comment": "Central framework name, bold uppercase text"
-    },
     "hex_1": {
       "label": [4, 12],
       "icon": [1, 1],
