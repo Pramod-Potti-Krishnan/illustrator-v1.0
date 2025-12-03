@@ -1,9 +1,10 @@
 """
-Layout Service Integration Models
+Illustrator Service Models
 
-Models for the unified infographic generation endpoint.
+All Pydantic models for request/response validation.
 """
 
+# Layout Service Integration Models (new)
 from .layout_service_request import (
     InfographicType,
     GridConstraints,
@@ -24,15 +25,27 @@ from .layout_service_response import (
     InfographicGenerateResponse,
 )
 
+# Original Illustration Models (legacy endpoints)
+from .illustration_models import (
+    IllustrationRequest,
+    IllustrationResponse,
+    IllustrationError,
+    PyramidGenerationRequest,
+    PyramidGenerationResponse,
+    FunnelGenerationRequest,
+    FunnelGenerationResponse,
+    ConcentricCirclesGenerationRequest,
+    ConcentricCirclesGenerationResponse,
+)
+
 __all__ = [
-    # Request models
+    # Layout Service models
     "InfographicType",
     "GridConstraints",
     "StyleOptions",
     "ContentOptions",
     "PresentationContext",
     "InfographicGenerateRequest",
-    # Response models
     "RenderedOutput",
     "InfographicMetadata",
     "EditableItem",
@@ -42,4 +55,14 @@ __all__ = [
     "InfographicData",
     "ResponseData",
     "InfographicGenerateResponse",
+    # Original models
+    "IllustrationRequest",
+    "IllustrationResponse",
+    "IllustrationError",
+    "PyramidGenerationRequest",
+    "PyramidGenerationResponse",
+    "FunnelGenerationRequest",
+    "FunnelGenerationResponse",
+    "ConcentricCirclesGenerationRequest",
+    "ConcentricCirclesGenerationResponse",
 ]
