@@ -32,6 +32,7 @@ from app.api_routes.pyramid_routes import router as pyramid_router
 from app.api_routes.funnel_routes import router as funnel_router
 from app.api_routes.concentric_circles_routes import router as concentric_circles_router
 from app.api_routes.concept_spread_routes import router as concept_spread_router
+from app.api_routes.layout_service_routes import router as layout_service_router
 
 # Configure logging
 logging.basicConfig(
@@ -62,6 +63,7 @@ app.include_router(pyramid_router)
 app.include_router(funnel_router)
 app.include_router(concentric_circles_router)
 app.include_router(concept_spread_router)
+app.include_router(layout_service_router)  # Layout Service integration
 
 
 @app.get("/")
@@ -69,9 +71,14 @@ async def root():
     """Root endpoint with service information."""
     return {
         "service": "Illustrator Service",
-        "version": "1.0.0",
-        "architecture": "Template-based with human validation",
+        "version": "1.1.0",
+        "architecture": "Template-based + Dynamic SVG generation",
         "endpoints": {
+            # Layout Service Integration (NEW)
+            "layout_service_generate": "POST /api/ai/illustrator/generate (Layout Service)",
+            "layout_service_types": "GET /api/ai/illustrator/types",
+            "layout_service_type_details": "GET /api/ai/illustrator/types/{type}",
+            # Legacy endpoints
             "generate": "POST /v1.0/generate",
             "pyramid_generate": "POST /v1.0/pyramid/generate (LLM-powered)",
             "funnel_generate": "POST /v1.0/funnel/generate (LLM-powered)",
@@ -85,12 +92,14 @@ async def root():
         },
         "features": {
             "template_based_generation": True,
+            "dynamic_svg_generation": True,
             "html_css_rendering": True,
-            "png_conversion": True,
+            "png_conversion": False,
             "theme_support": 4,
-            "size_presets": 3
+            "size_presets": 3,
+            "infographic_types": 14
         },
-        "phase": "Phase 1 - Core Infrastructure"
+        "phase": "Phase 2 - Layout Service Integration"
     }
 
 
