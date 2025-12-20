@@ -7,3 +7,6 @@ healthcheckPath = "/health"
 healthcheckTimeout = 100
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
+# Prevent Railway from sleeping the app (causes 502 wake-up issues)
+sleepApplication = false
+numReplicas = 1
