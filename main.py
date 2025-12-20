@@ -33,6 +33,10 @@ from app.api_routes.funnel_routes import router as funnel_router
 from app.api_routes.concentric_circles_routes import router as concentric_circles_router
 from app.api_routes.concept_spread_routes import router as concept_spread_router
 from app.api_routes.layout_service_routes import router as layout_service_router
+# Director Integration endpoints (Phase 1-3)
+from app.api_routes.capabilities_routes import router as capabilities_router
+from app.api_routes.can_handle_routes import router as can_handle_router
+from app.api_routes.recommend_routes import router as recommend_router
 
 # Configure logging
 logging.basicConfig(
@@ -64,6 +68,10 @@ app.include_router(funnel_router)
 app.include_router(concentric_circles_router)
 app.include_router(concept_spread_router)
 app.include_router(layout_service_router)  # Layout Service integration
+# Director Integration endpoints (Phase 1-3)
+app.include_router(capabilities_router)    # GET /capabilities
+app.include_router(can_handle_router)      # POST /v1.0/can-handle
+app.include_router(recommend_router)       # POST /v1.0/recommend-visual
 
 
 @app.get("/")
@@ -74,11 +82,15 @@ async def root():
         "version": "1.1.0",
         "architecture": "Template-based + Dynamic SVG generation",
         "endpoints": {
-            # Layout Service Integration (NEW)
+            # Director Integration (Phase 1-3)
+            "capabilities": "GET /capabilities (Director coordination)",
+            "can_handle": "POST /v1.0/can-handle (Director coordination)",
+            "recommend_visual": "POST /v1.0/recommend-visual (Director coordination)",
+            # Layout Service Integration
             "layout_service_generate": "POST /api/ai/illustrator/generate (Layout Service)",
             "layout_service_types": "GET /api/ai/illustrator/types",
             "layout_service_type_details": "GET /api/ai/illustrator/types/{type}",
-            # Legacy endpoints
+            # Visual Generation endpoints
             "generate": "POST /v1.0/generate",
             "pyramid_generate": "POST /v1.0/pyramid/generate (LLM-powered)",
             "funnel_generate": "POST /v1.0/funnel/generate (LLM-powered)",
@@ -97,9 +109,10 @@ async def root():
             "png_conversion": False,
             "theme_support": 4,
             "size_presets": 3,
-            "infographic_types": 14
+            "infographic_types": 14,
+            "director_integration": True
         },
-        "phase": "Phase 2 - Layout Service Integration"
+        "phase": "Phase 3 - Director Integration"
     }
 
 
@@ -133,7 +146,8 @@ if __name__ == "__main__":
 
     # Get configuration from environment
     host = os.getenv("API_HOST", "0.0.0.0")
-    port = int(os.getenv("API_PORT", "8000"))
+    # Railway sets PORT, fallback to API_PORT or 8000
+    port = int(os.getenv("PORT", os.getenv("API_PORT", "8000")))
     reload = os.getenv("API_RELOAD", "true").lower() == "true"
 
     logger.info("=" * 80)
