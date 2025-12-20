@@ -148,7 +148,8 @@ if __name__ == "__main__":
     host = os.getenv("API_HOST", "0.0.0.0")
     # Railway sets PORT, fallback to API_PORT or 8000
     port = int(os.getenv("PORT", os.getenv("API_PORT", "8000")))
-    reload = os.getenv("API_RELOAD", "true").lower() == "true"
+    # Default to false for production (Railway), set API_RELOAD=true for local dev
+    reload = os.getenv("API_RELOAD", "false").lower() == "true"
 
     logger.info("=" * 80)
     logger.info("Illustrator Service v1.0 - Starting Up")
