@@ -15,6 +15,7 @@ class Theme:
     name: str
     primary: str
     secondary: str
+    accent: str  # Added for contract compliance
     background: str
     text: str
     text_on_primary: str
@@ -29,6 +30,7 @@ class Theme:
             "theme_name": self.name,
             "theme_primary": self.primary,
             "theme_secondary": self.secondary,
+            "theme_accent": self.accent,
             "theme_background": self.background,
             "theme_text": self.text,
             "theme_text_on_primary": self.text_on_primary,
@@ -44,6 +46,7 @@ PROFESSIONAL = Theme(
     name="professional",
     primary="#0066CC",
     secondary="#FF6B35",
+    accent="#0066CC",  # Defaults to primary for CTAs/highlights
     background="#FFFFFF",
     text="#1A1A1A",
     text_on_primary="#FFFFFF",
@@ -58,6 +61,7 @@ BOLD = Theme(
     name="bold",
     primary="#E31E24",
     secondary="#FFD700",
+    accent="#E31E24",  # Defaults to primary for CTAs/highlights
     background="#F5F5F5",
     text="#000000",
     text_on_primary="#FFFFFF",
@@ -72,6 +76,7 @@ MINIMAL = Theme(
     name="minimal",
     primary="#2C3E50",
     secondary="#95A5A6",
+    accent="#2C3E50",  # Defaults to primary for CTAs/highlights
     background="#FFFFFF",
     text="#34495E",
     text_on_primary="#FFFFFF",
@@ -86,6 +91,7 @@ PLAYFUL = Theme(
     name="playful",
     primary="#9C27B0",
     secondary="#00BCD4",
+    accent="#9C27B0",  # Defaults to primary for CTAs/highlights
     background="#FFFDE7",
     text="#424242",
     text_on_primary="#FFFFFF",
@@ -138,6 +144,7 @@ def list_themes() -> list[Dict[str, str]]:
             "palette": {
                 "primary": theme.primary,
                 "secondary": theme.secondary,
+                "accent": theme.accent,
                 "background": theme.background,
                 "text": theme.text,
                 "text_on_primary": theme.text_on_primary,
