@@ -48,6 +48,7 @@ class ConceptSpreadGenerationResponse(BaseModel):
 
     success: bool
     html: Optional[str] = None  # Complete rendered illustration
+    infographic_html: Optional[str] = None  # Layout Service compatibility alias
     error: Optional[str] = None
 
     # Generated content (for debugging)
@@ -139,6 +140,7 @@ async def generate_concept_spread(request: ConceptSpreadGenerationRequest):
         response = ConceptSpreadGenerationResponse(
             success=True,
             html=result["html"],
+            infographic_html=result["html"],  # Layout Service compatibility alias
             generated_content=result["generated_content"],
             character_counts=result.get("character_counts"),
             validation=result.get("validation"),
