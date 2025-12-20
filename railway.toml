@@ -1,5 +1,6 @@
 [build]
-builder = "NIXPACKS"
+# Use Railway's default Railpack builder (Nixpacks is deprecated)
+builder = "RAILPACK"
 
 [deploy]
 startCommand = "python main.py"
