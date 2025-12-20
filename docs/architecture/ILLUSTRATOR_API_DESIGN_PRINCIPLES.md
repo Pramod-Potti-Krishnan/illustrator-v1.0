@@ -3,7 +3,8 @@
 **Purpose**: This document captures the core design principles, architectural patterns, and best practices extracted from production illustration implementations. These principles should guide all future illustration endpoint development.
 
 **Source**: Pyramid API (v1.0), Funnel Templates, Concentric Circle Templates - Production-ready implementations
-**Last Updated**: 2025-11-18
+**Last Updated**: 2025-11-19
+**Version**: 2.0 - Updated with space utilization, animations, and critical bug fixes
 
 ---
 
@@ -11,17 +12,20 @@
 
 1. [Core Architecture Principles](#core-architecture-principles)
 2. [HTML Fragment Design Principles](#html-fragment-design-principles)
-3. [Visual Design Patterns](#visual-design-patterns)
-4. [Typography & Text Styling](#typography--text-styling)
-5. [Color & Gradient Standards](#color--gradient-standards)
-6. [Layout & Spacing Formulas](#layout--spacing-formulas)
-7. [LLM Integration Best Practices](#llm-integration-best-practices)
-8. [API Contract Design](#api-contract-design)
-9. [Validation & Quality Assurance](#validation--quality-assurance)
-10. [Template Architecture](#template-architecture)
-11. [Environment Configuration](#environment-configuration)
-12. [Integration with Director](#integration-with-director)
-13. [Error Handling & Resilience](#error-handling--resilience)
+3. [Maximum Space Utilization](#maximum-space-utilization)
+4. [Visual Design Patterns](#visual-design-patterns)
+5. [Animation & Interaction Patterns](#animation--interaction-patterns)
+6. [Typography & Text Styling](#typography--text-styling)
+7. [Color & Gradient Standards](#color--gradient-standards)
+8. [Layout & Spacing Formulas](#layout--spacing-formulas)
+9. [LLM Integration Best Practices](#llm-integration-best-practices)
+10. [API Contract Design](#api-contract-design)
+11. [Validation & Quality Assurance](#validation--quality-assurance)
+12. [Template Architecture](#template-architecture)
+13. [Environment Configuration](#environment-configuration)
+14. [Integration with Director](#integration-with-director)
+15. [Error Handling & Resilience](#error-handling--resilience)
+16. [Common Pitfalls & Bug Fixes](#common-pitfalls--bug-fixes)
 
 ---
 
@@ -195,6 +199,142 @@ for key, value in generated_content.items():
 - No need for `<title>`, `<meta>` tags in fragments
 
 **Railway Deployment Consideration**: Fragments render correctly in both preview and production environments.
+
+---
+
+## Maximum Space Utilization
+
+### 1. Full Vertical Height Usage
+
+**Principle**: Illustrations MUST use maximum available vertical space (690-720px) to create impactful, screen-filling visuals.
+
+**Critical Implementation**:
+```html
+<div class="illustration-container" style="
+    width: 100%;
+    height: 100%;           /* Use FULL container height */
+    max-width: 1800px;
+    max-height: 720px;      /* Target standard slide height */
+    display: flex;
+    align-items: stretch    /* Stretch children to full height */
+">
+```
+
+**Vertical Space Distribution**:
+```
+Total Height: 720px
+├── Container padding: 30px top + 30px bottom = 60px
+└── Available content height: 660px (91.7% utilization)
+    ├── Visual column: 100% of 660px
+    └── Description column: 100% of 660px
+```
+
+**Height Calculation Formula** (Pyramids):
+```
+Given:
+  Total height (H) = 720px
+  Padding = 15px top + 15px bottom = 30px
+  Available = 690px
+  Target content = 80-85% of 690px = ~576px
+
+Pyramid Heights:
+- 3-level: Triangle 220px + 2 trapezoids @ 220px + gaps = 676px (98% utilization)
+- 4-level: Triangle 164px + 3 trapezoids @ 164px + gaps = 673px (97% utilization)
+- 5-level: Triangle 148px + 4 trapezoids @ 129px + gaps = 664px (96% utilization)
+- 6-level: Triangle 123px + 5 trapezoids @ 106px/91px + gaps = 657px (95% utilization)
+```
+
+**Funnel Heights**:
+```
+3-stage: 3 × 163px + 2 × 10px gaps = 509px (74% utilization)
+4-stage: 4 × 120px + 3 × 10px gaps = 510px (74% utilization)
+5-stage: 5 × 94px + 4 × 10px gaps = 510px (74% utilization)
+```
+
+**Key Measurements**:
+- Minimum content height: **500px** (funnels)
+- Target content height: **660px** (pyramids)
+- Maximum utilization: **98%** (3-level pyramid)
+
+**Why Maximum Space?**:
+- Professional impact: Fills screen, no wasted space
+- Better readability: Larger visual elements and text
+- Visual hierarchy: More prominent illustrations command attention
+- Consistent experience: All templates use similar heights
+
+**Implementation Checklist**:
+- [ ] Container uses `height: 100%` and `max-height: 720px`
+- [ ] Visual column stretches to full available height
+- [ ] Description boxes match visual element heights exactly
+- [ ] Vertical gaps are proportional (5-10px, not 50px)
+- [ ] Total content height ≥ 90% of container height
+
+**Reference**: Pyramid templates achieve 95-98% height utilization, funnels at 74% (can be improved)
+
+---
+
+### 2. Responsive Width Distribution
+
+**Principle**: Use flex ratios to balance visual and description columns, maximizing both elements' space.
+
+**Standard Ratios**:
+```html
+<!-- Two-column layout -->
+<div class="container" style="display: flex; gap: 50-60px">
+    <!-- Visual column: 40-45% -->
+    <div class="visual" style="flex: 0 0 45%">
+        <!-- Pyramid, funnel, circles -->
+    </div>
+
+    <!-- Description column: 53-55% -->
+    <div class="descriptions" style="flex: 0 0 53%">
+        <!-- Legend boxes with bullets -->
+    </div>
+</div>
+```
+
+**Width Allocation by Template**:
+- **Pyramids**: 45% visual, 53% description, 2% gap = 100%
+- **Funnels**: 40% visual, 55% description, 5% gap = 100%
+- **Concentric Circles**: 680px visual (fixed), remaining = description
+
+**Benefits**:
+- Balanced visual weight (neither column dominates)
+- Room for detailed content (53-55% for text)
+- Professional appearance (visual anchors left side)
+
+---
+
+### 3. Minimal Padding, Maximum Content
+
+**Principle**: Use minimal container padding (15-40px) to maximize space for actual content.
+
+**Padding Standards**:
+```html
+<!-- Tight layout (pyramids) -->
+<div style="padding: 15px 50px">  <!-- 15px vertical, 50px horizontal -->
+
+<!-- Standard layout (funnels) -->
+<div style="padding: 30px 60px">  <!-- 30px vertical, 60px horizontal -->
+
+<!-- Spacious layout (if needed) -->
+<div style="padding: 40px 60px">  <!-- 40px vertical, 60px horizontal -->
+```
+
+**Padding Selection Guide**:
+- **15px vertical**: Maximum content area, use for dense layouts (pyramids)
+- **30px vertical**: Balanced spacing, use for standard layouts (funnels)
+- **40px vertical**: Breathing room, use for simpler layouts (2-3 items)
+
+**Horizontal padding**:
+- **50px**: Tight to edges, maximize width (pyramids)
+- **60px**: Standard comfortable margin (funnels, circles)
+
+**Anti-Pattern** ❌:
+```html
+<!-- TOO MUCH padding - wastes space -->
+<div style="padding: 80px 100px">  <!-- Only 560px height left! -->
+```
 
 ---
 
@@ -489,6 +629,313 @@ style="margin: 0; padding: 0; box-sizing: border-box; [additional styles]"
     <li style="color: white">Bullet text</li>
 </ul>
 ```
+
+---
+
+## Animation & Interaction Patterns
+
+### 1. Bidirectional Hover Cross-Highlighting
+
+**Principle**: Hovering over a visual segment highlights its corresponding description box, and vice versa. Creates intuitive connection between visual and textual elements.
+
+**Pattern Established** (from Pyramids, Funnels, Concentric Circles):
+
+**JavaScript Implementation**:
+```html
+<script>
+    // Hover on visual segment → highlight description box + icon
+    document.querySelectorAll('.funnel-section').forEach((section, index) => {
+        const desc = document.querySelectorAll('.description-item')[index];
+        const icon = desc ? desc.querySelector('.stage-icon') : null;
+
+        section.addEventListener('mouseenter', function() {
+            if (desc) {
+                desc.style.transform = 'scale(1.03)';
+                desc.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.15)';
+            }
+            if (icon) {
+                icon.style.transform = 'translateY(-50%) scale(1.1)';
+            }
+        });
+
+        section.addEventListener('mouseleave', function() {
+            if (desc) {
+                desc.style.transform = '';
+                desc.style.boxShadow = '';
+            }
+            if (icon) {
+                icon.style.transform = '';
+            }
+        });
+    });
+
+    // Hover on description box → pulse visual segment
+    document.querySelectorAll('.description-item').forEach((item, index) => {
+        item.addEventListener('mouseenter', function() {
+            const section = document.querySelectorAll('.funnel-section')[index];
+            if (section) {
+                section.style.transform = 'scale(1.05)';
+            }
+        });
+
+        item.addEventListener('mouseleave', function() {
+            const section = document.querySelectorAll('.funnel-section')[index];
+            if (section) {
+                section.style.transform = 'scale(1.0)';
+            }
+        });
+    });
+</script>
+```
+
+**Animation Specifications**:
+
+| Element | Hover Effect | Transform | Additional Style |
+|---------|-------------|-----------|------------------|
+| **Visual Segment** | Scale up on hover | `scale(1.05)` | - |
+| **Description Box** | Scale + shadow | `scale(1.03)` | `box-shadow: 0 8px 16px rgba(0,0,0,0.15)` |
+| **Icon** | Scale while maintaining vertical center | `translateY(-50%) scale(1.1)` | - |
+
+**Why These Effects?**:
+- **3% box scale**: Subtle enough to not disrupt layout, visible enough to notice
+- **5% segment scale**: More prominent for smaller visual elements
+- **10% icon scale**: Icons are small, need larger scale to be noticeable
+- **Shadow enhancement**: Adds depth, makes highlighted element "lift" off page
+- **Smooth transitions**: CSS transition handles animation (see below)
+
+**CSS Transition Requirements**:
+```html
+<!-- Add to hoverable elements -->
+<div class="description-item" style="
+    transition: all 0.3s ease;  /* Smooth 300ms transition */
+    ...
+">
+
+<div class="stage-icon" style="
+    transition: transform 0.3s ease;
+    ...
+">
+```
+
+**Benefits**:
+- **Intuitive navigation**: Users can explore content by hovering
+- **Visual feedback**: Clear indication of relationships
+- **Engagement**: Interactive elements feel more polished
+- **Accessibility**: Helps users with visual processing understand connections
+
+**Used In**: Pyramids (3, 4, 5, 6), Funnels (3, 4, 5), Concentric Circles (3, 4, 5)
+
+**Reference Commit**: d9aef78 - "feat: Standardize font sizes and add hover cross-highlighting"
+
+---
+
+### 2. Click Interaction with Flash Highlight
+
+**Principle**: Clicking visual segments or description boxes triggers a brief flash highlight for immediate feedback.
+
+**Implementation**:
+```html
+<script>
+    // Click on visual segment → flash description box
+    document.querySelectorAll('.funnel-section').forEach((section, index) => {
+        section.addEventListener('click', function() {
+            const desc = document.querySelectorAll('.description-item')[index];
+
+            // Temporary background change
+            const originalBg = desc.style.background;
+            desc.style.background = '#f3f4f6';  // Light gray flash
+
+            setTimeout(() => {
+                desc.style.background = originalBg;
+            }, 500);  // Reset after 500ms
+        });
+    });
+
+    // Click on description box → pulse visual segment
+    document.querySelectorAll('.description-item').forEach((item, index) => {
+        item.addEventListener('click', function() {
+            const section = document.querySelectorAll('.funnel-section')[index];
+
+            section.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                section.style.transform = 'scale(1.0)';
+            }, 300);  // Reset after 300ms
+        });
+    });
+</script>
+```
+
+**Animation Timing**:
+- **Flash duration**: 500ms (half second, noticeable but not intrusive)
+- **Pulse duration**: 300ms (quick bounce effect)
+- **Color choice**: `#f3f4f6` (light gray, neutral, high contrast on white)
+
+**Why Click Interaction?**:
+- **Mobile compatibility**: Touch devices don't support hover
+- **Active feedback**: Confirms user action was recognized
+- **Alternative navigation**: Provides second way to explore connections
+
+---
+
+### 3. Smooth CSS Transitions
+
+**Principle**: All hover effects use CSS transitions for smooth, professional animations. Avoid abrupt changes.
+
+**Standard Transition Declaration**:
+```css
+transition: all 0.3s ease;
+```
+
+**Breakdown**:
+- `all`: Transition ALL properties (transform, box-shadow, background, etc.)
+- `0.3s`: 300 milliseconds duration (standard for UI animations)
+- `ease`: Acceleration curve (slow start, fast middle, slow end)
+
+**Alternative Easing Functions**:
+```css
+transition: transform 0.3s ease-in-out;   /* Smoother start/end */
+transition: box-shadow 0.2s ease-out;     /* Faster, snap to final state */
+transition: background 0.5s linear;       /* Constant speed, good for colors */
+```
+
+**Performance Note**: Animating `transform` and `opacity` is GPU-accelerated. Avoid animating `width`, `height`, `top`, `left` for performance.
+
+**Preferred Animatable Properties**:
+- ✅ `transform` (scale, translate, rotate)
+- ✅ `opacity`
+- ✅ `box-shadow`
+- ✅ `background` (gradients)
+- ❌ `width`, `height` (triggers layout reflow)
+- ❌ `top`, `left` (use `transform: translate()` instead)
+
+---
+
+### 4. Icon Animation Details
+
+**Principle**: Icons scale on hover but maintain vertical centering using combined transforms.
+
+**Critical Pattern**:
+```html
+<!-- Icon positioned with translateY(-50%) for vertical centering -->
+<div class="stage-icon" style="
+    position: absolute;
+    left: -70px;
+    top: 50%;
+    transform: translateY(-50%);  /* Vertical center */
+    transition: transform 0.3s ease;
+">
+
+<!-- On hover, COMBINE transforms -->
+<script>
+    icon.addEventListener('mouseenter', function() {
+        // MUST combine translateY with scale
+        icon.style.transform = 'translateY(-50%) scale(1.1)';
+    });
+
+    icon.addEventListener('mouseleave', function() {
+        // Reset to original (translateY only)
+        icon.style.transform = 'translateY(-50%)';
+    });
+</script>
+```
+
+**Why Combine Transforms?**:
+- Setting `transform: scale(1.1)` would REPLACE `translateY(-50%)`, breaking centering
+- Must apply BOTH transforms together: `translateY(-50%) scale(1.1)`
+- Transform order matters: `translateY` first, then `scale`
+
+**Common Mistake** ❌:
+```javascript
+// WRONG: This breaks vertical centering
+icon.style.transform = 'scale(1.1)';  // Replaces translateY(-50%)
+```
+
+**Correct Pattern** ✅:
+```javascript
+// RIGHT: Preserve vertical centering while scaling
+icon.style.transform = 'translateY(-50%) scale(1.1)';
+```
+
+---
+
+### 5. Reset Pattern for Hover Exit
+
+**Principle**: Use empty string `''` to reset styles to their CSS defaults, not hardcoded values.
+
+**Correct Reset Pattern**:
+```javascript
+section.addEventListener('mouseleave', function() {
+    // Reset to CSS default by clearing inline style
+    desc.style.transform = '';        // ✅ Correct
+    desc.style.boxShadow = '';        // ✅ Correct
+    icon.style.transform = '';        // ✅ Correct (BUT see exception below)
+});
+```
+
+**Exception for Icons** (when using translateY for centering):
+```javascript
+icon.addEventListener('mouseleave', function() {
+    // Icon NEEDS translateY(-50%) for centering, can't reset to ''
+    icon.style.transform = 'translateY(-50%)';  // ✅ Restore original transform
+});
+```
+
+**Why Empty String?**:
+- Removes inline style attribute
+- Element reverts to CSS declaration in `style=""` attribute
+- Cleaner than hardcoding values in JavaScript
+- Makes CSS the single source of truth
+
+---
+
+### 6. Event Delegation vs Direct Attachment
+
+**Principle**: Use `querySelectorAll` + `forEach` for direct event attachment. Simple and reliable for static templates.
+
+**Current Pattern** (Direct Attachment):
+```javascript
+// Attach event to each element individually
+document.querySelectorAll('.funnel-section').forEach((section, index) => {
+    section.addEventListener('mouseenter', function() { ... });
+});
+```
+
+**Alternative** (Event Delegation - for dynamic content):
+```javascript
+// Single listener on parent, delegates to children
+document.querySelector('.funnel-container').addEventListener('mouseenter', function(e) {
+    if (e.target.matches('.funnel-section')) {
+        // Handle hover
+    }
+}, true);  // Use capture phase
+```
+
+**When to Use Each**:
+- **Direct Attachment**: Static templates (our case) - simpler, easier to debug
+- **Event Delegation**: Dynamic content (adding/removing elements) - better performance
+
+**Our Choice**: Direct attachment - templates are static HTML fragments, no dynamic element creation.
+
+---
+
+### 7. Animation Checklist for New Illustration Types
+
+Before deploying new illustration templates, ensure:
+
+- [ ] Bidirectional hover implemented (segment → box and box → segment)
+- [ ] Description box scales to `scale(1.03)` on hover
+- [ ] Description box shadow changes to `0 8px 16px rgba(0,0,0,0.15)` on hover
+- [ ] Visual segment scales to `scale(1.05)` on hover
+- [ ] Icon scales to `scale(1.1)` while maintaining `translateY(-50%)`
+- [ ] All transitions use `transition: all 0.3s ease` or similar
+- [ ] Click handlers implemented for mobile/touch support
+- [ ] Flash highlight on click uses `#f3f4f6` background for 500ms
+- [ ] Pulse effect on click uses `scale(1.05)` for 300ms
+- [ ] Hover reset pattern uses empty string `''` (except for icon transforms)
+- [ ] JavaScript included at end of HTML fragment (before closing tag)
+- [ ] Event listeners use `querySelectorAll` + `forEach` pattern
+- [ ] Index-based mapping between segments and descriptions is correct
+- [ ] Tested in both desktop (hover) and mobile (touch) environments
 
 ---
 
@@ -1537,6 +1984,91 @@ for key, value in generated_content.items():
 
 ---
 
+### 5. Visual Verification Protocol
+
+**Principle**: ALWAYS open HTML templates in a browser immediately after creation or modification for visual verification.
+
+**Critical Workflow Step**:
+```bash
+# After creating/modifying template:
+open templates/concept_spread/6.html
+# OR
+python3 -m http.server 8000  # Then open http://localhost:8000/templates/...
+```
+
+**Why Visual Verification?**
+- **Catches layout issues**: HTML tag balance validation doesn't catch visual problems
+- **Verifies rendering**: Ensures clip-paths, gradients, and positioning work correctly
+- **Tests interactivity**: Hover/click effects only visible in browser
+- **Detects CSS bugs**: Inline styles may conflict or not render as expected
+- **Validates responsiveness**: See actual scaling behavior at different sizes
+
+**What to Check Visually**:
+1. **Layout**: All elements positioned correctly, no overlap
+2. **Colors**: Gradients render smoothly, colors match expectations
+3. **Typography**: Font sizes consistent, text readable
+4. **Spacing**: Gaps and padding look balanced
+5. **Shapes**: Clip-paths create correct hexagons/trapezoids/circles
+6. **Hover effects**: Smooth transitions, correct scaling
+7. **Click effects**: Flash highlights work on click
+8. **Icons**: Unicode icons display correctly (not as boxes)
+9. **Bullets**: Proper indentation and spacing
+10. **Overall impression**: Professional, polished appearance
+
+**Testing Protocol**:
+```python
+# 1. Create test script with sample data
+python3 test_concept_spread.py
+
+# 2. Open generated output
+open test_output_concept_spread.html
+
+# 3. Visual checklist:
+# - Move mouse over each element (test hover)
+# - Click each element (test click effects)
+# - Resize browser window (test responsiveness)
+# - Check all text is visible and readable
+# - Verify no placeholder text visible ({field_name})
+```
+
+**Common Visual Issues Caught**:
+- Hexagons appearing as rectangles (clip-path syntax error)
+- Colors not matching (gradient syntax error)
+- Text overflowing containers (font size too large)
+- Icons appearing as boxes (Unicode not supported)
+- Hover effects not working (JavaScript error)
+- Elements positioned outside viewport (layout calculation error)
+- Duplicate script blocks causing janky animations
+
+**Anti-Pattern** ❌:
+```
+1. Create template HTML
+2. Run automated validation only
+3. Deploy without visual check
+4. ❌ Discover visual issues in production
+```
+
+**Correct Pattern** ✅:
+```
+1. Create template HTML
+2. Fill with sample data (test script)
+3. ✅ OPEN in browser and verify visually
+4. Run automated validation
+5. Fix any issues found
+6. Deploy with confidence
+```
+
+**Browser DevTools Checklist**:
+- [ ] Open DevTools Console → check for JavaScript errors
+- [ ] Inspect Elements → verify inline styles applied correctly
+- [ ] Check Network tab → ensure no missing resources
+- [ ] Test on multiple browsers (Chrome, Safari, Firefox)
+- [ ] Test on mobile viewport (responsive mode)
+
+**Lesson Learned**: Visual verification catches bugs that automated tests miss. ALWAYS open the HTML file before considering template complete.
+
+---
+
 ## Environment Configuration
 
 ### 1. Service-Specific Model Selection
@@ -1783,49 +2315,516 @@ logger.error(f"Error generating content with Gemini: {e}")
 
 ---
 
+## Common Pitfalls & Bug Fixes
+
+### 1. Stray Closing Div Tag Bug ⚠️ CRITICAL
+
+**Issue**: Pyramid templates had a stray `</div>` tag at line 1, causing unbalanced HTML.
+
+**Symptoms**:
+- Pyramids rendered completely blank (no visual elements visible)
+- Browser dev tools showed unbalanced tags (22 opening divs, 23 closing divs)
+- HTML structure collapsed due to incorrect DOM parsing
+
+**Root Cause**:
+```html
+<!-- templates/pyramid/3.html (INCORRECT) -->
+</div>  <!-- ❌ Line 1: Stray closing tag with no matching opening tag -->
+<div class="pyramid-container" style="...">
+    <!-- Rest of template -->
+</div>
+```
+
+**Impact**: ALL pyramid templates affected (3.html, 3_l01.html, 4.html, 4_l01.html, 5.html, 6.html)
+
+**Fix**: Remove the stray `</div>` tag from line 1
+```html
+<!-- templates/pyramid/3.html (CORRECTED) -->
+<div class="pyramid-container" style="...">  <!-- ✅ Starts with opening tag -->
+    <!-- Rest of template -->
+</div>
+```
+
+**Prevention**:
+- **Validation Rule**: Every template MUST start with an opening tag (usually `<div class="...-container">`)
+- **Quality Check**: Run HTML validator on all templates before deployment
+- **Automated Test**: Count opening and closing tags - MUST match exactly
+- **Code Review**: Check first and last lines of every template
+
+**Reference**: Commit ee9f9c8 - "fix: Remove stray closing div tag from pyramid templates"
+
+**Lesson Learned**: HTML tag balancing errors can completely break rendering. Always validate templates.
+
+---
+
+### 2. Font Size Inconsistency Across Templates
+
+**Issue**: Pyramid description boxes had inconsistent font sizes across templates, creating jarring visual experience.
+
+**Symptoms**:
+- Pyramid 3-level: 19.2px bullets
+- Pyramid 4-level: 17px, 16px bullets (too small)
+- Pyramid 5-level: 14px bullets (way too small)
+- Pyramid 6-level: Mixed 17px and 19.2px
+- User feedback: "Text looks different on each slide"
+
+**Root Cause**: No standardization - each template created independently without style guide
+
+**Impact**: Inconsistent user experience, unprofessional appearance
+
+**Fix**: Standardize ALL pyramid bullets to 18px
+```html
+<!-- Before (inconsistent) -->
+<ul style="font-size: 19.2px">...</ul>  <!-- Pyramid 3 -->
+<ul style="font-size: 17px">...</ul>   <!-- Pyramid 4 -->
+<ul style="font-size: 14px">...</ul>   <!-- Pyramid 5 -->
+
+<!-- After (consistent) -->
+<ul style="font-size: 18px">...</ul>   <!-- ✅ ALL pyramids -->
+```
+
+**Why 18px?**:
+- Balances readability with space constraints
+- Works well for 2-5 bullets per box
+- Consistent with label font size (18px)
+- Proven across 3, 4, 5, 6-level pyramids
+
+**Prevention**:
+- **Style Guide**: Document standard font sizes (this document!)
+- **Template Review**: Check all font-size declarations before deployment
+- **Visual QA**: View all templates side-by-side to catch inconsistencies
+- **Automated Linting**: Scan for non-standard font sizes
+
+**Reference**: Commit d9aef78 - "feat: Standardize font sizes and add hover cross-highlighting"
+
+**Lesson Learned**: Establish typography standards BEFORE creating multiple variants. Retrofitting is costly.
+
+---
+
+### 3. Missing Hover Interaction in Initial Templates
+
+**Issue**: Pyramids and funnels lacked hover cross-highlighting, while concentric circles had it. Inconsistent UX.
+
+**Symptoms**:
+- Concentric circles: Hovering segment highlights description box (great UX)
+- Pyramids: No hover interaction (static, boring)
+- Funnels: No hover interaction (inconsistent with circles)
+- User expectation: "Why can't I hover like I could on the circles slide?"
+
+**Root Cause**: Pyramids and funnels created before hover pattern was established
+
+**Impact**: Poor user experience, lack of engagement, inconsistent interaction model
+
+**Fix**: Add bidirectional hover JavaScript to ALL pyramid and funnel templates
+```html
+<!-- Add to end of template -->
+<script>
+    // Hover on segment → highlight description box
+    document.querySelectorAll('.pyramid-segment').forEach((segment, index) => {
+        const desc = document.querySelectorAll('.description-item')[index];
+        const icon = desc ? desc.querySelector('.stage-icon') : null;
+
+        segment.addEventListener('mouseenter', function() {
+            if (desc) {
+                desc.style.transform = 'scale(1.03)';
+                desc.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.15)';
+            }
+            if (icon) {
+                icon.style.transform = 'translateY(-50%) scale(1.1)';
+            }
+        });
+
+        segment.addEventListener('mouseleave', function() {
+            if (desc) {
+                desc.style.transform = '';
+                desc.style.boxShadow = '';
+            }
+            if (icon) {
+                icon.style.transform = '';
+            }
+        });
+    });
+</script>
+```
+
+**Prevention**:
+- **Design Principles**: Document interaction patterns (Animation & Interaction section above)
+- **Template Checklist**: Require hover effects for all new illustration types
+- **Pattern Library**: Reuse JavaScript snippets across templates
+- **Consistency Review**: Compare new templates against existing ones
+
+**Reference**: Commit d9aef78 - "feat: Standardize font sizes and add hover cross-highlighting"
+
+**Lesson Learned**: Establish interaction patterns early and apply consistently across all illustration types.
+
+---
+
+### 4. Template vs LLM Content Mismatch (Bullets vs Descriptions)
+
+**Issue**: Pyramid templates were designed for description text, but LLM was generating bullet-point content.
+
+**Symptoms**:
+- Template expected: `<div class="description-text">{level_1_description}</div>`
+- LLM generated: `{level_1_bullet_1}`, `{level_1_bullet_2}`, `{level_1_bullet_3}`
+- Result: Placeholders unfilled, bullets not rendered
+- Visual: Empty description boxes or raw placeholder text visible
+
+**Root Cause**: Design evolved from descriptions to bullets without updating templates
+
+**Impact**: Content not rendering correctly, poor user experience
+
+**Fix**: Align template structure with LLM output
+```html
+<!-- Template updated to match LLM bullet output -->
+<div class="description-item">
+    <ul style="list-style-type: disc; padding-left: 20px; font-size: 18px">
+        <li>{level_1_bullet_1}</li>
+        <li>{level_1_bullet_2}</li>
+        <li>{level_1_bullet_3}</li>
+    </ul>
+</div>
+```
+
+**Prevention**:
+- **Contract Definition**: Document exact placeholder names in template spec
+- **Schema Validation**: Validate LLM output against template placeholders
+- **Integration Testing**: Test template filling with actual LLM output
+- **Placeholder Audit**: Scan template for `{...}` and verify LLM generates matching keys
+
+**Lesson Learned**: LLM output schema and template placeholders MUST be perfectly aligned. Test integration early.
+
+---
+
+### 5. HTML Tag Balancing and Validation
+
+**Issue**: Templates with unbalanced HTML tags cause rendering failures and layout collapse.
+
+**Best Practices**:
+
+**Tag Counting Validation**:
+```python
+def validate_html_balance(html: str) -> bool:
+    """Ensure opening and closing tags match"""
+    import re
+
+    # Count all opening tags
+    opening_tags = re.findall(r'<([a-z]+)(?:\s|>)', html)
+    # Count all closing tags
+    closing_tags = re.findall(r'</([a-z]+)>', html)
+
+    # Must match exactly
+    return sorted(opening_tags) == sorted(closing_tags)
+
+# Example
+html = open('templates/pyramid/3.html').read()
+assert validate_html_balance(html), "HTML tags unbalanced!"
+```
+
+**Common Tag Mismatch Errors**:
+- ❌ Extra `</div>` at start or end
+- ❌ Missing closing `</div>` for container
+- ❌ Self-closing tags written as `<div />` instead of `<div></div>`
+- ❌ Unclosed `<ul>` or `<li>` tags
+- ❌ Missing closing `</script>` tag
+
+**Validation Checklist**:
+- [ ] First line is an opening tag (e.g., `<div class="container">`)
+- [ ] Last line is the matching closing tag (e.g., `</div>`)
+- [ ] All `<div>` tags have matching `</div>`
+- [ ] All `<ul>` tags have matching `</ul>`
+- [ ] All `<li>` tags are inside `<ul>` elements
+- [ ] All `<script>` tags have matching `</script>`
+- [ ] No self-closing syntax for elements that require closing tags
+- [ ] Run template through HTML validator (W3C Validator)
+
+**Automated Validation**:
+```bash
+# Use HTML Tidy to validate templates
+tidy -errors -q templates/pyramid/3.html
+
+# Or use Python Beautiful Soup
+from bs4 import BeautifulSoup
+soup = BeautifulSoup(html, 'html.parser')
+# If parsing succeeds without warnings, HTML is valid
+```
+
+**Prevention**:
+- **Pre-deployment Validation**: Run HTML validator on all templates
+- **CI/CD Pipeline**: Add automated HTML validation step
+- **Code Review**: Manually count opening/closing tags for critical templates
+
+---
+
+### 6. Placeholder Cleanup and Unfilled Content
+
+**Issue**: If LLM fails to generate a field, raw `{placeholder_name}` text appears in rendered output.
+
+**Symptoms**:
+- Visible placeholder text: `{level_3_bullet_2}` rendered as-is
+- Empty elements with placeholder syntax
+- User sees technical implementation details
+
+**Root Cause**: Template filling doesn't handle missing LLM fields
+
+**Fix**: Remove unfilled placeholders before returning HTML
+```python
+import re
+
+def clean_unfilled_placeholders(html: str) -> str:
+    """Remove any remaining {placeholder} syntax"""
+    return re.sub(r'\{[^}]+\}', '', html)
+
+# Apply after template filling
+filled_html = fill_template(template, generated_content)
+filled_html = clean_unfilled_placeholders(filled_html)
+```
+
+**Better Fix**: Validate LLM output completeness BEFORE filling
+```python
+def validate_llm_output(generated_content: dict, required_fields: list) -> bool:
+    """Ensure all required fields present in LLM output"""
+    for field in required_fields:
+        if field not in generated_content or not generated_content[field]:
+            logger.warning(f"Missing required field: {field}")
+            return False
+    return True
+
+# Use validation
+required_fields = ["level_4_label", "level_4_description", ...]
+if not validate_llm_output(generated_content, required_fields):
+    # Handle error: retry LLM or use fallback content
+```
+
+**Prevention**:
+- **Schema Validation**: Validate LLM output against expected schema
+- **Completeness Check**: Ensure all required fields present before template filling
+- **Fallback Content**: Provide default content for optional fields
+- **Post-Processing**: Clean placeholders as final safety net
+
+---
+
+### 7. Duplicate Script Tags in Templates
+
+**Issue**: Some templates (funnel/3.html, funnel/4.html) had duplicate `<script>` blocks with identical code.
+
+**Symptoms**:
+- Event listeners attached twice to same elements
+- Hover effects triggered multiple times
+- Performance degradation
+- Confusing debugging (which script block is executing?)
+
+**Example** (funnel/4.html):
+```html
+<!-- First script block (lines 81-134) -->
+<script>
+    document.querySelectorAll('.funnel-section').forEach((section, index) => {
+        section.addEventListener('click', function() { ... });
+    });
+</script>
+
+<!-- Second script block (lines 135-188) - DUPLICATE! -->
+<script>
+    document.querySelectorAll('.funnel-section').forEach((section, index) => {
+        section.addEventListener('click', function() { ... });  // Same code!
+    });
+</script>
+```
+
+**Impact**:
+- Click handlers execute twice (two flash animations)
+- Hover handlers execute twice (janky animations)
+- Larger file size (unnecessary duplication)
+
+**Fix**: Remove duplicate script blocks
+```html
+<!-- Keep only ONE script block at end of template -->
+<script>
+    // All event listeners here (once)
+    document.querySelectorAll('.funnel-section').forEach(...);
+</script>
+```
+
+**Prevention**:
+- **Template Review**: Check for duplicate `<script>` tags before deployment
+- **Code Linting**: Scan for duplicate code blocks
+- **Version Control**: Review diffs to catch accidental copy-paste
+- **Testing**: Test interaction behavior - if it seems "doubled", check for duplicates
+
+**Detection**:
+```bash
+# Find duplicate script blocks
+grep -n "<script" templates/funnel/4.html
+# Should return only ONE match (or two if opening + closing tags counted separately)
+```
+
+**Lesson Learned**: Templates should have exactly ONE `<script>` block at the end. Duplicate blocks cause event handler duplication.
+
+---
+
+### 8. Critical Bug Prevention Checklist
+
+Before deploying ANY new illustration template:
+
+**HTML Structure**:
+- [ ] First line is opening tag (no stray closing tags)
+- [ ] Last line is closing tag matching first line
+- [ ] All HTML tags balanced (opening count = closing count)
+- [ ] No duplicate `<script>` blocks
+- [ ] HTML validates with W3C Validator or HTML Tidy
+
+**Styling**:
+- [ ] All styles are inline (no `<style>` tags or external CSS)
+- [ ] Font sizes consistent with design principles (18px bullets, 18px labels)
+- [ ] Reset styles on every element (`margin: 0; padding: 0; box-sizing: border-box`)
+- [ ] Transitions defined for hoverable elements (`transition: all 0.3s ease`)
+- [ ] Colors match gradient palette
+
+**Interaction**:
+- [ ] Bidirectional hover implemented (segment → box and box → segment)
+- [ ] Click handlers for mobile support
+- [ ] Icon scaling maintains `translateY(-50%)` for centering
+- [ ] Event listeners use index-based mapping
+- [ ] Hover reset uses empty string `''` (or restore original transform for icons)
+
+**Template-LLM Alignment**:
+- [ ] Placeholders match LLM output schema exactly
+- [ ] All required fields validated in LLM output
+- [ ] Unfilled placeholder cleanup implemented
+- [ ] Character constraints defined and validated
+
+**Testing**:
+- [ ] Template renders correctly with sample content
+- [ ] **CRITICAL: Open HTML file in browser immediately after creation** (visual verification)
+- [ ] Verify all elements visible and positioned correctly
+- [ ] Hover effects work smoothly (no janky animations)
+- [ ] Click effects work on touch devices
+- [ ] HTML tag balance validated
+- [ ] Integration test with actual LLM output passes
+- [ ] Responsive behavior tested at multiple screen sizes
+
+---
+
 ## Summary: Key Takeaways
 
 ### For Future Illustration Endpoints
 
+**Architecture & Structure**:
 1. **Follow Three-Layer Architecture**: Routes → Generator → LLM Service → Validator
 2. **Use HTML Fragments**: No DOCTYPE, html, head, body tags (inline styles only)
-3. **Apply Mathematical Formulas**: Use proportional calculations (pyramid formula)
-4. **Position Icons Outside**: Absolute positioning with `left: -70px` pattern
-5. **Match Colors Consistently**: Visual elements and legend boxes use same gradients
-6. **Use Constraint-Driven Prompting**: Inject limits into LLM prompts
-7. **Implement Retry Logic**: Max 2 retries on validation failure
-8. **Echo Session Fields**: Return `presentation_id`, `slide_id`, `slide_number`
-9. **Support Previous Slides Context**: Inject into LLM for narrative continuity
-10. **Pre-Build Templates**: Human-validate layouts before deployment
-11. **Use HTML+CSS First**: SVG only when necessary
-12. **Graceful Degradation**: Return content even if validation fails
-13. **Service-Specific Models**: Optimize LLM model per illustration type
-14. **Comprehensive Metadata**: Return usage stats, attempts, violations
-15. **Test Responsively**: Verify rendering at multiple sizes
+3. **Pre-Build Templates**: Human-validate layouts before deployment
+4. **Use HTML+CSS First**: SVG only when necessary
+5. **Service-Specific Models**: Optimize LLM model per illustration type
+
+**Space Utilization** (NEW):
+6. **Maximize Vertical Space**: Target 95-98% height utilization (minimum 90%)
+7. **Apply Mathematical Formulas**: Use proportional calculations for pyramid heights
+8. **Minimal Padding**: 15-40px vertical, 50-60px horizontal to maximize content area
+9. **Responsive Width Distribution**: 40-45% visual, 53-55% description columns
+
+**Visual Design**:
+10. **Position Icons Outside**: Absolute positioning with `left: -70px` pattern
+11. **Match Colors Consistently**: Visual elements and legend boxes use same gradients
+12. **Typography Standards**: 18px labels, 18px bullets, 900 weight, uppercase labels
+13. **Gradient Direction**: Always 135deg for consistency
+14. **Height Matching**: Visual segments and description boxes MUST have identical heights
+
+**Animation & Interaction** (NEW):
+15. **Bidirectional Hover**: Segment → box and box → segment cross-highlighting
+16. **Smooth Transitions**: `transition: all 0.3s ease` on hoverable elements
+17. **Click Handlers**: Flash highlight (500ms) for mobile/touch support
+18. **Icon Animation**: Combine transforms (`translateY(-50%) scale(1.1)`) to maintain centering
+19. **Reset Pattern**: Use empty string `''` to clear inline styles on hover exit
+
+**LLM Integration**:
+20. **Use Constraint-Driven Prompting**: Inject character limits into LLM prompts
+21. **Implement Retry Logic**: Max 2 retries on validation failure
+22. **Support Previous Slides Context**: Inject into LLM for narrative continuity
+23. **Graceful Degradation**: Return content even if validation fails
+24. **Comprehensive Metadata**: Return usage stats, attempts, violations
+
+**Session & State Management**:
+25. **Echo Session Fields**: Return `presentation_id`, `slide_id`, `slide_number`
+26. **Stateless Design**: No server-side session storage
+
+**Quality Assurance** (NEW):
+27. **Validate HTML Balance**: Count opening/closing tags MUST match
+28. **Check for Duplicates**: Only ONE `<script>` block per template
+29. **Prevent Stray Tags**: First line MUST be opening tag, last line closing tag
+30. **Visual Verification**: Open HTML in browser immediately after creation
+31. **Font Consistency**: Standardize font sizes across all template variants
+32. **Test Responsively**: Verify rendering at multiple screen sizes
+33. **Placeholder Validation**: Ensure LLM output matches template placeholders exactly
 
 ### Architecture Checklist
 
+**Core Architecture**:
 - [ ] Stateless service (no session storage)
 - [ ] Three-layer separation (Routes, Generator, LLM, Validator)
+- [ ] Pydantic request/response models
+- [ ] Session field echoing
+- [ ] Previous slides context support
+- [ ] Environment variable validation
+
+**HTML & Styling**:
 - [ ] HTML fragment structure (no DOCTYPE/html/head/body)
 - [ ] Inline styles only (no style tags or external CSS)
 - [ ] Reset styles on every element (margin, padding, box-sizing)
+- [ ] HTML tag balance validated (opening count = closing count)
+- [ ] First line is opening tag, last line is closing tag
+- [ ] No duplicate `<script>` blocks
+- [ ] All placeholders match LLM output schema
+
+**Space Utilization** (NEW):
+- [ ] Container uses `height: 100%` and `max-height: 720px`
+- [ ] Visual column stretches to full available height
+- [ ] Description boxes match visual element heights exactly
+- [ ] Vertical gaps are proportional (5-10px, not 50px)
+- [ ] Total content height ≥ 90% of container height
+- [ ] Padding: 15-40px vertical, 50-60px horizontal
+
+**Visual Design**:
 - [ ] Mathematical layout formulas (proportional dimensions)
-- [ ] Icon positioning pattern (absolute, left: -70px)
+- [ ] Icon positioning pattern (absolute, left: -70px, top: 50%, translateY(-50%))
 - [ ] Color gradient matching (visual ↔ legend boxes)
-- [ ] Typography standards (18px labels, 19.2px bullets, 900 weight)
+- [ ] Typography standards (18px labels, 18px bullets, 900 weight)
 - [ ] Flexbox column layouts (vertical stacking)
 - [ ] White text on colored backgrounds
+- [ ] Gradient angle: 135deg
+- [ ] Height matching between segments and description boxes
+
+**Animation & Interaction** (NEW):
+- [ ] Bidirectional hover implemented (segment → box and box → segment)
+- [ ] Description box scales to `scale(1.03)` on hover
+- [ ] Description box shadow: `0 8px 16px rgba(0,0,0,0.15)` on hover
+- [ ] Visual segment scales to `scale(1.05)` on hover
+- [ ] Icon scales to `scale(1.1)` while maintaining `translateY(-50%)`
+- [ ] All transitions use `transition: all 0.3s ease` or similar
+- [ ] Click handlers for mobile/touch support
+- [ ] Flash highlight: `#f3f4f6` background for 500ms
+- [ ] Pulse effect: `scale(1.05)` for 300ms
+- [ ] Hover reset uses empty string `''` (except icon transforms)
+- [ ] JavaScript at end of HTML fragment
+- [ ] Event listeners use `querySelectorAll` + `forEach` pattern
+- [ ] Index-based mapping correct
+
+**LLM Integration**:
 - [ ] Constraint definition file (JSON)
-- [ ] Pydantic request/response models
+- [ ] Constraint-driven prompting
 - [ ] LLM retry logic (max 2)
-- [ ] Session field echoing
-- [ ] Previous slides context support
 - [ ] Character constraint validation
-- [ ] Graceful degradation
+- [ ] Graceful degradation (return content even if validation fails)
+- [ ] Comprehensive metadata (usage stats, attempts, violations)
+- [ ] Placeholder cleanup for unfilled fields
+
+**Quality Assurance** (NEW):
+- [ ] HTML validated with W3C Validator or HTML Tidy
+- [ ] **Open HTML in browser immediately after creation** (visual check)
+- [ ] Font sizes consistent across all variants
+- [ ] No stray closing tags at start of template
 - [ ] Comprehensive logging
-- [ ] Environment variable validation
 - [ ] Responsive testing (multiple viewport sizes)
+- [ ] Integration test with actual LLM output
+- [ ] Hover/click effects tested on desktop and mobile
 
 ---
 

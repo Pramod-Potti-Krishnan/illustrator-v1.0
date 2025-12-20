@@ -42,8 +42,9 @@ class TypeConstraint:
     description: str
 
 
-# Grid unit to pixel conversion (1 grid unit = 150 pixels)
-GRID_UNIT_PIXELS = 150
+# Grid unit to pixel conversion for 32x18 grid on 1920x1080 canvas
+# 1920 / 32 = 60 pixels, 1080 / 18 = 60 pixels
+GRID_UNIT_PIXELS = 60
 
 
 # ============================================================================
@@ -58,8 +59,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "pyramid": TypeConstraint(
         min_grid_width=6,
         min_grid_height=4,
-        max_grid_width=12,
-        max_grid_height=8,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.FIXED,
         aspect_ratio_value=(3, 2),
         output_mode=OutputMode.HTML,
@@ -72,8 +73,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "funnel": TypeConstraint(
         min_grid_width=6,
         min_grid_height=4,
-        max_grid_width=12,
-        max_grid_height=8,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.FIXED,
         aspect_ratio_value=(3, 2),
         output_mode=OutputMode.HTML,
@@ -86,8 +87,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "concentric_circles": TypeConstraint(
         min_grid_width=6,
         min_grid_height=6,
-        max_grid_width=12,
-        max_grid_height=8,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.SQUARE,
         aspect_ratio_value=(1, 1),
         output_mode=OutputMode.HTML,
@@ -100,8 +101,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "concept_spread": TypeConstraint(
         min_grid_width=8,
         min_grid_height=4,
-        max_grid_width=12,
-        max_grid_height=8,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.WIDE,
         aspect_ratio_value=(2, 1),
         output_mode=OutputMode.HTML,
@@ -114,8 +115,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "venn": TypeConstraint(
         min_grid_width=6,
         min_grid_height=4,
-        max_grid_width=12,
-        max_grid_height=8,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.FIXED,
         aspect_ratio_value=(4, 3),
         output_mode=OutputMode.HTML,
@@ -128,8 +129,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "comparison": TypeConstraint(
         min_grid_width=8,
         min_grid_height=4,
-        max_grid_width=12,
-        max_grid_height=6,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.WIDE,
         aspect_ratio_value=(2, 1),
         output_mode=OutputMode.HTML,
@@ -146,8 +147,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "timeline": TypeConstraint(
         min_grid_width=8,
         min_grid_height=3,
-        max_grid_width=12,
-        max_grid_height=6,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.WIDE,
         aspect_ratio_value=(3, 1),
         output_mode=OutputMode.SVG,
@@ -160,8 +161,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "process": TypeConstraint(
         min_grid_width=6,
         min_grid_height=3,
-        max_grid_width=12,
-        max_grid_height=6,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.FLEXIBLE,
         aspect_ratio_value=None,
         output_mode=OutputMode.SVG,
@@ -174,8 +175,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "statistics": TypeConstraint(
         min_grid_width=4,
         min_grid_height=3,
-        max_grid_width=12,
-        max_grid_height=8,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.FLEXIBLE,
         aspect_ratio_value=None,
         output_mode=OutputMode.SVG,
@@ -188,8 +189,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "hierarchy": TypeConstraint(
         min_grid_width=6,
         min_grid_height=4,
-        max_grid_width=12,
-        max_grid_height=8,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.FLEXIBLE,
         aspect_ratio_value=None,
         output_mode=OutputMode.SVG,
@@ -202,8 +203,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "list": TypeConstraint(
         min_grid_width=4,
         min_grid_height=4,
-        max_grid_width=8,
-        max_grid_height=8,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.PORTRAIT,
         aspect_ratio_value=(2, 3),
         output_mode=OutputMode.SVG,
@@ -216,8 +217,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "cycle": TypeConstraint(
         min_grid_width=6,
         min_grid_height=6,
-        max_grid_width=12,
-        max_grid_height=8,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.SQUARE,
         aspect_ratio_value=(1, 1),
         output_mode=OutputMode.SVG,
@@ -230,8 +231,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "matrix": TypeConstraint(
         min_grid_width=6,
         min_grid_height=6,
-        max_grid_width=12,
-        max_grid_height=8,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.SQUARE,
         aspect_ratio_value=(1, 1),
         output_mode=OutputMode.SVG,
@@ -244,8 +245,8 @@ INFOGRAPHIC_TYPE_CONSTRAINTS: Dict[str, TypeConstraint] = {
     "roadmap": TypeConstraint(
         min_grid_width=8,
         min_grid_height=4,
-        max_grid_width=12,
-        max_grid_height=6,
+        max_grid_width=32,
+        max_grid_height=18,
         aspect_ratio_type=AspectRatioType.WIDE,
         aspect_ratio_value=(2, 1),
         output_mode=OutputMode.SVG,
@@ -282,12 +283,12 @@ def get_item_limits_for_grid(infographic_type: str, grid_width: int, grid_height
     # Calculate grid area
     grid_area = grid_width * grid_height
 
-    # Size category based on area
-    if grid_area <= 24:      # Small (e.g., 4x6, 6x4)
+    # Size category based on area (32x18 grid = 576 max area)
+    if grid_area <= 144:      # Small (e.g., 12x12, 8x16)
         size_factor = 0.6
-    elif grid_area <= 48:    # Medium (e.g., 6x6, 8x6)
+    elif grid_area <= 288:    # Medium (e.g., 16x16, 24x12)
         size_factor = 0.8
-    else:                    # Large (e.g., 10x6, 12x8)
+    else:                     # Large (e.g., 24x16, 32x18)
         size_factor = 1.0
 
     # Adjust max items based on size

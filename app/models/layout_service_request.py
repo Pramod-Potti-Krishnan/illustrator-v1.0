@@ -79,27 +79,28 @@ class GridConstraints(BaseModel):
     """
     Grid size constraints from the Layout Service.
 
-    The presentation canvas is a 12x8 grid.
+    The presentation canvas is a 32x18 grid (1920x1080 at 60px per unit).
     Each grid unit represents a portion of the slide.
+    Elements can occupy any subsection of this grid.
     """
     gridWidth: int = Field(
         ...,
         ge=1,
-        le=12,
-        description="Element width in grid units (1-12)"
+        le=32,
+        description="Element width in grid units (1-32)"
     )
     gridHeight: int = Field(
         ...,
         ge=1,
-        le=8,
-        description="Element height in grid units (1-8)"
+        le=18,
+        description="Element height in grid units (1-18)"
     )
 
     class Config:
         json_schema_extra = {
             "example": {
-                "gridWidth": 8,
-                "gridHeight": 6
+                "gridWidth": 24,
+                "gridHeight": 12
             }
         }
 
@@ -302,8 +303,8 @@ class InfographicGenerateRequest(BaseModel):
                     "tone": "professional"
                 },
                 "constraints": {
-                    "gridWidth": 10,
-                    "gridHeight": 5
+                    "gridWidth": 24,
+                    "gridHeight": 10
                 },
                 "style": {
                     "colorScheme": "brand",
