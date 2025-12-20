@@ -106,6 +106,7 @@ async def generate_concentric_circles_with_llm(request: ConcentricCirclesGenerat
         response = ConcentricCirclesGenerationResponse(
             success=True,
             html=filled_html,
+            infographic_html=filled_html,  # Layout Service compatibility alias
             metadata={
                 "num_circles": request.num_circles,
                 "template_file": template_file,

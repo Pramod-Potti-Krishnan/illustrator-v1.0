@@ -116,6 +116,7 @@ async def generate_pyramid_with_llm(request: PyramidGenerationRequest):
         response = PyramidGenerationResponse(
             success=True,
             html=filled_html,
+            infographic_html=filled_html,  # Layout Service compatibility alias
             metadata={
                 "num_levels": request.num_levels,
                 "template_file": template_file,

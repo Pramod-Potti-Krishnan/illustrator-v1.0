@@ -102,6 +102,7 @@ async def generate_funnel_with_llm(request: FunnelGenerationRequest):
         response = FunnelGenerationResponse(
             success=True,
             html=filled_html,
+            infographic_html=filled_html,  # Layout Service compatibility alias
             metadata={
                 "num_stages": request.num_stages,
                 "template_file": template_file,

@@ -251,6 +251,11 @@ class PyramidGenerationResponse(BaseModel):
         description="Complete pyramid HTML with generated content"
     )
 
+    infographic_html: str = Field(
+        ...,
+        description="Complete pyramid HTML (alias for html, for Layout Service compatibility)"
+    )
+
     metadata: Dict[str, Any] = Field(
         ...,
         description="Metadata about the generation process"
@@ -402,6 +407,11 @@ class FunnelGenerationResponse(BaseModel):
         description="Complete funnel HTML with generated content"
     )
 
+    infographic_html: str = Field(
+        ...,
+        description="Complete funnel HTML (alias for html, for Layout Service compatibility)"
+    )
+
     metadata: Dict[str, Any] = Field(
         ...,
         description="Metadata about the generation process"
@@ -525,6 +535,11 @@ class ConcentricCirclesGenerationResponse(BaseModel):
     html: str = Field(
         ...,
         description="Complete concentric circles HTML with generated content"
+    )
+
+    infographic_html: str = Field(
+        ...,
+        description="Complete concentric circles HTML (alias for html, for Layout Service compatibility)"
     )
 
     metadata: Dict[str, Any] = Field(
