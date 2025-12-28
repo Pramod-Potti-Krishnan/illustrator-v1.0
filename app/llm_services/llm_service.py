@@ -331,14 +331,15 @@ class GeminiService:
 
             # Special handling for top level
             if level_num == num_levels:
-                constraints_str += f"\n\nLevel {level_num} (TOP):"
-                constraints_str += f"\n- Label: 1-2 words ONLY, each word 5-9 chars"
-                constraints_str += f"\n  If 2 words, format as: Word1<br>Word2 (e.g., 'Vision<br>Driven')"
-                constraints_str += f"\n  Total length (excluding <br>): {label_min}-{label_max} characters"
+                constraints_str += f"\n\nLevel {level_num} (TOP - NARROWEST):"
+                constraints_str += f"\n- Label: STRICTLY {label_min}-{label_max} characters"
+                constraints_str += f"\n  This is the narrowest part - use 1 SHORT word only!"
+                constraints_str += f"\n  If 2 words needed, format as: Word1<br>Word2"
+                constraints_str += f"\n  HTML tags (<br>) do NOT count toward character limit"
             # Special handling for second from top
             elif level_num == num_levels - 1:
                 constraints_str += f"\n\nLevel {level_num} (SECOND FROM TOP):"
-                constraints_str += f"\n- Label: MAX 20 characters total"
+                constraints_str += f"\n- Label: STRICTLY {label_min}-{label_max} characters"
             # Standard handling for other levels
             else:
                 constraints_str += f"\n\nLevel {level_num}:"
@@ -383,11 +384,11 @@ Instructions:
 3. Each higher level should build upon the previous level
 4. Level {num_levels} should represent the ultimate goal or peak achievement
 5. Labels should be concise, impactful phrases (like section headers):
-   - Level {num_levels} (TOP): MUST be 1-2 words ONLY, each word 5-9 chars
-     * If 2 words, separate with <br> tag (e.g., "Vision<br>Driven")
-     * If 1 word, no <br> needed (e.g., "Excellence")
-   - Level {num_levels - 1} (SECOND FROM TOP): MAX 20 characters total
-   - Other levels: Keep concise, 12-20 characters
+   - Level {num_levels} (TOP): MUST follow character limits EXACTLY from constraints above
+     * This is the narrowest part of the pyramid - use very short labels!
+     * If 2 words needed, separate with <br> tag (does NOT count toward limit)
+   - Level {num_levels - 1} (SECOND FROM TOP): Follow character limits from constraints
+   - Other levels: Follow the character limits specified in constraints above
 6. Each level should have exactly 5 bullet points that:
    - Describe key elements, actions, or characteristics of that level
    - Are concise but informative (25-45 characters each)
@@ -403,9 +404,9 @@ Return ONLY valid JSON in this exact format:
 {json_example}
 
 CRITICAL:
-- Every field must meet its character constraints exactly
+- Every field must meet its character constraints EXACTLY as specified above
 - Count characters carefully (spaces count!)
-- Top level label MUST be 2 words maximum (e.g., "Market Leadership" NOT "Achieve Market Leadership")
+- Top level (Level {num_levels}) label has STRICT character limits - keep it VERY short!
 - ALL bullets MUST include <strong> tags around 1-2 key words
 - HTML tags (<br>, <strong>) do NOT count toward character limits"""
 
