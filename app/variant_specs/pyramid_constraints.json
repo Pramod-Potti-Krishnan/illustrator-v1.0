@@ -10,13 +10,13 @@
       "comment": "Top level: 1-2 words for label, 5 bullets each 25-68 chars"
     },
     "level_2": {
-      "label": [8, 20],
+      "label": [8, 14],
       "bullet_1": [25, 68],
       "bullet_2": [25, 68],
       "bullet_3": [25, 68],
       "bullet_4": [25, 68],
       "bullet_5": [25, 68],
-      "comment": "Second from top: max 20 chars label, 5 bullets each 25-68 chars"
+      "comment": "Second from top: max 14 chars label, 5 bullets each 25-68 chars"
     },
     "level_1": {
       "label": [12, 20],
@@ -43,13 +43,13 @@
       "comment": "Top level: 1-2 words for label, 5 bullets each 25-68 chars"
     },
     "level_3": {
-      "label": [8, 20],
+      "label": [8, 14],
       "bullet_1": [25, 68],
       "bullet_2": [25, 68],
       "bullet_3": [25, 68],
       "bullet_4": [25, 68],
       "bullet_5": [25, 68],
-      "comment": "Second from top: max 20 chars label, 5 bullets each 25-68 chars"
+      "comment": "Second from top: max 14 chars label, 5 bullets each 25-68 chars"
     },
     "level_2": {
       "label": [12, 20],
@@ -76,22 +76,22 @@
   },
   "pyramid_5": {
     "level_5": {
-      "label": [4, 14],
+      "label": [4, 9],
       "bullet_1": [20, 54],
       "bullet_2": [20, 54],
       "bullet_3": [20, 54],
       "bullet_4": [20, 54],
       "bullet_5": [20, 54],
-      "comment": "Top level (reduced 20%): shorter label 4-14 chars, 5 bullets each 20-54 chars"
+      "comment": "Top level: max 9 chars label (narrow), 5 bullets each 20-54 chars"
     },
     "level_4": {
-      "label": [8, 20],
+      "label": [8, 14],
       "bullet_1": [25, 68],
       "bullet_2": [25, 68],
       "bullet_3": [25, 68],
       "bullet_4": [25, 68],
       "bullet_5": [25, 68],
-      "comment": "Second from top: max 20 chars label, 5 bullets each 25-68 chars"
+      "comment": "Second from top: max 14 chars label, 5 bullets each 25-68 chars"
     },
     "level_3": {
       "label": [12, 20],
@@ -123,22 +123,22 @@
   },
   "pyramid_6": {
     "level_6": {
-      "label": [4, 13],
+      "label": [3, 5],
       "bullet_1": [19, 51],
       "bullet_2": [19, 51],
       "bullet_3": [19, 51],
       "bullet_4": [19, 51],
       "bullet_5": [19, 51],
-      "comment": "Top level (reduced 25%): shorter label 4-13 chars, 5 bullets each 19-51 chars"
+      "comment": "Top level: max 5 chars label (very narrow), 5 bullets each 19-51 chars"
     },
     "level_5": {
-      "label": [8, 20],
+      "label": [8, 14],
       "bullet_1": [25, 68],
       "bullet_2": [25, 68],
       "bullet_3": [25, 68],
       "bullet_4": [25, 68],
       "bullet_5": [25, 68],
-      "comment": "Second from top: max 20 chars label, 5 bullets each 25-68 chars"
+      "comment": "Second from top: max 14 chars label, 5 bullets each 25-68 chars"
     },
     "level_4": {
       "label": [12, 20],
