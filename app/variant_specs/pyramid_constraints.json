@@ -34,13 +34,13 @@
   },
   "pyramid_4": {
     "level_4": {
-      "label": [5, 18],
+      "label": [5, 10],
       "bullet_1": [25, 68],
       "bullet_2": [25, 68],
       "bullet_3": [25, 68],
       "bullet_4": [25, 68],
       "bullet_5": [25, 68],
-      "comment": "Top level: 1-2 words for label, 5 bullets each 25-68 chars"
+      "comment": "Top level: max 10 chars label, 5 bullets each 25-68 chars"
     },
     "level_3": {
       "label": [8, 14],
@@ -76,13 +76,13 @@
   },
   "pyramid_5": {
     "level_5": {
-      "label": [4, 9],
+      "label": [4, 8],
       "bullet_1": [20, 54],
       "bullet_2": [20, 54],
       "bullet_3": [20, 54],
       "bullet_4": [20, 54],
       "bullet_5": [20, 54],
-      "comment": "Top level: max 9 chars label (narrow), 5 bullets each 20-54 chars"
+      "comment": "Top level: max 8 chars label (narrow), 5 bullets each 20-54 chars"
     },
     "level_4": {
       "label": [8, 14],
@@ -123,13 +123,13 @@
   },
   "pyramid_6": {
     "level_6": {
-      "label": [3, 5],
+      "label": [4, 6],
       "bullet_1": [19, 51],
       "bullet_2": [19, 51],
       "bullet_3": [19, 51],
       "bullet_4": [19, 51],
       "bullet_5": [19, 51],
-      "comment": "Top level: max 5 chars label (very narrow), 5 bullets each 19-51 chars"
+      "comment": "Top level: 4-6 chars label (very narrow), 5 bullets each 19-51 chars"
     },
     "level_5": {
       "label": [8, 14],
