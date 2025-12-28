@@ -1,6 +1,6 @@
 <div class="concept-spread-container" style="margin: 0; padding: 20px 0; box-sizing: border-box; width: 100%; height: 100%; max-width: 1800px; max-height: 720px; display: flex; align-items: center; justify-content: space-between; font-family: Arial, sans-serif; gap: 30px">
 <!-- Left Text Boxes -->
-<div class="left-boxes" style="margin: 0; padding: 0; box-sizing: border-box; flex: 0 0 34%; height: 75%; display: flex; flex-direction: column; justify-content: space-between">
+<div class="left-boxes" style="margin: 0; padding: 0; box-sizing: border-box; flex: 1; height: 75%; display: flex; flex-direction: column; justify-content: space-between">
 <!-- Box 1 - MARKET (Top - Light Sky Blue) -->
 <div class="text-box box-1" data-id="market" style="margin: 0; padding: 15px 20px; box-sizing: border-box; border-radius: 12px; color: #1f2937; height: 161px; display: flex; flex-direction: column; justify-content: center; transition: all 0.3s ease; cursor: pointer; background: rgba(189, 224, 249, 0.6)">
 <ul style="margin: 0; padding: 0; box-sizing: border-box; list-style-type: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 18px; color: var(--text-primary, #1f2937)">
@@ -30,7 +30,7 @@
 </div>
 
 <!-- Center Hexagons -->
-<div class="hexagon-center" style="margin: 0; padding: 0; box-sizing: border-box; flex: 0 0 38%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative">
+<div class="hexagon-center" style="margin: 0; padding: 0; box-sizing: border-box; flex: 0 0 36%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative">
 <div class="hexagon-ring" style="margin: 0; padding: 0; box-sizing: border-box; position: relative; width: 605px; height: 605px">
 
 <!-- Hexagon 1: Innovation (Top - 0°) - Deep Orange -->
@@ -66,7 +66,7 @@
 </div>
 
 <!-- Right Text Boxes -->
-<div class="right-boxes" style="margin: 0; padding: 0; box-sizing: border-box; flex: 0 0 34%; height: 75%; display: flex; flex-direction: column; justify-content: space-between">
+<div class="right-boxes" style="margin: 0; padding: 0; box-sizing: border-box; flex: 1; height: 75%; display: flex; flex-direction: column; justify-content: space-between">
 <!-- Box 4 - FUTURE (Top - Pale Lavender) -->
 <div class="text-box box-4" data-id="future" style="margin: 0; padding: 15px 20px; box-sizing: border-box; border-radius: 12px; color: #1f2937; height: 161px; display: flex; flex-direction: column; justify-content: center; transition: all 0.3s ease; cursor: pointer; background: rgba(232, 215, 241, 0.6)">
 <ul style="margin: 0; padding: 0; box-sizing: border-box; list-style-type: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 18px; color: var(--text-primary, #1f2937)">
@@ -96,11 +96,6 @@
 </div>
 </div>
 <script>
-    // Convert hexagon labels to Title Case (DATA → Data)
-    document.querySelectorAll('.hexagon-label').forEach(label => {
-        label.textContent = label.textContent.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
-    });
-
     // Bidirectional linked hover: hexagon ↔ description box
     // Using data-id attributes for precise linking
 

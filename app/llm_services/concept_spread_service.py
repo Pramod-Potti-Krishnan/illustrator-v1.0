@@ -211,7 +211,7 @@ class ConceptSpreadService:
             if hex_key in constraints:
                 label_min, label_max = constraints[hex_key]["label"]
                 icon_count = constraints[hex_key]["icon"][0]
-                constraints_str += f"\n- Hexagon {i} label: {label_min}-{label_max} characters, 1 word, uppercase"
+                constraints_str += f"\n- Hexagon {i} label: {label_min}-{label_max} characters, 1 word, Title Case (e.g., 'Strategy', 'Data')"
                 constraints_str += f"\n- Hexagon {i} icon: EXACTLY {icon_count} Unicode emoji/pictograph (appropriate to concept)"
 
         # Description box constraints
@@ -246,7 +246,8 @@ class ConceptSpreadService:
 TASK: Create 6 related concepts arranged in hexagons with detailed description bullets.
 
 HEXAGON REQUIREMENTS:
-- Each hexagon has a 1-word LABEL (uppercase, 4-12 chars)
+- Each hexagon has a 1-word LABEL in Title Case (e.g., "Strategy", "Data", "Growth" - NOT uppercase)
+- Each label should be 4-12 characters
 - Each hexagon has a UNICODE ICON (single emoji/pictograph, appropriate to the concept)
 - 6 hexagons should represent different aspects/facets of the topic
 - Concepts should be logically connected and comprehensive
@@ -276,12 +277,12 @@ DESCRIPTION BOX REQUIREMENTS:
 
 Return ONLY valid JSON in this exact format:
 {{
-  "hex_1_label": "CONCEPT",
+  "hex_1_label": "Concept",
   "hex_1_icon": "●",
   "box_1_bullet_1": "First bullet with <strong>emphasis</strong> on keywords",
   "box_1_bullet_2": "Second bullet explaining the <strong>concept</strong>",
   "box_1_bullet_3": "Third bullet with actionable <strong>insight</strong>",
-  "hex_2_label": "STRATEGY",
+  "hex_2_label": "Strategy",
   "hex_2_icon": "▲",
   "box_2_bullet_1": "...",
   "box_2_bullet_2": "...",
@@ -293,7 +294,7 @@ CRITICAL RULES:
 1. Each field must meet its character constraints EXACTLY
 2. Count characters carefully (spaces count, HTML tags do NOT count)
 3. Unicode icons must be single characters (not compound emojis)
-4. Labels must be single words, uppercase
+4. Labels must be single words in Title Case (e.g., "Strategy", NOT "STRATEGY" or "strategy")
 5. Use <strong> strategically (1-2 words per bullet)
 6. Ensure 6 distinct, complementary concepts
 """
