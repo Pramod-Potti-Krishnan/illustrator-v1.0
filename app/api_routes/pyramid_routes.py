@@ -11,6 +11,7 @@ from pathlib import Path
 
 from app.models import PyramidGenerationRequest, PyramidGenerationResponse
 from app.llm_services.pyramid_generator import get_generator
+from app.core.text_utils import to_title_case
 
 logger = logging.getLogger(__name__)
 
@@ -68,6 +69,12 @@ async def generate_pyramid_with_llm(request: PyramidGenerationRequest):
             )
 
         generated_content = gen_result["content"]
+
+        # Apply title case to level labels (convert from ALL CAPS to Title Case)
+        for level in range(1, request.num_levels + 1):
+            label_key = f"level_{level}_label"
+            if label_key in generated_content:
+                generated_content[label_key] = to_title_case(generated_content[label_key])
 
         # Determine template file
         template_file = f"{request.num_levels}.html"

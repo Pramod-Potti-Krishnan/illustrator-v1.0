@@ -13,6 +13,7 @@ from pathlib import Path
 
 from app.models import FunnelGenerationRequest, FunnelGenerationResponse
 from app.llm_services.funnel_generator import get_funnel_generator
+from app.core.text_utils import to_title_case
 
 logger = logging.getLogger(__name__)
 
@@ -66,6 +67,12 @@ async def generate_funnel_with_llm(request: FunnelGenerationRequest):
             )
 
         generated_content = gen_result["content"]
+
+        # Apply title case to stage names (convert from ALL CAPS to Title Case)
+        for stage in range(1, request.num_stages + 1):
+            name_key = f"stage_{stage}_name"
+            if name_key in generated_content:
+                generated_content[name_key] = to_title_case(generated_content[name_key])
 
         # Determine template file
         template_file = f"{request.num_stages}.html"
