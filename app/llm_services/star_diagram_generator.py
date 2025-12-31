@@ -154,14 +154,9 @@ class StarDiagramGenerator:
 
         return f"""Generate content for a "Star Diagram" illustration about: {topic}
 
-Description: Star Diagram
-
 Tone: {tone}
 Audience: {audience}
 Number of elements: {num_elements}
-
-Character constraints:
-{constraints_text}
 {target_points_text}
 
 Additional context: {json.dumps(context) if context else 'None'}
@@ -169,16 +164,23 @@ Additional context: {json.dumps(context) if context else 'None'}
 Return a JSON object with the following fields:
 {", ".join(self.EXPECTED_FIELDS)}
 
-Each field should contain concise, impactful text that fits within the character limits.
-Labels should be 1-3 words. Bullet points should be complete sentences that are informative and actionable.
+CRITICAL REQUIREMENTS:
+1. Labels: 1-2 words only (5-20 characters)
+2. Bullets: EXACTLY 35-45 characters (excluding <strong> tags)
+   - Count only visible text, NOT the HTML tags
+   - Each bullet must have ONE key phrase in <strong> tags
 
-IMPORTANT: Each bullet point MUST contain exactly 1-2 key phrases wrapped in <strong> tags for emphasis.
-Example bullet formats:
-- "Develop <strong>innovative solutions</strong> for complex challenges"
-- "Build <strong>customer trust</strong> through consistent delivery"
-- "Create <strong>measurable impact</strong> with data-driven strategies"
+CORRECT bullet examples (35-45 chars visible text):
+- "Build <strong>customer trust</strong> via delivery" (32 chars = TOO SHORT)
+- "Build <strong>customer trust</strong> through consistent delivery" (42 chars = GOOD)
+- "Develop <strong>new strategies</strong> for growth" (35 chars = GOOD)
+- "Create <strong>measurable outcomes</strong> with data" (38 chars = GOOD)
+- "Drive <strong>innovation</strong> across all teams" (35 chars = GOOD)
 
-The <strong> tags highlight the most important concept in each bullet. Never use more than 2 <strong> tags per bullet.
+WRONG (too long):
+- "Optimize website content for search engine visibility and organic traffic" (73 chars = BAD)
+
+Keep bullets punchy and impactful. Every word must earn its place.
 """
 
 
