@@ -166,19 +166,19 @@ Return a JSON object with the following fields:
 
 CRITICAL REQUIREMENTS:
 1. Labels: 1-2 words only (5-20 characters)
-2. Bullets: EXACTLY 35-45 characters (excluding <strong> tags)
+2. Bullets: EXACTLY 35-40 characters (excluding <strong> tags)
    - Count only visible text, NOT the HTML tags
    - Each bullet must have ONE key phrase in <strong> tags
 
-CORRECT bullet examples (35-45 chars visible text):
-- "Build <strong>customer trust</strong> via delivery" (32 chars = TOO SHORT)
-- "Build <strong>customer trust</strong> through consistent delivery" (42 chars = GOOD)
+CORRECT bullet examples (35-40 chars visible text):
 - "Develop <strong>new strategies</strong> for growth" (35 chars = GOOD)
 - "Create <strong>measurable outcomes</strong> with data" (38 chars = GOOD)
 - "Drive <strong>innovation</strong> across all teams" (35 chars = GOOD)
+- "Build <strong>customer trust</strong> via fast delivery" (40 chars = GOOD)
 
-WRONG (too long):
-- "Optimize website content for search engine visibility and organic traffic" (73 chars = BAD)
+WRONG (too short or too long):
+- "Build <strong>trust</strong> via delivery" (26 chars = TOO SHORT)
+- "Build customer trust through consistent reliable delivery" (50 chars = TOO LONG)
 
 Keep bullets punchy and impactful. Every word must earn its place.
 """
