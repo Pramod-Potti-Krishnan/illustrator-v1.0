@@ -171,6 +171,14 @@ Return a JSON object with the following fields:
 
 Each field should contain concise, impactful text that fits within the character limits.
 Labels should be 1-3 words. Bullet points should be complete sentences that are informative and actionable.
+
+IMPORTANT: Each bullet point MUST contain exactly 1-2 key phrases wrapped in <strong> tags for emphasis.
+Example bullet formats:
+- "Develop <strong>innovative solutions</strong> for complex challenges"
+- "Build <strong>customer trust</strong> through consistent delivery"
+- "Create <strong>measurable impact</strong> with data-driven strategies"
+
+The <strong> tags highlight the most important concept in each bullet. Never use more than 2 <strong> tags per bullet.
 """
 
 
