@@ -38,6 +38,7 @@ from app.api_routes.capabilities_routes import router as capabilities_router
 from app.api_routes.can_handle_routes import router as can_handle_router
 from app.api_routes.recommend_routes import router as recommend_router
 from app.api_routes.star_diagram_routes import router as star_diagram_router
+from app.api_routes.round_table_routes import router as round_table_router
 
 # Configure logging
 logging.basicConfig(
@@ -73,7 +74,8 @@ app.include_router(layout_service_router)  # Layout Service integration
 app.include_router(capabilities_router)    # GET /capabilities
 app.include_router(can_handle_router)      # POST /v1.0/can-handle
 app.include_router(recommend_router)
-app.include_router(star_diagram_router)       # POST /v1.0/recommend-visual
+app.include_router(star_diagram_router)
+app.include_router(round_table_router)       # POST /v1.0/recommend-visual
 
 
 @app.get("/")
